@@ -20,7 +20,8 @@
     "resolveJsonModule": true,
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "types": ["@tarojs/components/vue3"]
   },
   "include": ["./src", "./types", "components.d.ts"],
   "compileOnSave": false
