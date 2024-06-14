@@ -1,16 +1,34 @@
 <template>
-  <view class="demo">
-    <view>
-      欢迎使用 NutUI 开发 Taro 多端项目
-      <Dongdong />
-    </view>
-    <view>{{ count }}</view>
-    <view>
-      <nut-button type="primary" @click="handleClick">
-        Count++
-      </nut-button>
-    </view>
-  </view>
+  <div>
+    <div class="logo">
+      <view class='flex1'>
+        <image src='../../assets/logo.png' alt=""></image>
+      </view>
+    </div>
+    <nut-radio-group v-model="val" direction="horizontal" style="width: max-content;">
+      <nut-radio label="1">密码登录</nut-radio>
+      <nut-radio label="2">验证码登录</nut-radio>
+    </nut-radio-group>
+    <nut-form ref="formRef" :model-value="formData" :rules="{
+      user: [
+        { required: true, message: '请填写账号' },
+      ],
+      password: [
+        { required: true, message: '请填写密码' },
+      ],
+    }">
+      <nut-form-item label="账号" prop="user" required>
+        <nut-input v-model="formData.user" placeholder="请输入账号" type="text" />
+      </nut-form-item>
+      <nut-form-item label="密码" prop="password" required>
+        <nut-input v-model="formData.password" placeholder="请输入密码" type="text" />
+      </nut-form-item>
+
+      <div style="width: 96%; margin-left: 2%; margin-right: 2%;">
+        <nut-button block type="primary" @click="submit">提交</nut-button>
+      </div>
+    </nut-form>
+  </div>
 </template>
 
 <script setup>
@@ -18,27 +36,38 @@ import { ref } from 'vue';
 import { Dongdong } from '@nutui/icons-vue-taro';
 import Axios from '../../util/axios';
 
-const count = ref(0);
+const formData = ref({
+  user: '',
+  password: '',
+  // repeatpassword: ''
+})
+const formRef = ref(null)
+const val = ref('1')
+// const isLogin = reactive(false)
 
-const handleClick = () => {
-  count.value++;
-  const apiUrl = '/error';
-  console.log('====================================');
-  console.log(12312312);
-  console.log('====================================');
-  Axios.get(apiUrl)
-    .then(response => {
-      // 在这里处理你的数据  
-    })
-    .catch(error => {
-      // 在这里处理错误  
-    });
-};
+const submit = () => {
+  formRef.value?.validate().then(({ valid, errors }) => {
+    if (valid) {
+      console.log('success:', formData.value)
+    } else {
+      console.warn('error:', errors)
+    }
+  })
+}
+
 </script>
 
 <style>
 .demo {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
