@@ -1,0 +1,30 @@
+{
+  "id": "4586046",
+  "name": "baby",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2077551",
+      "name": "新增",
+      "font_class": "xinzeng",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "7597977",
+      "name": "24gl-swapHorizontal3",
+      "font_class": "24gl-swapHorizontal3",
+      "unicode": "eb73",
+      "unicode_decimal": 60275
+    },
+    {
+      "icon_id": "36874779",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e6f2",
+      "unicode_decimal": 59122
+    }
+  ]
+}

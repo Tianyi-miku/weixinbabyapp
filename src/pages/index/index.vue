@@ -58,6 +58,7 @@ import { ref } from 'vue';
 import { Dongdong } from '@nutui/icons-vue-taro';
 import Axios from '../../util/axios';
 import { Checklist } from '@nutui/icons-vue-taro'
+import Taro from '@tarojs/taro'
 
 const formData = ref({
   user: '',
@@ -72,6 +73,9 @@ const submit = () => {
   formRef.value?.validate().then(({ valid, errors }) => {
     if (valid) {
       console.log('success:', formData.value)
+      Taro.switchTab({
+        url: '/pages/fazhan/fazhan'
+      })
     } else {
       console.warn('error:', errors)
     }
