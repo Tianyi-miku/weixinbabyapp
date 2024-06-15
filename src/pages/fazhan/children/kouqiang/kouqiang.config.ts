@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '身体数据',
+  navigationBarTitleText: '口腔管理',
 })

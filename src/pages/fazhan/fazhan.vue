@@ -11,12 +11,17 @@
         </nut-grid-item>
     </nut-grid>
     <div class="zhibiao">身体指标</div>
-    <div class="Tcard">
+    <div class="Tcard"  @click=" Taro.navigateTo({
+            url: '/pages/fazhan/children/shenti/shenti'
+        })">
         <div class="sg">
             <div>身高</div>
         </div>
-        <div class="bz">
-            <div class="biaozhun">标准</div>
+        <div class="bz" @click=" Taro.navigateTo({
+            url: '/pages/fazhan/children/guanlipg/guanlipg'
+        })">
+            <div class="biaozhun">标准 <RectRight></RectRight>
+            </div>
         </div>
         <div class="tz">
             <div> 体重</div>
@@ -25,21 +30,30 @@
     <div class="zhibiao">健康管理</div>
     <nut-grid :border="false" column-num="2">
         <nut-grid-item>
-            <div class="guanli">体重管理</div>
+            <div class="guanli" @click=" Taro.navigateTo({
+                url: '/pages/fazhan/children/tizhong/tizhong'
+            })">体重管理</div>
         </nut-grid-item>
         <nut-grid-item>
-            <div class="guanli">睡眠管理</div>
+            <div class="guanli" @click=" Taro.navigateTo({
+                url: '/pages/fazhan/children/shuimian/shuimian'
+            })">睡眠管理</div>
         </nut-grid-item>
         <nut-grid-item>
-            <div class="guanli">口腔管理</div>
+            <div class="guanli" @click=" Taro.navigateTo({
+                url: '/pages/fazhan/children/kouqiang/kouqiang'
+            })">口腔管理</div>
         </nut-grid-item>
         <nut-grid-item>
-            <div class="guanli">排便管理</div>
+            <div class="guanli" @click=" Taro.navigateTo({
+                url: '/pages/fazhan/children/paibian/paibian'
+            })">排便管理</div>
         </nut-grid-item>
     </nut-grid>
 </template>
 <script setup>
 import Taro from '@tarojs/taro'
+import { RectRight } from '@nutui/icons-vue-taro'
 
 function gogeren() {
     Taro.navigateTo({
