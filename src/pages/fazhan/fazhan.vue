@@ -1,24 +1,24 @@
 <template>
-    <nut-grid :border="false" column-num="8">
-        <nut-grid-item>
-            <nut-avatar @click="gogeren">
-                <span class="iconfont icon-yonghu"></span>
-            </nut-avatar>
-        </nut-grid-item>
-        <nut-grid-item>
+    <div class="top">
+        <div @click="Taro.navigateTo({
+            url: '/subPackages/pages/geren/geren'
+        })">
+            <nut-avatar size="large"> <span class="iconfont icon-yonghu"></span> </nut-avatar>
+        </div>
+        <div class="name">
             <div>姓名</div>
             <div>年龄</div>
-        </nut-grid-item>
-    </nut-grid>
+        </div>
+    </div>
     <div class="zhibiao">身体指标</div>
-    <div class="Tcard"  @click=" Taro.navigateTo({
-            url: '/pages/fazhan/children/shenti/shenti'
-        })">
+    <div class="Tcard" @click=" Taro.navigateTo({
+        url: '/subPackages/pages/shenti/shenti'
+    })">
         <div class="sg">
             <div>身高</div>
         </div>
-        <div class="bz" @click=" Taro.navigateTo({
-            url: '/pages/fazhan/children/guanlipg/guanlipg'
+        <div class="bz" @click.stop="Taro.navigateTo({
+            url: '/subPackages/pages/guanlipg/guanlipg'
         })">
             <div class="biaozhun">标准 <RectRight></RectRight>
             </div>
@@ -31,22 +31,22 @@
     <nut-grid :border="false" column-num="2">
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
-                url: '/pages/fazhan/children/tizhong/tizhong'
+                url: '/subPackages/pages/tizhong/tizhong'
             })">体重管理</div>
         </nut-grid-item>
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
-                url: '/pages/fazhan/children/shuimian/shuimian'
+                url: '/subPackages/pages/shuimian/shuimian'
             })">睡眠管理</div>
         </nut-grid-item>
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
-                url: '/pages/fazhan/children/kouqiang/kouqiang'
+                url: '/subPackages/pages/kouqiang/kouqiang'
             })">口腔管理</div>
         </nut-grid-item>
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
-                url: '/pages/fazhan/children/paibian/paibian'
+                url: '/subPackages/pages/paibian/paibian'
             })">排便管理</div>
         </nut-grid-item>
     </nut-grid>
@@ -55,13 +55,22 @@
 import Taro from '@tarojs/taro'
 import { RectRight } from '@nutui/icons-vue-taro'
 
-function gogeren() {
-    Taro.navigateTo({
-        url: '/pages/fazhan/children/geren/geren'
-    })
-}
+
 </script>
 <style>
+.top {
+    display: flex;
+    padding: 0 1rem;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1rem;
+}
+
 .guanli {
     height: 8rem;
     display: flex;
@@ -77,15 +86,13 @@ function gogeren() {
 }
 
 .Tcard {
-    width: 23.5rem;
     background-color: aliceblue;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin-left: 2%;
+    margin-right: 2%;
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem
 }
 
 .sg {
@@ -96,6 +103,7 @@ function gogeren() {
 }
 
 .bz {
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
