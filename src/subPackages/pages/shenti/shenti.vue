@@ -1,5 +1,12 @@
 <template>
-    <nut-form>
+    <nut-form ref="formRef" :model-value="formData" :rules="{
+        user: [
+            { required: true, message: '请填写账号' },
+        ],
+        password: [
+            { required: true, message: '请填写密码' },
+        ],
+    }">
         <nut-form-item label="身高">
             <nut-input v-model="formData.name" placeholder="请输入身高" type="text" />
         </nut-form-item>
@@ -11,7 +18,7 @@
         </nut-form-item>
         <nut-form-item label="选择日期">
             <nut-cell title="" @click="show = true" />
-            <nut-calendar v-model:visible="show" :default-value="date" @close="show = false" @choose="choose">
+            <nut-calendar v-model:visible="show" :default-value="formData.riqi" @close="show = false" @choose="choose">
             </nut-calendar>
         </nut-form-item>
         <nut-form-item>
@@ -26,12 +33,24 @@ const formData = ref({
     name: '',
     age: '',
     tel: '',
-    riqi: '',
+    riqi: '2022-02-01',
 })
 
 const date = ref('2022-02-01')
 const show = ref(false)
 const choose = (param) => {
-    date.value = param[3]
+    formData.riqi = param[3]
 }
+
+const formRef = ref(null)
+const handleSubmit = () => {
+    formRef.value?.validate().then(({ valid, errors }) => {
+        if (valid) {
+
+        } else {
+            console.warn('error:', errors)
+        }
+    })
+}
+
 </script>
