@@ -17,6 +17,7 @@ declare module 'vue' {
     NutGrid: typeof import('@nutui/nutui-taro')['Grid']
     NutGridItem: typeof import('@nutui/nutui-taro')['GridItem']
     NutInput: typeof import('@nutui/nutui-taro')['Input']
+    NutNumberKeyboard: typeof import('@nutui/nutui-taro')['NumberKeyboard']
     NutRadio: typeof import('@nutui/nutui-taro')['Radio']
     NutRadioGroup: typeof import('@nutui/nutui-taro')['RadioGroup']
     NutTabPane: typeof import('@nutui/nutui-taro')['TabPane']
