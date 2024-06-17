@@ -30,18 +30,27 @@
             </div>
         </nut-button>
 
-        <nut-cell title="账号设置" is-link class="topa">
+        <nut-cell title="账号设置" is-link class="topa" @click="Taro.navigateTo({
+            url: '/subPackages/children/zhanghaoshezhi/zhanghaoshezhi'
+        })">
             <template #icon>
                 <My />
             </template>
         </nut-cell>
-        <nut-cell title="数据统计" is-link></nut-cell>
-        <nut-cell title="联系我们" is-link></nut-cell>
-        <nut-cell title="隐私政策" is-link></nut-cell>
+        <nut-cell title="数据统计" is-link @click="Taro.navigateTo({
+            url: '/subPackages/children/shujutongji/shujutongji'
+        })"></nut-cell>
+        <nut-cell title="联系我们" is-link @click="Taro.navigateTo({
+            url: '/subPackages/children/lianxiwomen/lianxiwomen'
+        })"></nut-cell>
+        <nut-cell title="隐私政策" is-link @click="Taro.navigateTo({
+            url: '/subPackages/children/yinsizhengce/yinsizhengce'
+        })"></nut-cell>
     </div>
 </template>
 <script setup>
 import { My } from '@nutui/icons-vue-taro'
+import Taro from '@tarojs/taro';
 
 </script>
 <style>
