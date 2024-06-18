@@ -14,6 +14,7 @@ export default defineAppConfig({
         "pages/geren/geren",
         "pages/guanlipg/guanlipg",
         "pages/kouqiang/kouqiang",
+        "pages/kouqiangjilu/kouqiangjilu",
         "pages/paibian/paibian",
         "pages/shenti/shenti",
         "pages/shuimian/shuimian",
