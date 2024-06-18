@@ -15,8 +15,10 @@
         </nut-grid-item>
         <nut-grid-item>
             <div class="grids">
-                <span class="iconfont icon-xinzeng myionc"></span>
-                <span class="iconfont icon-24gl-swapHorizontal3 myionc"></span>
+                <span class="iconfont icon-xinzeng myionc" @click="Taro.navigateTo({
+                    url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
+                })"></span>
+                <span class="iconfont icon-24gl-swapHorizontal3 myionc" @click="show = true"></span>
             </div>
         </nut-grid-item>
     </nut-grid>
@@ -47,11 +49,23 @@
             url: '/subPackages/children/yinsizhengce/yinsizhengce'
         })"></nut-cell>
     </div>
+    <nut-popup position="bottom" v-model:visible="show">
+        <div class="guanli">宝宝管理</div>
+        <div class="group">
+            <nut-radio-group v-model="val">
+                <nut-radio label="1">宝宝 1</nut-radio>
+                <nut-radio label="2">宝宝 2</nut-radio>
+                <nut-radio label="3">宝宝 3</nut-radio>
+            </nut-radio-group>
+        </div>
+    </nut-popup>
 </template>
 <script setup>
 import { My } from '@nutui/icons-vue-taro'
 import Taro from '@tarojs/taro';
-
+import { ref } from 'vue'
+const show = ref(false)
+const val = ref('1')
 </script>
 <style>
 .cotnet {
@@ -84,5 +98,14 @@ import Taro from '@tarojs/taro';
     font-size: small;
     height: 50%;
     line-height: 1.5rem;
+}
+
+.guanli {
+    height: 2vh;
+    text-align: center;
+}
+
+.group {
+    
 }
 </style>

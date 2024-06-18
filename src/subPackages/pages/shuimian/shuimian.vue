@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nut-cell :title="dayjs(val).format('YYYY年-MM月')" @click="show = true"></nut-cell>
+    <nut-cell :title="title" @click="show = true"></nut-cell>
     <nut-popup v-model:visible="show" position="bottom">
       <nut-date-picker v-model="val" type="year-month" :three-dimensional="false" @confirm="confirm"></nut-date-picker>
     </nut-popup>
@@ -14,12 +14,15 @@ import dayjs from "dayjs";
 
 let val = ref(new Date())
 const show = ref(false)
+let title = ref(dayjs(val).format('YYYY年-MM月'))
 
 function getDaysInMonth(year, month) {
   const startOfMonth = dayjs(`${year}-${month - 1}-01`);
   const endOfMonth = startOfMonth.endOf('month');
   return endOfMonth.date();
 }
+
+
 
 
 </script>

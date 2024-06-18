@@ -23,7 +23,7 @@
             <nut-input v-model="formData.touwei" placeholder="请输入头围" type="text" />
         </nut-form-item>
         <nut-form-item label="日期" prop="riqi" required>
-            <nut-input v-model="formData.riqi" disabled="true" placeholder="请输入头围" type="text" @click="show = true" />
+            <nut-input v-model="formData.riqi" disabled="true" placeholder="请输入日期" type="text" @click="show = true" />
             <nut-calendar v-model:visible="show" :default-value="formData.riqi" @close="show = false" @choose="choose">
             </nut-calendar>
         </nut-form-item>

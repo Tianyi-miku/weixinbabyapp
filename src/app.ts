@@ -1,5 +1,11 @@
 import { createApp } from "vue";
-import { Tabs, TabPane, Calendar, Ellipsis } from "@nutui/nutui-taro";
+import {
+  Tabs,
+  TabPane,
+  Calendar,
+  Ellipsis,
+  CalendarCard,
+} from "@nutui/nutui-taro";
 import "./app.less";
 import "./assets/icon-font/iconfont.css";
 const App = createApp({
@@ -10,5 +16,6 @@ App.use(Tabs);
 App.use(TabPane);
 App.use(Ellipsis);
 App.use(Calendar);
+App.use(CalendarCard);
 
 export default App;

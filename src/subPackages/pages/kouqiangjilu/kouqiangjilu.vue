@@ -11,7 +11,7 @@
       <nut-input v-model="formData.name" placeholder="请输入名称" type="text" />
     </nut-form-item>
     <nut-form-item label="记录时间" prop="riqi" required>
-      <nut-input v-model="formData.riqi" disabled="true" placeholder="请输入头围" type="text" @click="show = true" />
+      <nut-input v-model="formData.riqi" disabled="true" placeholder="请输入记录时间" type="text" @click="show = true" />
       <nut-calendar v-model:visible="show" :default-value="formData.riqi" @close="show = false" @choose="choose">
       </nut-calendar>
     </nut-form-item>

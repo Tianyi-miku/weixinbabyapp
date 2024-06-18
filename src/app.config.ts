@@ -28,6 +28,7 @@ export default defineAppConfig({
         "children/shujutongji/shujutongji",
         "children/zhanghaoshezhi/zhanghaoshezhi",
         "children/xinzengbaobao/xinzengbaobao",
+        "children/xiugaibaobao/xiugaibaobao",
       ],
     },
   ],
