@@ -22,6 +22,7 @@ export default defineAppConfig({
         "children/jiankangyinshi/jiankangyinshi",
         "children/jinshizhushou/jinshizhushou",
         "children/caidan/caidan",
+        "children/guominshicai/guominshicai",
         "children/shiwuzhishi/shiwuzhishi",
         "children/lianxiwomen/lianxiwomen",
         "children/yinsizhengce/yinsizhengce",

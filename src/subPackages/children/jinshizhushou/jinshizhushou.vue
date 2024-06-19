@@ -72,7 +72,7 @@ function addList(name) {
     width: 25%;
     text-align: center;
     height: 10vh;
-    margin: auto;
+
 }
 
 .topBar {

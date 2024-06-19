@@ -35,7 +35,9 @@
                 </div>
                 <div class="bottomlist">
                     <div class="item">
-                        <div>早餐</div>
+                        <div @click="Taro.navigateTo({
+                            url: '/subPackages/children/caidan/caidan'
+                        })">早餐</div>
                         <div>早餐</div>
                         <div>早餐</div>
                     </div>
@@ -73,6 +75,7 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import Taro from '@tarojs/taro'
 const value = ref('1')
 const value1 = ref('1')
 </script>
