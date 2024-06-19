@@ -10,6 +10,54 @@
                 膳食周记
             </div>
             <div class="content">
+                <div class="topList">
+                    <div class="item">
+                        周一
+                    </div>
+                    <div class="item">
+                        周二
+                    </div>
+                    <div class="item">
+                        周三
+                    </div>
+                    <div class="item">
+                        周四
+                    </div>
+                    <div class="item">
+                        周五
+                    </div>
+                    <div class="item">
+                        周六
+                    </div>
+                    <div class="item">
+                        周日
+                    </div>
+                </div>
+                <div class="bottomlist">
+                    <div class="item">
+                        <div>早餐</div>
+                        <div>早餐</div>
+                        <div>早餐</div>
+                    </div>
+                    <div class="item">
+                        周二
+                    </div>
+                    <div class="item">
+                        周三
+                    </div>
+                    <div class="item">
+                        周四
+                    </div>
+                    <div class="item">
+                        周五
+                    </div>
+                    <div class="item">
+                        周六
+                    </div>
+                    <div class="item">
+                        周日
+                    </div>
+                </div>
             </div>
         </nut-tab-pane>
         <nut-tab-pane title="饮食环境" pane-key="2" class="tabs">
@@ -42,5 +90,19 @@ const value1 = ref('1')
     min-height: 10rem;
     background-color: rgb(163, 163, 163);
     border-radius: 8px;
+}
+
+.topList {
+    width: 100%;
+    display: flex;
+}
+
+.bottomlist {
+    width: 100%;
+    display: flex;
+}
+
+.item {
+    width: 14%;
 }
 </style>

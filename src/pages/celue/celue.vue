@@ -82,13 +82,13 @@ const content = ref(
 
 function gojianshizhushou() {
     Taro.navigateTo({
-        url: '/pages/celue/children/jinshizhushou/jinshizhushou'
+        url: '/subPackages/children/jinshizhushou/jinshizhushou'
     })
 }
 
 function gojiankangyinshi(params) {
     Taro.navigateTo({
-        url: '/pages/celue/children/jiankangyinshi/jiankangyinshi'
+        url: '/subPackages/children/jiankangyinshi/jiankangyinshi'
     })
 }
 
