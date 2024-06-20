@@ -6,15 +6,7 @@
       </view>
     </div>
     <nut-radio-group v-model="val" direction="horizontal" style="width: max-content">
-      <nut-radio label="1">密码登录
-        <template #icon>
-          <Checklist />
-        </template>
-        <template #checkedIcon>
-          <Checklist color="red" />
-        </template>
-      </nut-radio>
-      <nut-radio label="2">
+      <nut-radio label="1">
         验证码登录
         <template #icon>
           <Checklist />
@@ -23,29 +15,42 @@
           <Checklist color="red" />
         </template>
       </nut-radio>
+      <nut-radio label="2">密码登录
+        <template #icon>
+          <Checklist />
+        </template>
+        <template #checkedIcon>
+          <Checklist color="red" />
+        </template>
+      </nut-radio>
+
     </nut-radio-group>
     <nut-form ref="formRef" :model-value="formData" :rules="{
-      user: [
-        { required: true, message: '请填写账号' },
-      ],
       password: [
         { required: true, message: '请填写密码' },
       ],
+      id: [{ required: true, message: '请填写账户' },]
     }">
-      <nut-form-item label="账号" prop="user" required>
-        <nut-input v-model="formData.user" placeholder="请输入账号" type="text" />
+      <nut-form-item label="电话" v-if="val === '1'" prop="number" required :rules="[
+      { required: true, message: '请填写联系电话' },
+      { validator: asyncValidator, message: '电话格式不正确' }
+    ]">
+        <nut-input v-model="formData.number" placeholder="请输入联系电话" type="text" />
       </nut-form-item>
-      <nut-form-item v-if="val === '1'" label="密码" prop="password" required>
-        <nut-input v-model="formData.password" placeholder="请输入密码" type="text" />
-      </nut-form-item>
-      <nut-form-item v-if="val === '2'" label="验证码" prop="yanzhenma" required>
+      <nut-form-item v-if="val === '1'" label="验证码" prop="yanzhenma" required>
         <nut-input v-model="formData.yanzhenma" placeholder="请输入验证码" type="text">
           <template #right>
             <nut-button type="primary" size="small">发送</nut-button>
           </template>
         </nut-input>
       </nut-form-item>
+      <nut-form-item label="账号" v-if="val === '2'" prop="id" required>
+        <nut-input v-model="formData.id" placeholder="请输入账号" type="text" />
+      </nut-form-item>
 
+      <nut-form-item v-if="val === '2'" label="密码" prop="password" required>
+        <nut-input v-model="formData.password" placeholder="请输入密码" type="text" />
+      </nut-form-item>
       <div style="width: 96%; margin-left: 2%; margin-right: 2%;">
         <nut-button block type="primary" @click="submit">提交</nut-button>
       </div>
@@ -61,27 +66,59 @@ import { Checklist } from '@nutui/icons-vue-taro'
 import Taro from '@tarojs/taro'
 
 const formData = ref({
-  user: '',
-  password: '',
-  yanzhenma: ''
+  number: '',
+  yanzhenma: '',
+  id: 10001,
+  password: '18121827048',
 })
 const formRef = ref(null)
 const val = ref('1')
-// const isLogin = reactive(false)
 
 const submit = () => {
   formRef.value?.validate().then(({ valid, errors }) => {
     if (valid) {
-      console.log('success:', formData.value)
-      Taro.switchTab({
-        url: '/pages/fazhan/fazhan'
-      })
+      if (val === '1') {
+        Axios.post('/user', formData.value).then(res => {
+          Taro.setStorageSync('user', res)
+          Taro.setStorageSync('token', res.token)
+          Taro.switchTab({
+            url: '/pages/fazhan/fazhan'
+          })
+        })
+      } else {
+        let data = {
+          ...formData.value
+        }
+        data.id = Number(data.id),
+          console.log(data);
+        Axios.post(`/login/id`, data).then(res => {
+          console.log('====================================');
+          console.log(res);
+          console.log('====================================');
+          // Taro.switchTab({
+          //   url: '/pages/fazhan/fazhan'
+          // })
+        })
+      }
+
+
     } else {
       console.warn('error:', errors)
     }
   })
 }
-
+const asyncValidator = (val) => {
+  const telReg = /^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/
+  return new Promise((resolve, reject) => {
+    if (!val) {
+      reject('请输入联系电话')
+    } else if (!telReg.test(val)) {
+      reject('联系电话格式不正确')
+    } else {
+      resolve('')
+    }
+  })
+}
 </script>
 
 <style>

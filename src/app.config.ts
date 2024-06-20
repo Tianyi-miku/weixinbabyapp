@@ -1,7 +1,7 @@
 export default defineAppConfig({
   pages: [
-    "pages/fazhan/fazhan",
     "pages/index/index",
+    "pages/fazhan/fazhan",
     "pages/celue/celue",
     "pages/yinshi/yinshi",
     "pages/shiyu/shiyu",
