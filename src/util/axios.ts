@@ -1,15 +1,17 @@
 import Taro from "@tarojs/taro";
 import axios from "axios";
+import { ipAddress } from "./ip";
+
 
 const Axios = axios.create({
-  baseURL: "http://192.168.1.71:8070"
+  baseURL: ipAddress
 });
 
 // 请求拦截器
 Axios.interceptors.request.use(
   (config) => {
     if (config.url !== "/user") {   // 判断请求是否是登录接口
-      config.headers.token = Taro.getStorageSync('token'); // 如果不是登录接口，就给请求头里面设置token
+      config.headers.Authorization = 'Bearer ' + Taro.getStorageSync('token'); // 如果不是登录接口，就给请求头里面设置token
     }
     return config; // 返回这个配置对象，如果没有返回，这个请求就不会发送出去
   },

@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '新增宝宝信息',
+  navigationBarTitleText: '修改宝宝信息',
 })

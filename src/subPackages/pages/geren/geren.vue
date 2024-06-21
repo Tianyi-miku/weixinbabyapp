@@ -1,27 +1,26 @@
 <template>
-    <nut-grid :border="false" column-num="5">
-        <nut-grid-item>
-            <nut-avatar>
-                <span class="iconfont icon-yonghu"></span>
+    <nut-row :gutter="10" style="padding: 0.5rem;" type="flex" align="center" justify="center">
+        <nut-col :span="4">
+            <nut-avatar size="large"
+                @click="Taro.navigateTo({ url: '/subPackages/children/xiugaibaobao/xiugaibaobao' })">
+                <img
+                    :src="baby?.avatarPath ? documentUrl + baby.avatarPath : 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png'" />
             </nut-avatar>
-        </nut-grid-item>
-        <nut-grid-item>
-            <div>姓名</div>
-            <div>年龄</div>
-        </nut-grid-item>
-        <nut-grid-item>
-        </nut-grid-item>
-        <nut-grid-item>
-        </nut-grid-item>
-        <nut-grid-item>
+        </nut-col>
+        <nut-col :span="16">
+            <div>姓名: {{ baby?.name }}</div>
+            <div>年龄: {{ baby?.age }}</div>
+        </nut-col>
+        <nut-col :span="4">
             <div class="grids">
                 <span class="iconfont icon-xinzeng myionc" @click="Taro.navigateTo({
-                    url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
-                })"></span>
-                <span class="iconfont icon-24gl-swapHorizontal3 myionc" @click="show = true"></span>
+        url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
+    })"></span>
+                <span class="iconfont icon-24gl-swapHorizontal3 myionc" @click="openlist"></span>
             </div>
-        </nut-grid-item>
-    </nut-grid>
+        </nut-col>
+    </nut-row>
+
     <div class="cotnet">
         <nut-button size="large" type="primary">
             <div class="smrc">
@@ -33,29 +32,48 @@
         </nut-button>
 
         <nut-cell title="账号设置" is-link class="topa" @click="Taro.navigateTo({
-            url: '/subPackages/children/zhanghaoshezhi/zhanghaoshezhi'
-        })">
+        url: '/subPackages/children/zhanghaoshezhi/zhanghaoshezhi'
+    })">
             <template #icon>
                 <My />
             </template>
         </nut-cell>
         <nut-cell title="数据统计" is-link @click="Taro.navigateTo({
-            url: '/subPackages/children/shujutongji/shujutongji'
-        })"></nut-cell>
+        url: '/subPackages/children/shujutongji/shujutongji'
+    })"></nut-cell>
         <nut-cell title="联系我们" is-link @click="Taro.navigateTo({
-            url: '/subPackages/children/lianxiwomen/lianxiwomen'
-        })"></nut-cell>
+        url: '/subPackages/children/lianxiwomen/lianxiwomen'
+    })"></nut-cell>
         <nut-cell title="隐私政策" is-link @click="Taro.navigateTo({
-            url: '/subPackages/children/yinsizhengce/yinsizhengce'
-        })"></nut-cell>
+        url: '/subPackages/children/yinsizhengce/yinsizhengce'
+    })"></nut-cell>
     </div>
-    <nut-popup position="bottom" v-model:visible="show">
+    <nut-popup position="bottom" v-model:visible="show" @closed="colseShow">
         <div class="guanli">宝宝管理</div>
         <div class="group">
             <nut-radio-group v-model="val">
-                <nut-radio label="1">宝宝 1</nut-radio>
-                <nut-radio label="2">宝宝 2</nut-radio>
-                <nut-radio label="3">宝宝 3</nut-radio>
+                <nut-radio v-for="item in list" :key="item.id" :label="Number(item.id)" style="width: 100vw;">
+                    <div class="item">
+                        <div class="toux">
+                            <nut-avatar size="large">
+                                <img
+                                    :src="item.avatarPath ? documentUrl + item.avatarPath : 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png'" />
+                            </nut-avatar>
+                        </div>
+                        <div class="name">
+                            <div>姓名: {{ item?.name }}</div>
+                            <div>年龄: {{ item?.age }}</div>
+                        </div>
+                        <div class="shanchu" v-if="list.length > 1 && baby.id != item.id" @click.stop="dele(item)">删除
+                        </div>
+                    </div>
+                    <template #icon>
+                        <Checklist />
+                    </template>
+                    <template #checkedIcon>
+                        <Checklist color="red" />
+                    </template>
+                </nut-radio>
             </nut-radio-group>
         </div>
     </nut-popup>
@@ -63,9 +81,48 @@
 <script setup>
 import { My } from '@nutui/icons-vue-taro'
 import Taro from '@tarojs/taro';
-import { ref } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
+import Axios from '../../../util/axios';
+import { documentUrl } from './../../../util/ip'
+import { Checklist } from '@nutui/icons-vue-taro'
+
+
 const show = ref(false)
-const val = ref('1')
+const val = ref(null)
+const list = ref([])
+
+const baby = ref(null)
+
+onMounted(() => {
+    baby.value = Taro.getStorageSync('user')
+    val.value = Number(baby.value.id)
+})
+function openlist() {
+    Axios.get('/baby/list').then(res => {
+        if (res.length > 0) {
+            list.value = res
+            show.value = true
+        }
+    })
+}
+function colseShow() {
+    const baby1 = list.value.find(item => item.id == val.value)
+    if (baby1?.id) {
+        baby.value = baby1
+        Taro.setStorageSync('user', baby.value)
+    }
+}
+
+function dele(item) {
+    Axios.delete(`/baby/${item.id}`).then(res => {
+        Taro.showToast({
+            title: '删除成功',
+            icon: 'success',
+            duration: 1000
+        })
+        openlist()
+    })
+}
 </script>
 <style>
 .cotnet {
@@ -106,6 +163,34 @@ const val = ref('1')
 }
 
 .group {
-    
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.item {
+    display: flex;
+    width: 100%;
+}
+
+.toux {
+    padding: 1rem 0;
+    width: max-content;
+    min-width: 20%;
+}
+
+.name {
+    min-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2rem
+}
+
+.shanchu {
+    min-width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

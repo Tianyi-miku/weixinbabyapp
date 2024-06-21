@@ -10,7 +10,7 @@
   </div>
   <div class="buttons">
     <div>
-      <nut-button type="primary">刷牙打卡</nut-button>
+      <nut-button type="primary" @click="daka">刷牙打卡</nut-button>
     </div>
     <div>
       <nut-button type="info" @click="Taro.navigateTo({
@@ -21,11 +21,29 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import Axios from '../../../util/axios';
 
 const value = ref(null)
 const list = [1, 2, 3, 4]
+const dakaDate = ref(null)
+const baby = Taro.getStorageSync('user')
+
 const onChange = (val) => {
-  console.log(val)
+  dakaDate.value = val
+}
+
+function daka(params) {
+  const data = {
+    babyId: baby.id,
+    measureTime: dakaDate.value
+  }
+  Axios.post('/teeth/add', data).then(res => {
+    Taro.showToast({
+      title: '新增成功',
+      icon: 'success',
+      duration: 1000
+    })
+  })
 }
 </script>
 <style>

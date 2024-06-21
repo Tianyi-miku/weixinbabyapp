@@ -5,11 +5,14 @@ import {
   Calendar,
   Ellipsis,
   CalendarCard,
+  Uploader,
+  Toast,
+  Tag
 } from "@nutui/nutui-taro";
 import "./app.less";
 import "./assets/icon-font/iconfont.css";
-import { Tag } from '@nutui/nutui-taro'
-import { Toast } from '@nutui/nutui-taro'
+
+
 
 const App = createApp({
   onShow(options) {},
@@ -22,4 +25,5 @@ App.use(Calendar);
 App.use(CalendarCard);
 App.use(Tag)
 App.use(Toast)
+App.use(Uploader)
 export default App;

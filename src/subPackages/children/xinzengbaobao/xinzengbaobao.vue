@@ -1,34 +1,37 @@
 <template>
     <div class="touxiang">
-        <nut-avatar>
-            <span class="iconfont icon-yonghu"></span>
-        </nut-avatar>
+        <nut-uploader :url="uploadUrl" :headers="Iheaders" @success="successEvent" class="neirong">
+            <nut-avatar size="large">
+                <img :src="imgUrl" class="neirong" />
+            </nut-avatar>
+        </nut-uploader>
     </div>
     <nut-form ref="formRef" :model-value="formData" :rules="{
-        name: [
-            { required: true, message: '请填写宝宝名称' },
-        ],
-        riqi: [
-            { required: true, message: '请填写日期' },
-        ],
-        sex: [
-            { required: true, message: '请选择性别' },
-        ],
-    }">
+            name: [
+                { required: true, message: '请填写宝宝名称' },
+            ],
+            birthday: [
+                { required: true, message: '请填写宝宝生日' },
+            ],
+            sex: [
+                { required: true, message: '请选择性别' },
+            ],
+        }">
         <nut-form-item label="宝宝小名" prop="name" required>
             <nut-input v-model="formData.name" placeholder="请输入宝宝小名" type="text" />
         </nut-form-item>
-        <nut-form-item label="宝宝生日" prop="riqi" required>
-            <nut-input disabled="true" placeholder="请输入宝宝生日" type="text" @click="show = true" />
+        <nut-form-item label="宝宝生日" prop="birthday" required>
+            <nut-input disabled="true" placeholder="请输入宝宝生日" v-model="formData.birthday" type="text"
+                @click="show = true" />
             <nut-popup v-model:visible="show" position="bottom">
-                <nut-calendar-card v-model="formData.riqi" @change="onChange"></nut-calendar-card>
-                <nut-button block type="primary" @click="show = false">确认</nut-button>
+                <nut-calendar-card v-model="riqi"></nut-calendar-card>
+                <nut-button block type="primary" @click="riqichange">确认</nut-button>
             </nut-popup>
         </nut-form-item>
         <nut-form-item label="性别" prop="sex" required>
             <nut-radio-group v-model="formData.sex" direction="horizontal">
-                <nut-radio label="1">男</nut-radio>
-                <nut-radio label="2">女</nut-radio>
+                <nut-radio label="0">男</nut-radio>
+                <nut-radio label="1">女</nut-radio>
             </nut-radio-group>
         </nut-form-item>
 
@@ -40,28 +43,61 @@
 <script setup>
 import { ref } from 'vue';
 import dayjs from 'dayjs'
+import { uploadUrl, documentUrl } from './../../../util/ip'
+import Taro from '@tarojs/taro'
+import Axios from '../../../util/axios';
 
 const formData = ref({
     name: '',
-    riqi: null,
-    sex: '1'
+    birthday: null,
+    sex: '0',
+    avatarPath: ''
 })
-
+const riqi = ref(null)
 const show = ref(false)
 const formRef = ref(null)
-const onChange = (val) => {
-    console.log(val)
+const imgUrl = ref('https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png')
+
+const Iheaders = {
+    Authorization: 'Bearer ' + Taro.getStorageSync('token')
+}
+
+function riqichange() {
+    formData.value.birthday = dayjs(riqi.value).format('YYYY-MM-DD')
+    show.value = false
 }
 
 const submit = () => {
     formRef.value?.validate().then(({ valid, errors }) => {
         if (valid) {
-
+            let data = { ...formData.value }
+            data.sex = Number(data.sex)
+            Axios.post('/baby/add', data).then(res => {
+                Taro.showToast({
+                    title: '新增成功',
+                    icon: 'success',
+                    duration: 1000
+                })
+                setTimeout(() => {
+                    Taro.switchTab({
+                        url: '/pages/fazhan/fazhan'
+                    })
+                }, 1000);
+            })
         } else {
             console.warn('error:', errors)
         }
     })
 }
+
+function successEvent({ data, option, fileItem }) {
+    if (data?.data) {
+        let ele = JSON.parse(data?.data)
+        formData.value.avatarPath = ele.data
+        imgUrl.value = documentUrl + ele.data
+    }
+}
+
 </script>
 <style>
 .iconfont {
@@ -73,5 +109,10 @@ const submit = () => {
     display: flex;
     justify-content: center;
     padding: 1rem;
+}
+
+.neirong {
+    height: 3rem;
+    width: 3rem;
 }
 </style>

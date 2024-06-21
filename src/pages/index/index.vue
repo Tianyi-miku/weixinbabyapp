@@ -81,27 +81,35 @@ const submit = () => {
         Axios.post('/user', formData.value).then(res => {
           Taro.setStorageSync('user', res)
           Taro.setStorageSync('token', res.token)
-          Taro.switchTab({
-            url: '/pages/fazhan/fazhan'
-          })
+          if (res.name) {
+            Taro.switchTab({
+              url: '/pages/fazhan/fazhan'
+            })
+          } else {
+            Taro.redirectTo({
+              url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
+            })
+          }
         })
       } else {
         let data = {
           ...formData.value
         }
-        data.id = Number(data.id),
-          console.log(data);
+        data.id = Number(data.id)
         Axios.post(`/login/id`, data).then(res => {
-          console.log('====================================');
-          console.log(res);
-          console.log('====================================');
-          // Taro.switchTab({
-          //   url: '/pages/fazhan/fazhan'
-          // })
+          Taro.setStorageSync('user', res)
+          Taro.setStorageSync('token', res.token)
+          if (res.name) {
+            Taro.switchTab({
+              url: '/pages/fazhan/fazhan'
+            })
+          } else {
+            Taro.redirectTo({
+              url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
+            })
+          }
         })
       }
-
-
     } else {
       console.warn('error:', errors)
     }

@@ -1,5 +1,5 @@
 <template>
-    <nut-tabs v-model="value">
+    <nut-tabs v-model="value" class="tabsBody">
         <nut-tab-pane title="饮食知识" pane-key="1">
             <div class="title">
                 食物知识
@@ -9,6 +9,9 @@
             <div class="title">
                 膳食周记
             </div>
+            <nut-cell @click="show = true">{{ riqi }}</nut-cell>
+
+
             <div class="content">
                 <div class="topList">
                     <div class="item">
@@ -36,8 +39,8 @@
                 <div class="bottomlist">
                     <div class="item">
                         <div @click="Taro.navigateTo({
-                            url: '/subPackages/children/caidan/caidan'
-                        })">早餐</div>
+        url: '/subPackages/children/caidan/caidan'
+    })">早餐</div>
                         <div>早餐</div>
                         <div>早餐</div>
                     </div>
@@ -72,15 +75,33 @@
             </nut-tabs>
         </nut-tab-pane>
     </nut-tabs>
+    <nut-popup v-model:visible="show" position="bottom">
+        <nut-calendar-card v-model="riqix" type="week" @change="onChange"></nut-calendar-card>
+        <nut-button block type="primary" @click="show = false">确认</nut-button>
+    </nut-popup>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import Taro from '@tarojs/taro'
+import dayjs from 'dayjs';
 const value = ref('1')
 const value1 = ref('1')
+const show = ref(false)
+
+const riqi = ref(dayjs().format('YYYY-MM-DD'))
+const riqix = ref(new Date())
+
+onMounted(() => {
+    // riqi.value = 
+})
+
 </script>
 
 <style>
+.tabsBody {
+    height: 100vh;
+}
+
 .tabs {
     padding: 0 !important;
 }
