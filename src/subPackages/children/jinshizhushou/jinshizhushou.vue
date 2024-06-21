@@ -2,7 +2,12 @@
     <div class="top">
         <div v-for="(item, index) in list" :key="index" class="topItem">
             <div :class="item.class">
-                <div class="toux">头像</div>
+                <div class="toux">
+                    <nut-avatar size="large">
+                        <img
+                            :src="baby?.avatarPath ? documentUrl + baby.avatarPath : 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png'" />
+                    </nut-avatar>
+                </div>
                 <div class="content">
                     {{ item.content }}
                 </div>
@@ -33,9 +38,10 @@
     </div>
 </template>
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 let list = reactive([])
+let baby = ref(null)
 
 function addList(name) {
     list.push({
@@ -85,12 +91,14 @@ function addList(name) {
 
 .content {
     height: auto;
-    width: 90%;
+    width: max-content;
+    display: flex;
+    align-items: center;
 }
 
 .toux {
     height: auto;
-    width: 10%;
+    width: max-content;
 }
 
 .topItem {

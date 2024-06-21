@@ -20,23 +20,22 @@
     <nut-form-item label="备注" prop="beizhu">
       <nut-input v-model="formData.beizhu" placeholder="请输入备注" type="text" />
     </nut-form-item>
-    <nut-space style="margin: 10px">
-      <nut-button block type="primary" size="small" @click="submit">保存</nut-button>
-    </nut-space>
+    <nut-form-item>
+      <nut-button type="primary" block @click="submit">保存</nut-button>
+    </nut-form-item>
   </nut-form>
 </template>
 <script setup>
 import Axios from '../../../util/axios';
 import { ref } from 'vue'
+import dayjs from 'dayjs';
+
 const formData = ref({
   name: '涂氟',
   measureTime: dayjs().format('YYYY-MM-DD'),
   mark: '',
 })
 const riqi = ref(null)
-
-
-
 
 const submit = () => {
   formRef.value?.validate().then(({ valid, errors }) => {

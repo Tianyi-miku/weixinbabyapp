@@ -1,21 +1,20 @@
 <template>
     <nut-row :gutter="10" style="padding: 0.5rem;" type="flex" align="center" justify="center">
-        <nut-col :span="4">
-            <nut-avatar size="large"
-                @click="Taro.navigateTo({ url: '/subPackages/children/xiugaibaobao/xiugaibaobao' })">
+        <nut-col :span="6" class="nutrow">
+            <nut-avatar size="large" @click="Taro.navigateTo({ url: '/subPackages/children/xiugaibaobao/xiugaibaobao' })">
                 <img
                     :src="baby?.avatarPath ? documentUrl + baby.avatarPath : 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png'" />
             </nut-avatar>
         </nut-col>
-        <nut-col :span="16">
+        <nut-col :span="12">
             <div>姓名: {{ baby?.name }}</div>
             <div>年龄: {{ baby?.age }}</div>
         </nut-col>
-        <nut-col :span="4">
+        <nut-col :span="6" class="nutrow">
             <div class="grids">
                 <span class="iconfont icon-xinzeng myionc" @click="Taro.navigateTo({
-        url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
-    })"></span>
+                    url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
+                })"></span>
                 <span class="iconfont icon-24gl-swapHorizontal3 myionc" @click="openlist"></span>
             </div>
         </nut-col>
@@ -32,21 +31,21 @@
         </nut-button>
 
         <nut-cell title="账号设置" is-link class="topa" @click="Taro.navigateTo({
-        url: '/subPackages/children/zhanghaoshezhi/zhanghaoshezhi'
-    })">
+            url: '/subPackages/children/zhanghaoshezhi/zhanghaoshezhi'
+        })">
             <template #icon>
                 <My />
             </template>
         </nut-cell>
         <nut-cell title="数据统计" is-link @click="Taro.navigateTo({
-        url: '/subPackages/children/shujutongji/shujutongji'
-    })"></nut-cell>
+            url: '/subPackages/children/shujutongji/shujutongji'
+        })"></nut-cell>
         <nut-cell title="联系我们" is-link @click="Taro.navigateTo({
-        url: '/subPackages/children/lianxiwomen/lianxiwomen'
-    })"></nut-cell>
+            url: '/subPackages/children/lianxiwomen/lianxiwomen'
+        })"></nut-cell>
         <nut-cell title="隐私政策" is-link @click="Taro.navigateTo({
-        url: '/subPackages/children/yinsizhengce/yinsizhengce'
-    })"></nut-cell>
+            url: '/subPackages/children/yinsizhengce/yinsizhengce'
+        })"></nut-cell>
     </div>
     <nut-popup position="bottom" v-model:visible="show" @closed="colseShow">
         <div class="guanli">宝宝管理</div>
@@ -189,6 +188,12 @@ function dele(item) {
 
 .shanchu {
     min-width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nutrow {
     display: flex;
     justify-content: center;
     align-items: center;

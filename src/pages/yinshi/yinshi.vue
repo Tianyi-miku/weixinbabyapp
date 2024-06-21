@@ -9,10 +9,17 @@
             <div class="title">
                 膳食周记
             </div>
-            <nut-cell @click="show = true">{{ riqi }}</nut-cell>
+            <nut-cell @click="show = true"> {{ dayjs(riqix[0]).format('YYYY-MM-DD')
+            }} - {{ dayjs(riqix?.[1])?.format('YYYY-MM-DD') }}</nut-cell>
 
 
             <div class="content">
+                <div class="topRiqi">
+                    <div v-for="item in weeks" :key="item" class="item">
+                        {{ dayjs(item).date() }}
+                    </div>
+                </div>
+
                 <div class="topList">
                     <div class="item">
                         周一
@@ -39,8 +46,8 @@
                 <div class="bottomlist">
                     <div class="item">
                         <div @click="Taro.navigateTo({
-        url: '/subPackages/children/caidan/caidan'
-    })">早餐</div>
+                            url: '/subPackages/children/caidan/caidan'
+                        })">早餐</div>
                         <div>早餐</div>
                         <div>早餐</div>
                     </div>
@@ -76,7 +83,7 @@
         </nut-tab-pane>
     </nut-tabs>
     <nut-popup v-model:visible="show" position="bottom">
-        <nut-calendar-card v-model="riqix" type="week" @change="onChange"></nut-calendar-card>
+        <nut-calendar-card v-model="riqix" type="week" firstDayOfWeek="1" @change="onChange"></nut-calendar-card>
         <nut-button block type="primary" @click="show = false">确认</nut-button>
     </nut-popup>
 </template>
@@ -88,13 +95,40 @@ const value = ref('1')
 const value1 = ref('1')
 const show = ref(false)
 
-const riqi = ref(dayjs().format('YYYY-MM-DD'))
-const riqix = ref(new Date())
 
+const riqix = ref([])
+
+let weeks = ref([])
+
+const onChange = (val) => {
+    riqix.value = val
+    weeks.value = getCurrentWeekDates(val[0])
+}
 onMounted(() => {
-    // riqi.value = 
+    weeks.value = getCurrentWeekDates()
+    riqix.value = [dayjs(weeks.value[0]).toDate(), dayjs(weeks.value[6]).toDate()]
 })
-
+function getCurrentWeekDates(value) {
+    // 获取当前日期 
+    let today
+    if (value) {
+        today = dayjs(value);
+    } else {
+        today = dayjs();
+    }
+    // 计算本周的周一的日期（如果今天是周日，则周一是今天加1天；如果今天是周一，则就是今天）  
+    const startOfWeek = today.subtract(today.day() ? today.day() - 1 : 6, 'day');
+    // 创建一个数组来存储本周的日期（从周一开始）  
+    const weekDates = [];
+    // 循环生成从周一到周日的日期  
+    for (let i = 0; i < 7; i++) {
+        // 使用 add 方法获取本周的某一天  
+        const date = startOfWeek.add(i, 'day');
+        // 将日期添加到数组中  
+        weekDates.push(date.format('YYYY-MM-DD'));
+    }
+    return weekDates;
+}
 </script>
 
 <style>
@@ -128,5 +162,11 @@ onMounted(() => {
 
 .item {
     width: 14%;
+    text-align: center;
+}
+
+.topRiqi {
+    display: flex;
+    flex-wrap: wrap;
 }
 </style>

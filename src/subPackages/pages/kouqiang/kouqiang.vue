@@ -22,6 +22,7 @@
 <script setup>
 import { ref } from 'vue'
 import Axios from '../../../util/axios';
+import Taro from '@tarojs/taro'
 
 const value = ref(null)
 const list = [1, 2, 3, 4]
