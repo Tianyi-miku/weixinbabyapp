@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3791504",
+      "name": "便便",
+      "font_class": "bianbian1",
+      "unicode": "e6f6",
+      "unicode_decimal": 59126
+    },
+    {
       "icon_id": "2077551",
       "name": "新增",
       "font_class": "xinzeng",

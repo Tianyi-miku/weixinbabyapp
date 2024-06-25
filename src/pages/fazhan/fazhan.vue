@@ -17,7 +17,7 @@
             url: '/subPackages/pages/shenti/shenti',
         })">
         <div class="sg">
-            <div>身高 :{{ jichu?.height }}</div>
+            <div>身高 :{{ jichu?.height }} cm</div>
         </div>
         <div class="bz" @click.stop="Taro.navigateTo({
             url: '/subPackages/pages/guanlipg/guanlipg'
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="tz">
-            <div> 体重:{{ jichu?.weight }}</div>
+            <div> 体重:{{ jichu?.weight }} kg</div>
         </div>
     </div>
     <div class="zhibiao">健康管理</div>
@@ -118,7 +118,6 @@ onMounted(() => {
 }
 
 .sg {
-    width: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,11 +128,9 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
 }
 
 .tz {
-    width: 25%;
     display: flex;
     align-items: center;
     justify-content: center;

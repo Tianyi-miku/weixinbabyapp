@@ -1,6 +1,6 @@
 export default defineAppConfig({
   pages: [
-    // "pages/index/index",
+    "pages/index/index",
     "pages/fazhan/fazhan",
     "pages/celue/celue",
     "pages/yinshi/yinshi",
@@ -16,6 +16,7 @@ export default defineAppConfig({
         "pages/kouqiang/kouqiang",
         "pages/kouqiangjilu/kouqiangjilu",
         "pages/paibian/paibian",
+        "pages/paibianjilu/paibianjilu",
         "pages/shenti/shenti",
         "pages/shuimian/shuimian",
         "pages/tizhong/tizhong",
