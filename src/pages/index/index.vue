@@ -40,7 +40,7 @@
       <nut-form-item v-if="val === '1'" label="验证码" prop="yanzhenma" required>
         <nut-input v-model="formData.yanzhenma" placeholder="请输入验证码" type="text">
           <template #right>
-            <nut-button type="primary" size="small">发送</nut-button>
+            <nut-button type="primary" size="small" @click="sendFormat">发送</nut-button>
           </template>
         </nut-input>
       </nut-form-item>
@@ -73,6 +73,14 @@ const formData = ref({
 })
 const formRef = ref(null)
 const val = ref('1')
+
+function sendFormat() {
+  formRef.value?.validate().then(({ valid, errors }) => {
+    if (valid) { 
+      
+    }
+  })
+}
 
 const submit = () => {
   formRef.value?.validate().then(({ valid, errors }) => {

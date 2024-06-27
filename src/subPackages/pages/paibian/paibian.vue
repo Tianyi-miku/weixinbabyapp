@@ -32,6 +32,7 @@ const list = ref([])
 const records = ref([])
 const dakaDate = ref(dayjs().toDate())
 const baby = Taro.getStorageSync('user')
+const value = ref(dayjs().toDate())
 dayjs.extend(isBetween)
 
 useDidShow(() => {
@@ -55,18 +56,13 @@ function getRecorder() {
 }
 
 const onChange = (val) => {
-  dakaDate.value = dayjs(val).format('YYYY年-MM月-DD日 HH:mm:ss')
+  dakaDate.value = dayjs(val).format('YYYY-MM-DD HH:mm:ss')
   getRecorder()
 }
 
 function showData(item, day) {
-  if (isTimeWithinDay(item.measureTime, `${day.year}-${day.month}-${day.date}`)) {
-    if (item.brushTimes === 1) {
-      return '◐'
-    }
-    if (item.brushTimes === 2) {
-      return '◉'
-    }
+  if (isTimeWithinDay(item, `${day.year}-${day.month}-${day.date}`)) {
+    return '◉'
   }
 }
 

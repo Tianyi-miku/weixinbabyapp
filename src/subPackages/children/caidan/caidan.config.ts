@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '4月1日',
+  navigationBarTitleText: '菜单',
 })

@@ -10,7 +10,7 @@
                 膳食周记
             </div>
             <nut-cell @click="show = true"> {{ dayjs(riqix[0]).format('YYYY-MM-DD')
-            }} - {{ dayjs(riqix?.[1])?.format('YYYY-MM-DD') }}</nut-cell>
+                }} - {{ dayjs(riqix?.[1])?.format('YYYY-MM-DD') }}</nut-cell>
 
 
             <div class="content">
@@ -21,53 +21,40 @@
                 </div>
 
                 <div class="topList">
-                    <div class="item">
+                    <div class="item"
+                        @click="Taro.navigateTo({ url: `/subPackages/children/caidan/caidan?date=${weeks[0]}`})">
                         周一
                     </div>
-                    <div class="item">
+                    <div class="item"
+                        @click="Taro.navigateTo({ url: `/subPackages/children/caidan/caidan?date=${weeks[1]}`})">
                         周二
                     </div>
-                    <div class="item">
+                    <div class="item"
+                        @click="Taro.navigateTo({ url: `/subPackages/children/caidan/caidan?date=${weeks[2]}`})">
                         周三
                     </div>
-                    <div class="item">
+                    <div class="item"
+                        @click="Taro.navigateTo({ url: `/subPackages/children/caidan/caidan?date=${weeks[3]}`})">
                         周四
                     </div>
-                    <div class="item">
+                    <div class="item"
+                        @click="Taro.navigateTo({ url: `/subPackages/children/caidan/caidan?date=${weeks[4]}`})">
                         周五
                     </div>
-                    <div class="item">
+                    <div class="item"
+                        @click="Taro.navigateTo({ url: `/subPackages/children/caidan/caidan?date=${weeks[5]}`})">
                         周六
                     </div>
-                    <div class="item">
+                    <div class="item"
+                        @click="Taro.navigateTo({ url: `/subPackages/children/caidan/caidan?date=${weeks[6]}` })">
                         周日
                     </div>
                 </div>
                 <div class="bottomlist">
-                    <div class="item">
-                        <div @click="Taro.navigateTo({
-                            url: '/subPackages/children/caidan/caidan'
-                        })">早餐</div>
-                        <div>早餐</div>
-                        <div>早餐</div>
-                    </div>
-                    <div class="item">
-                        周二
-                    </div>
-                    <div class="item">
-                        周三
-                    </div>
-                    <div class="item">
-                        周四
-                    </div>
-                    <div class="item">
-                        周五
-                    </div>
-                    <div class="item">
-                        周六
-                    </div>
-                    <div class="item">
-                        周日
+                    <div class="item" v-for="(item, index) in weeksList" :key="index">
+                        <div v-for="(e, index) in item" :key="index">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,30 +71,43 @@
     </nut-tabs>
     <nut-popup v-model:visible="show" position="bottom">
         <nut-calendar-card v-model="riqix" type="week" firstDayOfWeek="1" @change="onChange"></nut-calendar-card>
-        <nut-button block type="primary" @click="show = false">确认</nut-button>
+        <nut-button block type="primary" @click="() => { show = false, getList(weeks[0]) }">确认</nut-button>
     </nut-popup>
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
 import Taro from '@tarojs/taro'
 import dayjs from 'dayjs';
+import { useDidShow } from '@tarojs/taro'
+import Axios from '../../util/axios';
+
 const value = ref('1')
 const value1 = ref('1')
 const show = ref(false)
 
-
 const riqix = ref([])
 
 let weeks = ref([])
+let weeksList = ref([])
 
 const onChange = (val) => {
     riqix.value = val
     weeks.value = getCurrentWeekDates(val[0])
 }
-onMounted(() => {
+
+useDidShow(() => {
     weeks.value = getCurrentWeekDates()
     riqix.value = [dayjs(weeks.value[0]).toDate(), dayjs(weeks.value[6]).toDate()]
+    getList(weeks.value[0])
 })
+
+function getList(day) {
+    let babyId = Taro.getStorageSync('user')?.id
+    Axios.get(`/meal/week?babyId=${babyId}&startDate=${day}`).then(res => {
+        weeksList.value = res
+    })
+}
+
 function getCurrentWeekDates(value) {
     // 获取当前日期 
     let today

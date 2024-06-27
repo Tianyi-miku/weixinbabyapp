@@ -1,12 +1,12 @@
 <template>
   <div class="top">
     <div class="tiz">
-      <div>当前体重 (kg)</div>
-      <div></div>
+      <div>当前体重(kg)</div>
+      <div>{{ babyValue.nowWeight }}</div>
     </div>
     <div class="tiz">
       <div>BMI指数</div>
-      <div></div>
+      <div> {{ (babyValue.bmi)?.toFixed(2) }}</div>
     </div>
   </div>
   <view class="bar-chart">
@@ -14,13 +14,12 @@
   </view>
   <div class="jianyi">健康建议</div>
   <div class="jianyi content">
-    <div>宝宝的体重高于正常水平，</div>
-    <div>建议范围为 xx-xx kg。</div>
+    <div>{{ babyValue.suggestion }}</div>
   </div>
 
-  <nut-cell title="当前体重" @click="show = true" :desc="val" />
-  <nut-button size="large" type="primary">更新体重</nut-button>
-  <nut-number-keyboard v-model:visible="show" title="今天" overlay @input="onInput" v-model="val" @blur="show = false"
+  <nut-cell title="当前体重" @click="show = true" :desc="showValue" />
+  <nut-button size="large" type="primary" @click="submitTo">更新体重</nut-button>
+  <nut-number-keyboard v-model:visible="show" type="default" overlay v-model="showValue" @blur="show = false"
     @close="show = false" confirm-text="提交"></nut-number-keyboard>
 </template>
 <script setup>
@@ -30,45 +29,90 @@ import * as echarts from "echarts4taro3/lib/assets/echarts";; // 这里用了内
 import { loadEcharts } from "echarts4taro3";
 loadEcharts(echarts); // 加载 echarts 库
 import { EChart } from "echarts4taro3";
+import { useDidShow } from '@tarojs/taro'
+import Axios from '../../../util/axios';
+import dayjs from "dayjs";
 
 const show = ref(false)
 const canvas = ref(null);
-const val = ref('')
-const options = {
-  tooltip: {
-    trigger: 'axis'
-  },
-  grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
-  },
-  xAxis: {
-    type: 'category',
-    boundaryGap: false,
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      name: 'Email',
-      type: 'line',
-      stack: 'Total',
-      data: [120, 132, 101, 134, 90, 230, 210]
-    },
-  ]
-};
+const babyValue = ref({})
+const showValue = ref('')
+const value = ref('')
 
-onMounted(() => {
-  const echartComponentInstance = canvas.value; // 组件实例
-  Taro.nextTick(() => {
-    // 初始化图表
-    echartComponentInstance.refresh(options)
-  });
-});
+
+useDidShow(() => {
+  getEhcart()
+})
+
+function getEhcart() {
+  let babyId = Taro.getStorageSync('user')?.id
+  Axios.get(`/basic/weight/${babyId}`).then(res => {
+    babyValue.value = res
+    showValue.value = res.nowWeight ? res.nowWeight.toString() : ''
+    let time = res.weightList.map(item => dayjs(item.time).format('YYYY-MM-DD'))
+    let weight = res.weightList.map(item => item.weight)
+    const options = {
+      tooltip: {
+        trigger: 'axis'
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: time
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          name: '体重',
+          type: 'line',
+          stack: 'Total',
+          data: weight
+        },
+      ]
+    };
+    const echartComponentInstance = canvas.value; // 组件实例
+    Taro.nextTick(() => {
+      // 初始化图表
+      echartComponentInstance.refresh(options)
+    });
+  })
+}
+
+function submitTo() {
+  if (showValue.value) {
+    let babyId = Taro.getStorageSync('user')?.id
+    const data = {
+      babyId: babyId,
+      weight: parseFloat(showValue.value),
+      measureTime: dayjs().format('YYYY-MM-DD')
+    }
+    Axios.post('/basic/add', data).then(res => {
+      Taro.showToast({
+        title: '保存成功',
+        icon: 'success',
+        duration: 1000
+      })
+      setTimeout(() => {
+        getEhcart()
+      }, 1000);
+    })
+  } else {
+    Taro.showToast({
+      title: '请输入体重',
+      icon: 'error',
+      duration: 1000
+    })
+  }
+}
+
 </script>
 
 <style>

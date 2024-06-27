@@ -19,6 +19,7 @@ export default defineAppConfig({
         "pages/paibianjilu/paibianjilu",
         "pages/shenti/shenti",
         "pages/shuimian/shuimian",
+        "pages/shuimianguanli/shuimianguanli",
         "pages/tizhong/tizhong",
         "children/jiankangyinshi/jiankangyinshi",
         "children/jinshizhushou/jinshizhushou",
