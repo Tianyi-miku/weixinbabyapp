@@ -21,7 +21,6 @@ declare module 'vue' {
     NutInput: typeof import('@nutui/nutui-taro')['Input']
     NutList: typeof import('@nutui/nutui-taro')['List']
     NutNumberKeyboard: typeof import('@nutui/nutui-taro')['NumberKeyboard']
-    NutPicker: typeof import('@nutui/nutui-taro')['Picker']
     NutPopup: typeof import('@nutui/nutui-taro')['Popup']
     NutRadio: typeof import('@nutui/nutui-taro')['Radio']
     NutRadioGroup: typeof import('@nutui/nutui-taro')['RadioGroup']

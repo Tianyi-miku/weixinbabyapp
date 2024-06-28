@@ -22,7 +22,7 @@
         <div class="bz" @click.stop="Taro.navigateTo({
             url: '/subPackages/pages/guanlipg/guanlipg'
         })">
-            <div class="biaozhun">标准 <RectRight></RectRight>
+            <div class="biaozhun">{{ jichu?.comment }} <RectRight></RectRight>
             </div>
         </div>
         <div class="tz">
@@ -34,22 +34,42 @@
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
             url: '/subPackages/pages/tizhong/tizhong'
-        })">体重管理</div>
+        })">
+                <div>
+                    <img :src="tizhongguanli" class="imgs" />
+                    <div>体重管理</div>
+                </div>
+            </div>
         </nut-grid-item>
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
             url: '/subPackages/pages/shuimian/shuimian'
-        })">睡眠管理</div>
+        })">
+                <div>
+                    <img :src="shuimianguanli" class="imgs" />
+                    <div>睡眠管理</div>
+                </div>
+            </div>
         </nut-grid-item>
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
             url: '/subPackages/pages/kouqiang/kouqiang'
-        })">口腔管理</div>
+        })">
+                <div>
+                    <img :src="kouqiangguanli" class="imgs" />
+                    <div>口腔管理</div>
+                </div>
+            </div>
         </nut-grid-item>
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
             url: '/subPackages/pages/paibian/paibian'
-        })">排便管理</div>
+        })">
+                <div>
+                    <img :src="paibianguanli" class="imgs" />
+                    <div>排便管理</div>
+                </div>
+            </div>
         </nut-grid-item>
     </nut-grid>
 </template>
@@ -60,6 +80,10 @@ import { ref, onMounted } from 'vue'
 import { documentUrl } from './../../util/ip'
 import { useDidShow } from '@tarojs/taro'
 import Axios from '../../util/axios'
+import tizhongguanli from '../../assets/img/tizhongguanli.png'
+import shuimianguanli from '../../assets/img/shuimianguanli.png'
+import kouqiangguanli from '../../assets/img/kouqiangguanli.png'
+import paibianguanli from '../../assets/img/paibianguanli.png'
 
 const baby = ref(null)
 const imgUrl = ref('https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png')
@@ -98,7 +122,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: aliceblue;
+    /* background-color: #8CC269; */
     border-radius: 15px;
     width: 100%;
 }
@@ -108,7 +132,7 @@ onMounted(() => {
 }
 
 .Tcard {
-    background-color: aliceblue;
+    background-color: #8CC269;
     margin-left: 2%;
     margin-right: 2%;
     border-radius: 15px;
@@ -149,5 +173,10 @@ onMounted(() => {
 
 .zhibiao {
     padding: 1rem;
+}
+
+.imgs {
+    height: 4rem;
+    width: 4rem;
 }
 </style>
