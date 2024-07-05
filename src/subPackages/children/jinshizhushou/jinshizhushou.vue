@@ -4,8 +4,7 @@
             <div :class="item.class">
                 <div class="toux">
                     <nut-avatar size="large">
-                        <img
-                            :src="baby?.avatarPath ? documentUrl + baby.avatarPath : 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png'" />
+                        <img :src="baby?.avatarPath ? documentUrl + baby.avatarPath : ico_huluobo" />
                     </nut-avatar>
                 </div>
                 <div class="content">
@@ -16,7 +15,9 @@
     </div>
     <div class="bot">
         <div @click="addList('挑食偏食')" class="botItem">
-            <div class="topBar"></div>
+            <nut-avatar size="large">
+                <img :src="ico_tiaoshipianshi_nor" />
+            </nut-avatar>
             <div class="title">挑食偏食</div>
         </div>
         <div @click="addList('被动进餐')" class="botItem">
@@ -39,6 +40,8 @@
 </template>
 <script setup>
 import { reactive, ref } from 'vue';
+import ico_huluobo from '../../../assets/img/ico_huluobo.png'
+import ico_tiaoshipianshi_nor from '../Aimgs/ico_tiaoshipianshi_nor.png'
 
 let list = reactive([])
 let baby = ref(null)

@@ -84,10 +84,10 @@ function daka(params) {
 function showData(item, day) {
   if (isTimeWithinDay(item.measureTime, `${day.year}-${day.month}-${day.date}`)) {
     if (item.brushTimes === 1) {
-      return '◐'
+      return '🌙'
     }
     if (item.brushTimes === 2) {
-      return '◉'
+      return '☀️'
     }
   }
 }
