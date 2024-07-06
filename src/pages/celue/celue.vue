@@ -179,7 +179,7 @@
                 </div>
             </div>
             <div class="content1 paddi" @click="Taro.navigateTo({
-                url: '/subPackages/celue/celve/celve'
+                url: '/subPackages1/celue/celve/celve'
             })">
                 <div>
                     <img style="height: 4.5625rem;width: 7.5625rem;" :src="fan" />
