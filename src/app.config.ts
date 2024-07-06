@@ -1,6 +1,6 @@
 export default defineAppConfig({
   pages: [
-    "pages/index/index",
+    // "pages/index/index",
     "pages/fazhan/fazhan",
     "pages/celue/celue",
     "pages/yinshi/yinshi",
@@ -32,6 +32,15 @@ export default defineAppConfig({
         "children/zhanghaoshezhi/zhanghaoshezhi",
         "children/xinzengbaobao/xinzengbaobao",
         "children/xiugaibaobao/xiugaibaobao",
+      ],
+    },
+    {
+      root: "subPackages1",
+      pages: [
+        "celue/kexue/kexue",
+        "celue/celve/celve",
+        "celue/gedai/gedai",
+        "celue/taidu/taidu",
       ],
     },
   ],

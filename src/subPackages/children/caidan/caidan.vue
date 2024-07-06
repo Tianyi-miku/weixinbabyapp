@@ -129,10 +129,12 @@ function addTolist() {
 }
 
 .content {
-  width: 100%;
+  width: 90%;
+  display: flex;
+  margin: auto;
   height: 9.375rem;
   border-radius: .625rem;
-  background-color: #aaaaaa;
+  /* background-color: #aaaaaa; */
 }
 
 .tags {
