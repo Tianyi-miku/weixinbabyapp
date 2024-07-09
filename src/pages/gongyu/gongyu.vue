@@ -1,5 +1,5 @@
 <template>
-    <nut-tabs v-model="value">
+    <nut-tabs v-model="value" auto-height="true">
         <nut-tab-pane title="喂养关系" pane-key="1">
             <div class="title" style="font-size: 1.3rem;">加强亲子亲密性有利于幼儿健康饮食行为</div>
             <div class="titleHt">
@@ -10,12 +10,13 @@
                 难以养成健康的饮食行为习惯。父母更应该关注亲子冲突善用策略，理性育儿，减少矛盾的发生。
             </div>
             <div class="content">
-                · 共同制定家庭饮食公约有助于减少矛盾的发生。父母可以多鼓励幼儿提出进餐时“应该做” 和 “不应该做”的内容，并思考其合理性，让幼儿在认知和情感上认同规则。同时，亲子双方有平等的权利互相监督，直至规则内化为习惯。
+                · 共同制定家庭饮食公约有助于减少矛盾的发生。父母可以多鼓励幼儿提出进餐时“应该做” 和
+                “不应该做”的内容，并思考其合理性，让幼儿在认知和情感上认同规则。同时，亲子双方有平等的权利互相监督，直至规则内化为习惯。
             </div>
             <div class="content">
                 · 父母可以和孩子一起选购食物，并让孩子参与力所能及的食物加工活动（如择菜等），增加其对食物的接受度，增进亲子关系。
             </div>
-            <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+            <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
                 <div>[1]陈旭微.幼儿家庭进餐行为主体性影响因素分析[J].陕西学前师范学院学报,2017,33(07):75-82.
                 </div>
                 <div>[2]黄思雨,甘剑梅.幼儿饮食行为与亲子关系、父母教养方式的关系[J].教育导刊(下半月),2019,(11):79-85.
@@ -31,13 +32,14 @@
             <div class="content">
                 · 通过幼儿园的网站、广播、信息栏、班级家庭之窗等向家长宣传幼儿的饮食营养，并定期向家长推荐一些营养合理搭配的食谱。
             </div>
-            <div class="content"> · 通过家长会、家长学校，给家长一个直接交流彼此在幼儿饮食方面的经验的平台，帮助家长针对幼儿饮食习惯中存在的问题，树立正确的教育观念和教育方法，纠正家长在幼儿早餐认识上的误区；
+            <div class="content"> ·
+                通过家长会、家长学校，给家长一个直接交流彼此在幼儿饮食方面的经验的平台，帮助家长针对幼儿饮食习惯中存在的问题，树立正确的教育观念和教育方法，纠正家长在幼儿早餐认识上的误区；
             </div>
             <div class="content"> · 通过开放日，让家长自己来幼儿园参观一下，幼儿在园是怎么吃饭、吃点心的，与教师交流经验，进行直观的学习。</div>
             <div class="title">2.家庭方面。</div>
             <div class="content"> · 家长要将幼儿在家表现出的不良饮食行为及时地反映给老师，听取教师的意见。</div>
             <div class="content"> · 通过家长委员会，将自身在幼儿饮食习惯方面的经验或是疑惑反应给幼儿园。家长还应主动地获取相关的幼儿教育知识，树立正确的幼儿教育观。</div>
-            <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+            <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
                 <div>[1]陆燕芳.隔代教育对幼儿饮食习惯的影响和对策[J].考试周刊,2016,(16):194.
                 </div>
             </div>

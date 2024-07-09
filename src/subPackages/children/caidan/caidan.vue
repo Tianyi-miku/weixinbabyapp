@@ -145,6 +145,7 @@ function addTolist() {
 
 .nut {
   margin: 0.2rem;
+  height: 1rem;
 }
 
 .nuttagContent {

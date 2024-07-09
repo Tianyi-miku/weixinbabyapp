@@ -13,7 +13,7 @@
         <div class="content">
             现在的年轻父母的知识一般都丰富，接触了解的食物的种类和烹调方法较多，在这方面祖辈有所欠缺，父母可以给祖辈提出一些建议，多改变食物的种类和烹调方式，吸引幼儿进餐的欲望。
         </div>
-        <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+        <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
             <div>[1]陆燕芳.隔代教育对幼儿饮食习惯的影响和对策[J].考试周刊,2016,(16):194.
             </div>
         </div>

@@ -18,7 +18,7 @@
         <div class="content">
             如果达标，那么父母在喂养上不应过于的焦虑。如果家人在喂养孩子时，带有强烈的情绪，则不利于建立良好的喂养关系。因为焦虑的情绪是会传染的，家长在吃饭问题上焦虑，孩子很可能在吃饭的时候产生对抗的情绪。
         </div>
-        <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+        <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
             <div>[1]塔尼娅.奥尔特曼. 美国儿科学会育儿百科[M]. 北京科学技术出版社.
             </div>
         </div>

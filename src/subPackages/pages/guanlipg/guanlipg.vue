@@ -1,11 +1,9 @@
 <!-- Page A -->
 <template>
   <div class="radio">
-    <nut-radio-group v-model="val1" direction="horizontal">
+    <nut-radio-group v-model="val1" direction="horizontal" @change="getList">
       <nut-radio label="1" shape="button">身高</nut-radio>
-      <nut-radio label="2" shape="button" @click="Taro.navigateTo({
-        url: '/subPackages/pages/tizhong/tizhong'
-      })">体重</nut-radio>
+      <nut-radio label="2" shape="button">体重</nut-radio>
       <nut-radio label="3" shape="button">头围</nut-radio>
     </nut-radio-group>
   </div>
@@ -22,6 +20,8 @@ import * as echarts from "echarts4taro3/lib/assets/echarts";; // 这里用了内
 import { loadEcharts } from "echarts4taro3";
 loadEcharts(echarts); // 加载 echarts 库
 import { EChart } from "echarts4taro3";
+import { useDidShow } from '@tarojs/taro'
+import Axios from '../../../util/axios';
 
 const val1 = ref('1')
 const canvas = ref(null);
@@ -38,52 +38,93 @@ const options = {
   xAxis: {
     type: 'category',
     boundaryGap: false,
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    data: []
   },
   yAxis: {
     type: 'value'
   },
   series: [
     {
-      name: 'Email',
+      name: '标准',
       type: 'line',
-      stack: 'Total',
-      data: [120, 132, 101, 134, 90, 230, 210]
+      data: []
     },
     {
-      name: 'Union Ads',
+      name: '最大',
       type: 'line',
-      stack: 'Total',
-      data: [220, 182, 191, 234, 290, 330, 310]
+      data: []
     },
     {
-      name: 'Video Ads',
+      name: '最小',
       type: 'line',
-      stack: 'Total',
-      data: [150, 232, 201, 154, 190, 330, 410]
-    },
-    {
-      name: 'Direct',
-      type: 'line',
-      stack: 'Total',
-      data: [320, 332, 301, 334, 390, 330, 320]
-    },
-    {
-      name: 'Search Engine',
-      type: 'line',
-      stack: 'Total',
-      data: [820, 932, 901, 934, 1290, 1330, 1320]
+      data: []
     }
   ]
 };
 
-onMounted(() => {
+useDidShow(() => {
+  getList()
+})
+
+function getList() {
+  let babyId = Taro.getStorageSync('user')?.id
+  if (val1.value === '1') {
+    Axios.get(`/statistic/height/${babyId}`).then(res => {
+      flush(res)
+    })
+  } else if (val1.value === '2') {
+    Axios.get(`/statistic/weight/${babyId}`).then(res => {
+      flush(res)
+    })
+  } else {
+    Axios.get(`/statistic/head/${babyId}`).then(res => {
+      flush(res)
+    })
+  }
+}
+
+function flush(res) {
   const echartComponentInstance = canvas.value; // 组件实例
+  let Xdata = []
+  let ydata = []
+  let ydata1 = []
+  let ydata2 = []
+  res.data.forEach(item => {
+    for (const key in item) {
+      if (Object.hasOwnProperty.call(item, key)) {
+        Xdata.push(key)
+        ydata.push(item[key])
+      }
+    }
+  })
+
+  res.max.forEach(item => {
+    for (const key in item) {
+      if (Object.hasOwnProperty.call(item, key)) {
+        ydata1.push(item[key])
+      }
+    }
+  })
+  res.min.forEach(item => {
+    for (const key in item) {
+      if (Object.hasOwnProperty.call(item, key)) {
+        ydata2.push(item[key])
+      }
+    }
+  })
+  options.xAxis.data = Xdata
+
+  options.series = [
+    { name: '标准', type: 'line', data: ydata },
+    { name: '最大', type: 'line', data: ydata1 },
+    { name: '最小', type: 'line', data: ydata2 }
+  ]
   Taro.nextTick(() => {
     // 初始化图表
     echartComponentInstance.refresh(options)
   });
-});
+}
+
 </script>
 
 <style>

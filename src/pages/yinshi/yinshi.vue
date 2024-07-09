@@ -1,5 +1,5 @@
 <template>
-    <nut-tabs v-model="value" class="tabsBody">
+    <nut-tabs v-model="value" class="tabsBody" auto-height="true">
         <nut-tab-pane title="饮食知识" pane-key="1">
             <div class="title1">
                 <img class=" btn_jinshizhushou" :src="btn_shiwuzhishi"
@@ -9,7 +9,7 @@
                 膳食周记
             </div>
             <nut-cell @click="show = true"> {{ dayjs(riqix[0]).format('YYYY-MM-DD')
-            }} - {{ dayjs(riqix?.[1])?.format('YYYY-MM-DD') }}</nut-cell>
+                }} - {{ dayjs(riqix?.[1])?.format('YYYY-MM-DD') }}</nut-cell>
 
 
             <div class="content1">
@@ -60,7 +60,7 @@
             </div>
         </nut-tab-pane>
         <nut-tab-pane title="饮食环境" pane-key="2" class="tabs">
-            <nut-tabs v-model="value1" class="tabs">
+            <nut-tabs v-model="value1" class="tabs" auto-height="true">
                 <nut-tab-pane title="进餐环境" pane-key="1">
                     <div class="title">1、膳食安排：</div>
                     <div class="content">
@@ -90,7 +90,7 @@
                     <div class="content">
                         · 幼儿不喜欢吃青菜，可以将青菜进行摆盘，利用幼儿喜欢的卡通动画形象吸引幼儿进食。同时，还要保持饮食环境干净整洁，避免干扰幼儿，分散幼儿进食注意力。
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+                    <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
                         <div>[1]卓子欣.父母喂养风格对3-6岁儿童饮食行为影响的实证研究[D].塔里木大学,2021.DOI:10.27708/d.cnki.gtlmd.2021.000126.
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                     <div class="content">
                         · 自己不要在餐桌上大声吵闹，不要随意离座，不能和他人“抢”食物等。
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+                    <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
                         <div>[1]茅春艳.餐桌上的礼仪教育[J].好家长,2022,(37):49.
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                     <div class="content">7、未吃完的食物应从餐桌上拿掉并处理。奶瓶里一小时后残留的牛奶应该扔掉。</div>
                     <div class="content">8、不要让儿童或婴儿独自吃饭，以免他们窒息。</div>
                     <div class="content">9、儿童坐在高脚椅上时必须有人监督，高脚椅必须有安全带。</div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+                    <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
                         <div>[1]Food and Nutrition Guidelines for Pre-School Services[R/OL]. (2004-03-21)[2024-06-30].
                             https://www.gov.ie/en/publication/0252ea-food-and-nutrition-guidelines-for-pre-school-services/.
                         </div>
@@ -171,7 +171,7 @@
                     <div class="content">是儿童学习自主进食的最佳方式，应为儿童提供轻松、愉悦的良好进餐环境和气氛。</div>
                     <div class="content"> · 避免嘈杂的进餐环境。</div>
                     <div class="content"> · 避免进餐时恐吓、训斥和打骂儿童。</div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+                    <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
                         <div>[1]卓子欣.父母喂养风格对3-6岁儿童饮食行为影响的实证研究[D].塔里木大学,2021.DOI:10.27708/d.cnki.gtlmd.2021.000126.
                         </div>
                         <div>[2]儿童喂养与营养指导技术规范[R/OL]. (2014-12-31)[2024-06-30].
@@ -186,7 +186,7 @@
                     </div>
                     <div class="content">1、进食情绪影响食欲，影响营养素吸收率、利用率，也会影响人体免疫力。</div>
                     <div class="content">2、进餐时借机教育，常常事倍功半。</div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+                    <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
                         <div>[1]中华人民共和国教育部. 幼儿园教育指导纲要[EB/OL]. [2024-06-30].
                             https://www.gov.cn/gongbao/content/2002/content_61459.htm.
                         </div>

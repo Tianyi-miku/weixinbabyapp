@@ -1,5 +1,6 @@
 <template>
-    <nut-tabs class="tabs" v-model="value" title-scroll="true" title-gutter="10" ellipsis="false" size="small">
+    <nut-tabs class="tabs" v-model="value" title-scroll="true" title-gutter="10" ellipsis="false" size="small"
+        auto-height="true">
         <nut-tab-pane title="营养知识" pane-key="1">
             <img class="yinyangzhishi" :src="yinyangzhishi" />
             <div class="title">
@@ -11,7 +12,7 @@
             <div class="content">
                 · 此外，该塔还强调饮水 (600~800ml)和户外运动。
             </div>
-            <div style="position: absolute; width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
+            <div style="width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
                 [1]中国营养学会. 学龄前儿童膳食指南[Z/OL]. (2022)[2024-06-30]. http://dg.cnsoc.org/upload/affix/20220712162211079.pdf.
             </div>
         </nut-tab-pane>
@@ -44,7 +45,7 @@
                 2、可选择天然、新鲜香料（如 葱、蒜、洋葱、香草等）和新鲜蔬果汁（如番茄汁、柠檬、南瓜汁、菠菜汁等）调味。建议每日食盐摄入量：2~3岁＜2g, 4~5岁＜3g。学龄前儿童膳食多采用蒸、煮、炖、煨
                 等烹调方式，少用油炸、烧烤、煎等方式。
             </div>
-            <div style="position: absolute; width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
+            <div style="width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
                 [1]中国营养学会. 学龄前儿童膳食指南[Z/OL]. (2022)[2024-06-30]. http://dg.cnsoc.org/upload/affix/20220712162211079.pdf.
             </div>
         </nut-tab-pane>
@@ -68,7 +69,7 @@
                 ·
                 考虑季节和市场供应情况主要是熟悉市场可供选择的原料，并了解其营养特点。兼顾经济条件是既要使食谱符合营养要求，又要使进餐者在经济上有承受能力，才会使食谱有实际意义。在可能的情况下，即使膳食多样化，又要照顾就餐者的膳食习惯。
             </div>
-            <div style="position: absolute; width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
+            <div style="width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
                 [1]胡军, 张格祥, 肖永良. 学龄前儿童成长与膳食营养[M]. 军事医学科学出版社, 2010.
             </div>
         </nut-tab-pane>

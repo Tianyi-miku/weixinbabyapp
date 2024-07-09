@@ -1,5 +1,5 @@
 <template>
-    <nut-tabs v-model="value">
+    <nut-tabs v-model="value" auto-height="true">
         <nut-tab-pane title="进食助手" pane-key="1">
             <div class="topjinshi">
                 <img class="yumaoqiu" :src="yumaoqiu" />
@@ -12,7 +12,8 @@
             <img class="btn_jinshizhushou" :src="btn_jinshizhushou" @click="gojianshizhushou" />
         </nut-tab-pane>
         <nut-tab-pane title="喂养方式" pane-key="2" class="tabs ">
-            <nut-tabs v-model="value2" class="tabs" title-scroll="true" title-gutter="10" ellipsis="false" size="small">
+            <nut-tabs v-model="value2" class="tabs" title-scroll="true" title-gutter="10" ellipsis="false" size="small"
+                auto-height="true">
                 <nut-tab-pane title="顺应喂养" pane-key="1">
                     <div class="title">
                         顺应喂养(Responsive feeding)是指幼儿与其照顾者之间的互惠关系，其特点是孩子通过语言或非语言信号传达饥饿感和饱腹感，随后照顾者给予即时响应，让孩子逐步学会独立进食。
@@ -27,11 +28,13 @@
                     </div>
                     <div class="bottom">
                         <div>
-                            [1]Harbron J, Booley S. Responsive feeding: establishing healthy eating behaviour early on in
+                            [1]Harbron J, Booley S. Responsive feeding: establishing healthy eating behaviour early on
+                            in
                             life[J]. South African Journal of Clinical Nutrition, 2013, 26: S141-S149.
                         </div>
                         <div>
-                            [2]Hubbs—Tait L，Dickin K L，Sigman—Grant M，et al．RETRACTED：Relation of parenting styles，feeding
+                            [2]Hubbs—Tait L，Dickin K L，Sigman—Grant M，et al．RETRACTED：Relation of parenting
+                            styles，feeding
                             styles andfeeding practicesto child overweight and obesity．Direct and moderated
                             effects[J]．2013，71（12）：126—136
                         </div>
@@ -45,7 +48,7 @@
                         <div style=" margin: 0.5rem 0;color: #3E721D;font-size: 1rem;">· 同伴榜样：</div>
                         <div>儿童对食物的喜好、选择和消费的行为受同伴的影响很大。儿童的年龄越小，其饮食行为受同伴的影响越大。</div>
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
+                    <div style="width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
                         [1]马冠生.儿童少年的饮食行为及影响因素[J].中国健康教育,2005,(05):337-340.
                     </div>
                 </nut-tab-pane>
@@ -61,7 +64,7 @@
                             <div> · 影响幼儿进食技能的发展。</div>
                         </div>
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
+                    <div style="width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
                         [1]刘淑美,刘馨,崔淑婧.北京市城区2～3岁幼儿饮食行为与家长喂养行为的调查研究[J].幼儿教育,2012,(33):37-41.
                     </div>
                 </nut-tab-pane>
@@ -81,7 +84,7 @@
                             <div> · 并提供小但足够的份量，为儿童提供自我调节饮食行为的机会。</div>
                         </div>
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
+                    <div style="width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
                         <div> [1]刘淑美,刘馨,崔淑婧.北京市城区2～3岁幼儿饮食行为与家长喂养行为的调查研究[J].幼儿教育,2012,(33):37-41.</div>
                         <div> [2]Silvia S ,Valentina C D ,Valentina C , et al.Factors Influencing Children's Eating
                             Behaviours.[J].Nutrients,2018,10(6):706-706.</div>
@@ -93,14 +96,16 @@
                     </div>
                     <div class="content">
                         <div style="padding-top: 1rem;">
-                            1、有研究调查了140名大学生，他们在童年期都曾经被父母或者老师等强迫吃过不愿意吃的食物，他们回顾说当时他们感到无助和被控制，72%的人说自己现在是不愿意吃这个被强迫吃的食物的。</div>
+                            1、有研究调查了140名大学生，他们在童年期都曾经被父母或者老师等强迫吃过不愿意吃的食物，他们回顾说当时他们感到无助和被控制，72%的人说自己现在是不愿意吃这个被强迫吃的食物的。
+                        </div>
                         <div style="padding-top: 1rem;">2、总结了66项研究的综述发现，父母给孩子进食时施加的压力水平越高，孩子的摄入量和体重也越低，孩子挑食的程度也越高。</div>
                         <div style="padding-top: 1rem;  padding-bottom: 1rem;">
                             3、如果家长通过恐吓、体罚等方式强迫幼儿进食某些食物，就会使幼儿从心理上排斥这些食物，从而可能导致更严重的挑食行为。虽然当时孩子服从了父母的命令或建议，却有可能会让他们对那些健康食物更加厌恶，以后吃得更少，而对那些被限制的不健康食物兴趣更大了。
                         </div>
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
-                        <div>[1]Batsell R W ,Brown S A ,Ansfield E M , et al.“You Will Eat All of That!”: A retrospective
+                    <div style="width: 92vw;font-size: 0.8rem;color: #7B7B7B;">
+                        <div>[1]Batsell R W ,Brown S A ,Ansfield E M , et al.“You Will Eat All of That!”: A
+                            retrospective
                             analysis of forced consumption episodes[J].Appetite,2002,38(3):211-219.</div>
                         <div>[2]刘淑美,刘馨,崔淑婧.北京市城区2～3岁幼儿饮食行为与家长喂养行为的调查研究[J].幼儿教育,2012,(33):37-41.</div>
                     </div>
@@ -118,9 +123,11 @@
                         </div>
                     </div>
                     <img style="height: 8rem;width: 75%; margin: auto;display: flex;" :src="weiyangfangshihulb" />
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem;color: #7B7B7B;">
-                        <div>[1]Yue X ,Yan L ,Qiping Y , et al.Food Neophobia and its Association with Vegetable, Fruit and
-                            Snack Intake Among 12- to 36-month Toddlers in China: A Cross-Sectional Study[J].Food Quality
+                    <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem;color: #7B7B7B;">
+                        <div>[1]Yue X ,Yan L ,Qiping Y , et al.Food Neophobia and its Association with Vegetable, Fruit
+                            and
+                            Snack Intake Among 12- to 36-month Toddlers in China: A Cross-Sectional Study[J].Food
+                            Quality
                             and Preference,2021,(prepublish):104513-.</div>
                     </div>
                 </nut-tab-pane>
@@ -137,7 +144,7 @@
                     <div>
                         避免用食物奖惩孩子，以提供某类零食、糖、“垃圾类食品”等作为鼓励孩子按时、尽可能多食正餐的礼物、奖品。当儿童将这种食物作为得到另外一种食物或成全某件事情的前提条件时，作为前提条件的食物在儿童心中的兴趣已大大降低了，认为自己没有那么喜欢这个食物。
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem;color: #7B7B7B;">
+                    <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem;color: #7B7B7B;">
                         <div>[1]卓子欣.父母喂养风格对3-6岁儿童饮食行为影响的实证研究[D].塔里木大学,2021.DOI:10.27708/d.cnki.gtlmd.2021.000126.</div>
                         <div>[2]胡军, 张格祥, 肖永良. 学龄前儿童成长与膳食营养[M]. 军事医学科学出版社, 2010.</div>
                     </div>
@@ -146,8 +153,8 @@
         </nut-tab-pane>
         <nut-tab-pane title=" 喂养理念" pane-key="3">
             <div class="content1 paddi" @click="Taro.navigateTo({
-                url: '/subPackages1/celue/kexue/kexue'
-            })">
+        url: '/subPackages1/celue/kexue/kexue'
+    })">
                 <div>
                     <img style="height: 4.5625rem;width: 7.5625rem;" :src="chaye" />
                 </div>
@@ -157,8 +164,8 @@
                 </div>
             </div>
             <div class="content1 paddi" @click="Taro.navigateTo({
-                url: '/subPackages1/celue/gedai/gedai'
-            })">
+        url: '/subPackages1/celue/gedai/gedai'
+    })">
                 <div>
                     <img style="height: 4.5625rem;width: 7.5625rem;" :src="shou" />
                 </div>
@@ -168,8 +175,8 @@
                 </div>
             </div>
             <div class="content1 paddi" @click="Taro.navigateTo({
-                url: '/subPackages1/celue/taidu/taidu'
-            })">
+        url: '/subPackages1/celue/taidu/taidu'
+    })">
                 <div>
                     <img style="height: 4.5625rem;width: 7.5625rem;" :src="ren" />
                 </div>
@@ -179,8 +186,8 @@
                 </div>
             </div>
             <div class="content1 paddi" @click="Taro.navigateTo({
-                url: '/subPackages1/celue/celve/celve'
-            })">
+        url: '/subPackages1/celue/celve/celve'
+    })">
                 <div>
                     <img style="height: 4.5625rem;width: 7.5625rem;" :src="fan" />
                 </div>
@@ -191,7 +198,8 @@
             </div>
         </nut-tab-pane>
         <nut-tab-pane title="养育方式" pane-key="4" class="tabs">
-            <nut-tabs v-model="value1" class="tabs">
+            <nut-tabs v-model="value1" class="tabs" auto-height="true" title-scroll="true" title-gutter="10"
+                ellipsis="false" size="small">
                 <nut-tab-pane title="宽容教育" pane-key="1">
                     <div class="title">
                         “耐心点，他还是个孩子”
@@ -206,7 +214,7 @@
                         2、严厉型:孩子性格特点常表现为顽固、倔犟、缺乏自信心与自尊心。
                         对幼儿要付出爱心、耐心、真心、细心、责任心和同情心，让孩子感受到父母对自己的关爱和照顾，这能帮助幼儿克服如哭闹、胆怯、孤单等不良情绪
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem;color: #7B7B7B;">
+                    <div class="bottom">
                         <div>[1]胡军, 张格祥, 肖永良. 学龄前儿童成长与膳食营养[M]. 军事医学科学出版社, 2010.</div>
                     </div>
                 </nut-tab-pane>
@@ -229,7 +237,7 @@
                     <div class="titleHt">
                         养育不是一项工作，而是一种关系。
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem;color: #7B7B7B;">
+                    <div class="bottom">
                         <div>[1]雷吉娜·帕利. 反思的爱[M]. 戴艾芳, 译. 中国轻工业出版社, 2019.</div>
                     </div>
                 </nut-tab-pane>
@@ -246,7 +254,7 @@
                     <div class="content">
                         反思性养育的核心理念是让父母在基本的教养原则上可以变得更灵活，可以理解接纳孩子，同时理解接纳自己作为父母的这一身份，所以无论自己是什么类型的父母，有个什么样的孩子，亦或处于何种家庭环境当中，这个方法都适用。
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem;color: #7B7B7B;">
+                    <div class="bottom">
                         <div>[1]雷吉娜·帕利. 反思的爱[M]. 戴艾芳, 译. 中国轻工业出版社, 2019.</div>
                     </div>
                 </nut-tab-pane>
@@ -263,7 +271,7 @@
                     <div class="content">
                         并通过启发式提问，激发幼儿积极思考食物本身，并且从食物本身引申到人际交往、感恩道德教育、珍惜粮食等各个方面。
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem;color: #7B7B7B;">
+                    <div class="bottom">
                         <div>[1]陈旭微.幼儿家庭进餐行为主体性影响因素分析[J].陕西学前师范学院学报,2017,33(07):75-82.</div>
                     </div>
                 </nut-tab-pane>
@@ -292,7 +300,7 @@
                     <div class="content">
                         该型儿童在生物活动方面也很有规律，相对来说不够活泼，对外界刺激反应消极或迟钝，适应新环境的速度较慢。营养教育应多注意借助于色彩、音乐来引发兴趣，用微笑、说话、逗乐、使孩子活泼起来。
                     </div>
-                    <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem;color: #7B7B7B;">
+                    <div class="bottom">
                         <div>[1]胡军, 张格祥, 肖永良. 学龄前儿童成长与膳食营养[M]. 军事医学科学出版社, 2010.</div>
                     </div>
                 </nut-tab-pane>

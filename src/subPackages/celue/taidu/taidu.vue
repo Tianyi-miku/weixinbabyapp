@@ -11,7 +11,7 @@
         <div class="content">
             所以家人的喂养观念，更全面来说是育儿观念一定要一致，家人之间要互相沟通，明确各种育儿行为对孩子的危害，从而达到有利于孩子健康成长的结果。
         </div>
-        <div style="position: absolute; width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
+        <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
             <div>[1]查健.功能冲突论视角下的家庭教育一致性[J].四川教育,2023(18):16-18.
             </div>
         </div>
