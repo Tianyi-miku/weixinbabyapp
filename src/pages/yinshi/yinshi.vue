@@ -18,15 +18,6 @@
                         {{ dayjs(item).date() }}
                     </div>
                 </div>
-
-
-                <div class="bottomlist">
-                    <div class="item" v-for="( item, index ) in  weeksList " :key="index">
-                        <div v-for="( e, index ) in  item " :key="index">
-
-                        </div>
-                    </div>
-                </div>
                 <div class="topList">
                     <div class="item"
                         @click="Taro.navigateTo({ url: `/subPackages/children/caidan/caidan?date=${weeks[0]}` })">
@@ -55,6 +46,14 @@
                     <div class="item"
                         @click="Taro.navigateTo({ url: `/subPackages/children/caidan/caidan?date=${weeks[6]}` })">
                         周日
+                    </div>
+                </div>
+                <div class="bottomlist">
+                    <div class="item" v-for="( item, index ) in  weeksList " :key="index">
+                        <div v-for="( e, index ) in  item " :key="index" style="font-size: 0.7rem;">
+                            <div class="itemType"> {{ swithItype(e.type) }}</div>
+                            <div class="itemCaidan"> {{ e.name }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,6 +218,22 @@ const riqix = ref([])
 let weeks = ref([])
 let weeksList = ref([])
 
+
+function swithItype(value) {
+    if (!value) {
+        return '早餐'
+    } else if (value == 1) {
+        return '点心'
+    } else if (value == 2) {
+        return '午餐'
+    }
+    else if (value == 3) {
+        return '点心'
+    } else if (value == 4) {
+        return '晚餐'
+    }
+}
+
 const onChange = (val) => {
     riqix.value = val
     weeks.value = getCurrentWeekDates(val[0])
@@ -319,5 +334,10 @@ function getCurrentWeekDates(value) {
 .nut-tabs {
     overflow-y: scroll;
     height: 100%;
+}
+
+.itemType {
+    background-color: #8CC269;
+    border-radius: 8px;
 }
 </style>

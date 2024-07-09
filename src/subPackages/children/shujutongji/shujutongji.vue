@@ -4,7 +4,7 @@
             <template #default="{ index, item }">
                 <div class="cotnent">
                     <div class="item">
-                        <Date></Date> {{ item.day }}
+                        <Date style="color: #8CC269;"></Date> {{ item.day }}
                     </div>
                     <div class="item">
                         {{ item.brushTimes ? `刷牙 ${item.brushTimes} 次` : '' }}
@@ -70,7 +70,11 @@ function swichshape(value) {
 </script>
 
 <style>
-.demo-list .list-item {
+.demo-list {
+    background: #F9F9F9;
+}
+
+.list-item {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,8 +84,8 @@ function swichshape(value) {
 }
 
 .cotnent {
-    background-color: #aaaaaa;
-    margin-bottom: 10px;
+    background-color: #FFFFFF;
+    margin: 1rem;
     padding: 1rem;
 }
 
