@@ -47,7 +47,10 @@ const options = {
     {
       name: '标准',
       type: 'line',
-      data: []
+      data: [],
+      itemStyle: {
+        color: '#3E721D'
+      }
     },
     {
       name: '最大',

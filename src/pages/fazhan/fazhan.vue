@@ -17,16 +17,19 @@
             url: '/subPackages/pages/shenti/shenti',
         })">
         <div class="sg">
-            <div>身高 :{{ jichu?.height }} cm</div>
+            <div>身高 cm</div>
+            <div>{{ jichu?.height }}</div>
         </div>
         <div class="bz" @click.stop="Taro.navigateTo({
             url: '/subPackages/pages/guanlipg/guanlipg'
         })">
-            <div class="biaozhun">{{ jichu?.comment }} <RectRight></RectRight>
+            <div class="biaozhun"><span style="margin-left: 0.5rem;">{{ jichu?.comment }}</span>
+                <RectRight></RectRight>
             </div>
         </div>
         <div class="tz">
-            <div> 体重:{{ jichu?.weight }} kg</div>
+            <div>体重 kg</div>
+            <div>{{ jichu?.weight }}</div>
         </div>
     </div>
     <div class="zhibiao">健康管理</div>
@@ -76,9 +79,9 @@
 <script setup>
 import Taro from '@tarojs/taro'
 import { RectRight } from '@nutui/icons-vue-taro'
-import { ref, onMounted } from 'vue'
-import { documentUrl } from './../../util/ip'
+import { ref } from 'vue'
 import { useDidShow } from '@tarojs/taro'
+import { documentUrl } from './../../util/ip'
 import Axios from '../../util/axios'
 import tizhongguanli from '../../assets/img/tizhongguanli.png'
 import shuimianguanli from '../../assets/img/shuimianguanli.png'
@@ -90,7 +93,7 @@ const imgUrl = ref('https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105
 
 const jichu = ref(null)
 
-onMounted(() => {
+useDidShow(() => {
     baby.value = Taro.getStorageSync('user')
     if (baby.value.avatarPath) {
         imgUrl.value = documentUrl + baby.value.avatarPath
@@ -145,6 +148,9 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #FFFFFF;
+    flex-direction: column;
+    padding-top: 0.5rem;
 }
 
 .bz {
@@ -158,6 +164,9 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #FFFFFF;
+    flex-direction: column;
+    padding-top: 0.5rem;
 }
 
 .biaozhun {

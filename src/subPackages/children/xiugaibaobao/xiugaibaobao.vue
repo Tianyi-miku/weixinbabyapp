@@ -46,6 +46,7 @@ import dayjs from 'dayjs'
 import { uploadUrl, documentUrl } from './../../../util/ip'
 import Taro from '@tarojs/taro'
 import Axios from '../../../util/axios';
+import { useDidShow } from '@tarojs/taro'
 
 const formData = ref({})
 const riqi = ref(null)
@@ -54,7 +55,7 @@ const formRef = ref(null)
 const imgUrl = ref('https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png')
 
 
-onMounted(() => {
+useDidShow(() => {
   const data = Taro.getStorageSync('user')
   data.birthday = dayjs(data.birthday).format('YYYY-MM-DD')
   data.sex = data.sex?.toString()

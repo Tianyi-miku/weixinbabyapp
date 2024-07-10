@@ -25,10 +25,11 @@ import { ref, onMounted } from 'vue'
 import { Date } from '@nutui/icons-vue-taro'
 import Axios from '../../../util/axios';
 import Taro from '@tarojs/taro'
+import { useDidShow } from '@tarojs/taro'
 
 const data = ref([])
 
-onMounted(() => {
+useDidShow(() => {
     getList()
 })
 

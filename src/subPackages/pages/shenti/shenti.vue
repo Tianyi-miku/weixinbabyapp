@@ -42,7 +42,7 @@ import { ref } from 'vue'
 import dayjs from 'dayjs'
 import Axios from '../../../util/axios';
 import Taro from '@tarojs/taro'
-import { onMounted } from 'vue'
+import { useDidShow } from '@tarojs/taro'
 
 const formData = ref({
     babyId: null,
@@ -61,7 +61,7 @@ function riqichange() {
 const formRef = ref(null)
 let id = Taro.getStorageSync('user').id
 
-onMounted(() => {
+useDidShow(() => {
     if (id) {
         Axios.get(`/basic/${id}`).then(res => {
             res.measureTime = dayjs(res.measureTime).format('YYYY-MM-DD')

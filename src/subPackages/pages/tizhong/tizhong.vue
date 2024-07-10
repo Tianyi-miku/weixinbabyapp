@@ -18,7 +18,7 @@
   </div>
 
   <nut-cell title="当前体重" @click="show = true" :desc="showValue" />
-  <nut-button size="large" type="primary" @click="submitTo">更新体重</nut-button>
+  <nut-button size="large" type="primary" style="width: 95%;margin: auto" @click="submitTo">更新体重</nut-button>
   <nut-number-keyboard v-model:visible="show" type="default" overlay v-model="showValue" @blur="show = false"
     @close="show = false" confirm-text="提交"></nut-number-keyboard>
 </template>
@@ -74,7 +74,10 @@ function getEhcart() {
           name: '体重',
           type: 'line',
           stack: 'Total',
-          data: weight
+          data: weight,
+          itemStyle: {
+            color: '#3E721D'
+          }
         },
       ]
     };

@@ -339,5 +339,6 @@ function getCurrentWeekDates(value) {
 .itemType {
     background-color: #8CC269;
     border-radius: 8px;
+    color: #ffffff;
 }
 </style>

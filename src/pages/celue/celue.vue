@@ -6,7 +6,7 @@
                 <div class="jszsba">适当的户外活动能增强食育</div>
             </div>
 
-            <div class="title1">
+            <div class="title1" style="margin-top: 1.5rem;">
                 进食助手
             </div>
             <img class="btn_jinshizhushou" :src="btn_jinshizhushou" @click="gojianshizhushou" />

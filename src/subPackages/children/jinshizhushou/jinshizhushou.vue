@@ -3,8 +3,11 @@
         <div v-for="(item, index) in  list " :key="index" class="topItem">
             <div :class="item.class">
                 <div class="toux">
-                    <nut-avatar style="background-color: none;">
-                        <img :src="baby?.avatarPath ? documentUrl + baby.avatarPath : ico_huluobo" />
+                    <nut-avatar style="background-color: none;" v-show="(index % 2) === 0">
+                        <img :src="documentUrl + baby?.avatarPath" />
+                    </nut-avatar>
+                    <nut-avatar style="background-color: none;" v-show="(index % 2) !== 0">
+                        <img :src="ico_huluobo" />
                     </nut-avatar>
                 </div>
                 <div class="content" v-html="item.content">
@@ -54,9 +57,15 @@ import ico_hanfan_nor from '../Aimgs/ico_hanfan_nor.png'
 import ico_shiyuquefa_nor from '../Aimgs/ico_shiyuquefa_nor.png'
 import ico_jincantuoyan_nor from '../Aimgs/ico_jincantuoyan_nor.png'
 import Taro from '@tarojs/taro'
+import { useDidShow } from '@tarojs/taro'
+import { documentUrl } from './../../../util/ip'
 
 let list = reactive([])
 let baby = ref(null)
+
+useDidShow(() => {
+    baby.value = Taro.getStorageSync('user')
+})
 
 function addList(name) {
     list.push({

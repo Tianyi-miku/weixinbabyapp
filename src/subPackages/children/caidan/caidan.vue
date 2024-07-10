@@ -37,7 +37,7 @@
       <nut-button type="primary">菜品清单</nut-button>
     </div>
     <div>
-      <nut-button type="info" @click="Taro.redirectTo({
+      <nut-button plain @click="Taro.redirectTo({
     url: '/subPackages/children/guominshicai/guominshicai'
   })">过敏食材</nut-button>
     </div>
@@ -156,6 +156,7 @@ function addTolist() {
 .nuttag {
   padding: 0.2rem;
   margin: 0.5rem;
+  background: #7fadd6;
 }
 
 .title {

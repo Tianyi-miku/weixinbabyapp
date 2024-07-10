@@ -1,7 +1,8 @@
 <template>
     <nut-row :gutter="10" style="padding: 0.5rem;" type="flex" align="center" justify="center">
         <nut-col :span="6" class="nutrow">
-            <nut-avatar size="large" @click="Taro.navigateTo({ url: '/subPackages/children/xiugaibaobao/xiugaibaobao' })">
+            <nut-avatar size="large"
+                @click="Taro.navigateTo({ url: '/subPackages/children/xiugaibaobao/xiugaibaobao' })">
                 <img
                     :src="baby?.avatarPath ? documentUrl + baby.avatarPath : 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png'" />
             </nut-avatar>
@@ -13,14 +14,14 @@
         <nut-col :span="6" class="nutrow">
             <div class="grids">
                 <span class="iconfont icon-xinzeng myionc" @click="Taro.navigateTo({
-                    url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
-                })"></span>
+        url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
+    })"></span>
                 <span class="iconfont icon-24gl-swapHorizontal3 myionc" @click="openlist"></span>
             </div>
         </nut-col>
     </nut-row>
 
-    <div class="cotnet">
+    <div class="cotnet" style="margin-top: 2.5rem;">
         <nut-button size="large" type="primary">
             <div class="smrc">
                 家庭共享
@@ -31,21 +32,33 @@
         </nut-button>
 
         <nut-cell title="账号设置" is-link class="topa" @click="Taro.navigateTo({
-            url: '/subPackages/children/zhanghaoshezhi/zhanghaoshezhi'
-        })">
+        url: '/subPackages/children/zhanghaoshezhi/zhanghaoshezhi'
+    })">
+            <template #icon>
+                <Setting />
+            </template>
+        </nut-cell>
+        <nut-cell title="数据统计" is-link @click="Taro.navigateTo({
+        url: '/subPackages/children/shujutongji/shujutongji'
+    })">
+            <template #icon>
+                <Refresh />
+            </template>
+        </nut-cell>
+        <nut-cell title="联系我们" is-link @click="Taro.navigateTo({
+        url: '/subPackages/children/lianxiwomen/lianxiwomen'
+    })">
             <template #icon>
                 <My />
             </template>
         </nut-cell>
-        <nut-cell title="数据统计" is-link @click="Taro.navigateTo({
-            url: '/subPackages/children/shujutongji/shujutongji'
-        })"></nut-cell>
-        <nut-cell title="联系我们" is-link @click="Taro.navigateTo({
-            url: '/subPackages/children/lianxiwomen/lianxiwomen'
-        })"></nut-cell>
         <nut-cell title="隐私政策" is-link @click="Taro.navigateTo({
-            url: '/subPackages/children/yinsizhengce/yinsizhengce'
-        })"></nut-cell>
+        url: '/subPackages/children/yinsizhengce/yinsizhengce'
+    })">
+            <template #icon>
+                <Tips />
+            </template>
+        </nut-cell>
     </div>
     <nut-popup position="bottom" v-model:visible="show" @closed="colseShow">
         <div class="guanli">宝宝管理</div>
@@ -78,13 +91,13 @@
     </nut-popup>
 </template>
 <script setup>
-import { My } from '@nutui/icons-vue-taro'
+import { My, Refresh, Setting, Tips } from '@nutui/icons-vue-taro'
 import Taro from '@tarojs/taro';
-import { ref, onMounted, reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import Axios from '../../../util/axios';
 import { documentUrl } from './../../../util/ip'
 import { Checklist } from '@nutui/icons-vue-taro'
-
+import { useDidShow } from '@tarojs/taro'
 
 const show = ref(false)
 const val = ref(null)
@@ -92,7 +105,7 @@ const list = ref([])
 
 const baby = ref(null)
 
-onMounted(() => {
+useDidShow(() => {
     baby.value = Taro.getStorageSync('user')
     val.value = Number(baby.value.id)
 })

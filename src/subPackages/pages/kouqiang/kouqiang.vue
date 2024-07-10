@@ -20,7 +20,7 @@
       <nut-button type="primary" @click="daka">刷牙打卡</nut-button>
     </div>
     <div>
-      <nut-button type="info" @click="Taro.navigateTo({
+      <nut-button plain @click="Taro.navigateTo({
     url: '/subPackages/pages/kouqiangjilu/kouqiangjilu'
   })">口腔记录</nut-button>
     </div>

@@ -40,7 +40,7 @@
     </nut-popup>
   </cover-view>
 
-  <nut-button size="large" type="primary" @click="Taro.navigateTo({
+  <nut-button style="width: 95%; margin: auto;" block type="primary" @click="Taro.navigateTo({
       url: '/subPackages/pages/shuimianguanli/shuimianguanli'
     })">手动记录</nut-button>
 </template>
@@ -103,7 +103,10 @@ function showEachts(day) {
           name: '时长',
           type: 'bar',
           stack: 'Total',
-          data: duration
+          data: duration,
+          itemStyle: {
+            color: '#3E721D'
+          }
         },
       ]
     };

@@ -40,7 +40,7 @@
         <nut-input v-model="formData.password" placeholder="请输入密码" type="text" />
       </nut-form-item>
       <div style="width: 96%; margin-left: 2%; margin-right: 2%;">
-        <nut-button block type="primary" @click="submit">提交</nut-button>
+        <nut-button block type="primary" @click="submit">登录</nut-button>
       </div>
     </nut-form>
   </div>

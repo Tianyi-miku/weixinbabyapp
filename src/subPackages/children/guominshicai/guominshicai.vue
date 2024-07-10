@@ -10,7 +10,7 @@
         食材清单
     </div>
     <div>
-        <nut-tag v-for="(item, index) in list" :key="index" round type="primary" class="nuttag"> {{ item.name }}
+        <nut-tag v-for="(item, index) in list" :key="index" round class="nuttag"> {{ item.name }}
         </nut-tag>
     </div>
     <div class="buttons">
@@ -20,7 +20,7 @@
         })">菜品清单</nut-button>
         </div>
         <div>
-            <nut-button type="info">过敏食材</nut-button>
+            <nut-button plain>过敏食材</nut-button>
         </div>
     </div>
 </template>
@@ -76,6 +76,7 @@ function addtoList() {
 .nuttag {
     padding: 0.2rem;
     margin: 0.5rem;
+    background: #7fadd6;
 }
 
 .title {
