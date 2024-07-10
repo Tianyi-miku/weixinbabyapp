@@ -4,7 +4,7 @@
             <div :class="item.class">
                 <div class="toux">
                     <nut-avatar style="background-color: none;" v-show="(index % 2) === 0">
-                        <img :src="documentUrl + baby?.avatarPath" />
+                        <img :src="ico_lizi" />
                     </nut-avatar>
                     <nut-avatar style="background-color: none;" v-show="(index % 2) !== 0">
                         <img :src="ico_huluobo" />
@@ -51,6 +51,7 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import ico_huluobo from '../../../assets/img/ico_huluobo.png'
+import ico_lizi from '../../../assets/img/ico_lizi.png'
 import ico_tiaoshipianshi_nor from '../Aimgs/ico_tiaoshipianshi_nor.png'
 import ico_beidongjincan_nor from '../Aimgs/ico_beidongjincan_nor.png'
 import ico_hanfan_nor from '../Aimgs/ico_hanfan_nor.png'
@@ -173,6 +174,7 @@ function addList(name) {
 .toux {
     height: auto;
     width: max-content;
+    padding: 0.5rem;
 }
 
 .topItem {
@@ -184,7 +186,8 @@ function addList(name) {
     flex-direction: row;
     float: left;
     width: 100%;
-    padding: 0.5rem;
+    margin-top: 1rem;
+    /* padding: 0.5rem; */
 }
 
 .right {
@@ -192,6 +195,7 @@ function addList(name) {
     flex-direction: row-reverse;
     float: right;
     width: 100%;
-    padding: 0.5rem;
+    margin-top:1rem;
+    /* padding: 0.5rem; */
 }
 </style>
