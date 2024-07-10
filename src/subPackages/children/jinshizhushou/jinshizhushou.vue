@@ -185,7 +185,7 @@ function addList(name) {
     display: flex;
     flex-direction: row;
     float: left;
-    width: 100%;
+    width: 85%;
     margin-top: 1rem;
     /* padding: 0.5rem; */
 }
@@ -195,7 +195,7 @@ function addList(name) {
     flex-direction: row-reverse;
     float: right;
     width: 100%;
-    margin-top:1rem;
+    margin-top: 1rem;
     /* padding: 0.5rem; */
 }
 </style>
