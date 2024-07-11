@@ -20,7 +20,7 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: #f4ea2a;" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc" style="color: #f4ea2a; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: #f4ea2a; border: 1px solid #002f49;" </span>
           </template>
         </nut-radio>
         <nut-radio label="2">
@@ -29,7 +29,7 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: green" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc" style="color: green; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: green; border: 1px solid #002f49;" </span>
           </template>
         </nut-radio>
         <nut-radio label="3">
@@ -38,7 +38,7 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: chocolate" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc" style="color: chocolate; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: chocolate; border: 1px solid #002f49;" </span>
           </template>
         </nut-radio>
         <nut-radio label="4">
@@ -47,7 +47,7 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: gray" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc" style="color: gray; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: gray; border: 1px solid #002f49;" </span>
           </template>
         </nut-radio>
         <nut-radio label="5">
@@ -56,7 +56,7 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: black" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc" style="color: black; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: black; border: 1px solid #002f49;" </span>
           </template>
         </nut-radio>
         <nut-radio label="6">
@@ -65,7 +65,7 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: red" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc" style="color: red; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: red; border: 1px solid #002f49;" </span>
           </template>
         </nut-radio>
       </nut-radio-group>
@@ -143,8 +143,11 @@ const handleSubmit = () => {
   width: 1.5rem;
   justify-content: center;
   align-items: center;
+}
+
+.selectiocn {
   border-radius: 50%;
   border: solid;
-  border-width: 1px;
+  border: 1px solid #4a7330 !important;
 }
 </style>

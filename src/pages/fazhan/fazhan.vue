@@ -24,7 +24,7 @@
             url: '/subPackages/pages/guanlipg/guanlipg'
         })">
             <div class="biaozhun"><span style="margin-left: 0.5rem;">{{ jichu?.comment }}</span>
-                <RectRight></RectRight>
+                <RectRight style="margin-bottom: -0.2rem;"></RectRight>
             </div>
         </div>
         <div class="tz">
@@ -173,7 +173,7 @@ useDidShow(() => {
 }
 
 .biaozhun {
-    background-color: white;
+    background-color: #daeed3;
     border-radius: 50%;
     height: 6rem;
     width: 6rem;
