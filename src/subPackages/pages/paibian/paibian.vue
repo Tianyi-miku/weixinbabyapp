@@ -62,7 +62,7 @@ const onChange = (val) => {
 
 function showData(item, day) {
   if (isTimeWithinDay(item, `${day.year}-${day.month}-${day.date}`)) {
-    return '☀️'
+    return '🟡'
   }
 }
 
@@ -164,7 +164,7 @@ function swichshape(value) {
   margin: 1rem;
   height: 20vh;
   border-radius: 16px;
-  background-color: aliceblue;
+  background-color: #F2F2F2;
 }
 
 .buttons {

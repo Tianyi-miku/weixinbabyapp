@@ -119,7 +119,7 @@ function isTimeWithinDay(targetTimeString, dayDateString) {
   margin: 1rem;
   height: 20vh;
   border-radius: 16px;
-  background-color: aliceblue;
+  background-color: #F2F2F2;
 }
 
 .buttons {

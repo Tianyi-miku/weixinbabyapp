@@ -63,8 +63,8 @@
     <nut-popup position="bottom" v-model:visible="show" @closed="colseShow">
         <div class="guanli">宝宝管理</div>
         <div class="group">
-            <nut-radio-group v-model="val">
-                <nut-radio v-for="item in list" :key="item.id" :label="Number(item.id)" style="width: 100vw;">
+            <nut-radio-group v-model="val" style="width: 85%; margin: auto">
+                <nut-radio v-for="item in list" :key="item.id" :label="Number(item.id)">
                     <div class="item">
                         <div class="toux">
                             <nut-avatar size="large">
