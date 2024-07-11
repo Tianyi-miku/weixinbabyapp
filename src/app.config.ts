@@ -84,6 +84,6 @@ export default defineAppConfig({
         selectedIconPath: "./assets/img/gongyu1.png",
       },
     ],
-    'color': '#6C6C6C',
+    'color': '#3E721D',
   },
 });

@@ -8,8 +8,8 @@
             </nut-avatar>
         </div>
         <div class="name">
-            <div>姓名: {{ baby?.name }}</div>
-            <div>年龄: {{ baby?.age }}</div>
+            <div> {{ baby?.name }}</div>
+            <div> {{ baby?.age }}</div>
         </div>
     </div>
     <div class="zhibiao">身体指标</div>
@@ -151,13 +151,15 @@ useDidShow(() => {
     color: #FFFFFF;
     flex-direction: column;
     padding-top: 0.5rem;
+    width: 33%;
 }
 
 .bz {
-    padding: 1rem;
+    padding: 1rem 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 33%;
 }
 
 .tz {
@@ -167,6 +169,7 @@ useDidShow(() => {
     color: #FFFFFF;
     flex-direction: column;
     padding-top: 0.5rem;
+    width: 33%;
 }
 
 .biaozhun {

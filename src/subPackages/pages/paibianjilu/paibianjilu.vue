@@ -143,5 +143,8 @@ const handleSubmit = () => {
   width: 1.5rem;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  border: solid;
+  border-width: 1px;
 }
 </style>

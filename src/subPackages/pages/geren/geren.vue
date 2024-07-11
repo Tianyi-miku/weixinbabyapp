@@ -83,7 +83,7 @@
                         <Checklist />
                     </template>
                     <template #checkedIcon>
-                        <Checklist color="red" />
+                        <Checklist color="#8CC269" />
                     </template>
                 </nut-radio>
             </nut-radio-group>

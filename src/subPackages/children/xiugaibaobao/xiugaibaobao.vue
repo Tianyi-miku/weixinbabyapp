@@ -83,11 +83,14 @@ const submit = () => {
           icon: 'success',
           duration: 1000
         })
-        setTimeout(() => {
-          Taro.navigateBack({
-            delta: 1
-          })
-        }, 1000);
+        Axios.get(`/baby/${data.id}`).then(res => {
+          Taro.setStorageSync('user', res)
+          setTimeout(() => {
+            Taro.navigateBack({
+              delta: 1
+            })
+          }, 1000);
+        })
       })
     } else {
       console.warn('error:', errors)
