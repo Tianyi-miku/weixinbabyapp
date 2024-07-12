@@ -21,12 +21,6 @@ import { ref } from 'vue';
 import Axios from '../../util/axios';
 import Taro from '@tarojs/taro'
 
-const formData = ref({
-  number: '',
-  yanzhenma: '',
-  id: 10001,
-  password: '18121827048',
-})
 const formRef = ref(null)
 const val = ref('1')
 

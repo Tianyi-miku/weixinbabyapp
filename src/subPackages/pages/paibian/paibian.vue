@@ -1,7 +1,7 @@
 <template>
   <nut-calendar-card v-model="value" @change="onChange">
     <template #bottom="{ day }">
-      <div v-for="(item, index) in list" :key="index">
+      <div v-for="(item, index) in list" :key="index" style="font-size: 0.6rem;">
         {{ showData(item, day) }}
       </div>
     </template>

@@ -8,8 +8,8 @@
             </nut-avatar>
         </nut-col>
         <nut-col :span="12">
-            <div>姓名: {{ baby?.name }}</div>
-            <div>年龄: {{ baby?.age }}</div>
+            <div>{{ baby?.name }}</div>
+            <div> {{ baby?.age }}</div>
         </nut-col>
         <nut-col :span="6" class="nutrow">
             <div class="grids">
@@ -73,8 +73,8 @@
                             </nut-avatar>
                         </div>
                         <div class="name">
-                            <div>姓名: {{ item?.name }}</div>
-                            <div>年龄: {{ item?.age }}</div>
+                            <div> {{ item?.name }}</div>
+                            <div> {{ item?.age }}</div>
                         </div>
                         <div class="shanchu" v-if="list.length > 1 && baby.id != item.id" @click.stop="dele(item)">删除
                         </div>
