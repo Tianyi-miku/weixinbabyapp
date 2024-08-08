@@ -1,5 +1,5 @@
 <template>
-    <nut-tabs v-model="value" auto-height="true">
+    <nut-tabs v-model="value" auto-height="true" v-if="isShowWz">
         <nut-tab-pane title="进食助手" pane-key="1">
             <div class="topjinshi">
                 <img class="yumaoqiu" :src="yumaoqiu" />
@@ -307,6 +307,9 @@
             </nut-tabs>
         </nut-tab-pane>
     </nut-tabs>
+    <div v-else>
+        <nut-table :columns="columns" :data="data"></nut-table>
+    </div>
 </template>
 <script setup>
 import { ref } from 'vue'
@@ -320,7 +323,39 @@ import chaye from '../../assets/img/chaye.png'
 import shou from '../../assets/img/shou.png'
 import ren from '../../assets/img/ren.png'
 import fan from '../../assets/img/fan.png'
+import { isShowWz } from "../../util/ip"
 
+const columns = ref([
+  {
+    title: '策略',
+    key: 'name'
+  },
+  {
+    title: '名称',
+    key: 'sex'
+  },
+  {
+    title: '备注',
+    key: 'record'
+  }
+])
+const data = ref([
+  {
+    name: '个人策略',
+    sex: '小美',
+    record: '自学'
+  },
+  {
+    name: '他人策略',
+    sex: '小爱',
+    record: '教授'
+  },
+  {
+    name: '家庭策略',
+    sex: '小红',
+    record: '教授与自学'
+  }
+])
 const value = ref('1')
 const value1 = ref('1')
 const value2 = ref('1')

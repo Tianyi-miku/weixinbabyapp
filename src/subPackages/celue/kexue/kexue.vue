@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" v-if="isShowWz">
         <div class="content">
             · 2~5岁仍处于快速生长发育阶段，营养需求较大，所摄入的食物种类和膳食模式已接近成人，但消化功能尚未完全成熟，其膳食制备与成人有一定的差异。
         </div>
@@ -15,10 +15,12 @@
             </div>
         </div>
     </div>
+    <div v-else>当前内容后续开发中！敬请期待！</div>
 </template>
 <script setup>
 import { ref } from 'vue'
 import neirong from '../Aimge/neirong.jpg'
+import { isShowWz } from "../../../util/ip"
 
 </script>
 <style>

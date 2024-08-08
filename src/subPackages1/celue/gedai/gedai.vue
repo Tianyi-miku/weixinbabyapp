@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" v-if="isShowWz">
         <div class="title">隔代教育与幼儿饮食习惯</div>
         <div class="content">
             隔代喂养分歧较普遍存在，分歧主要来自于饮食和饮食搭配两方面。在孩子饮食方面，分歧依次为喂养知识（24.8%）、喂养方法（23.8%）和喂养态度（12.7%）。在孩子饮食搭配方面，分歧主要存在于食品种类（24.0%）、食量（16.4%）和喂养方式（14.9%）。
@@ -18,10 +18,41 @@
             </div>
         </div>
     </div>
+    <div v-else>
+        <nut-table :columns="columns" :data="data">
+        </nut-table>
+    </div>
 </template>
 <script setup>
 import { ref } from 'vue'
+import { isShowWz } from "../../../util/ip"
 
+const columns = ref([
+    {
+        title: '菜单',
+        key: 'name'
+    },
+    {
+        title: '每周',
+        key: 'sex'
+    },
+    {
+        title: '备注',
+        key: 'record'
+    }
+])
+const data = ref([
+    {
+        name: '25个',
+        sex: '轮换',
+        record: '每天5个'
+    },
+    {
+        name: '20个',
+        sex: '轮换',
+        record: '每天至少4个'
+    },
+])
 </script>
 <style>
 .title {

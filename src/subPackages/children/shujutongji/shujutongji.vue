@@ -6,7 +6,7 @@
                     <div class="item">
                         <Date style="color: #8CC269;"></Date> {{ item.day }}
                     </div>
-                    <div class="item">
+                    <div class="item" v-if="isShowWz">
                         {{ item.brushTimes ? `刷牙 ${item.brushTimes} 次` : '' }}
                         {{ item.shape ? `排便 ${swichshape(item.shape)}` : '' }}
                         {{ item.duration ? `睡眠 ${item.duration} 小时` : '' }}
@@ -26,6 +26,7 @@ import { Date } from '@nutui/icons-vue-taro'
 import Axios from '../../../util/axios';
 import Taro from '@tarojs/taro'
 import { useDidShow } from '@tarojs/taro'
+import { isShowWz } from "../../../util/ip"
 
 const data = ref([])
 

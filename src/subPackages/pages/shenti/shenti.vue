@@ -1,5 +1,5 @@
 <template>
-    <nut-form ref="formRef" :model-value="formData" :rules="{
+    <nut-form v-if="isShowWz" ref="formRef" :model-value="formData" :rules="{
         height: [
             { required: true, message: '请输入身高' },
         ],
@@ -35,6 +35,10 @@
             <nut-button type="primary" block @click="handleSubmit">保存</nut-button>
         </nut-form-item>
     </nut-form>
+    <div v-else>
+        <nut-table :columns="columns" :data="data">
+        </nut-table>
+    </div>
 </template>
 <script setup>
 import { reactive } from 'vue';
@@ -43,6 +47,34 @@ import dayjs from 'dayjs'
 import Axios from '../../../util/axios';
 import Taro from '@tarojs/taro'
 import { useDidShow } from '@tarojs/taro'
+import { isShowWz } from "../../../util/ip"
+
+const columns = ref([
+  {
+    title: '人员',
+    key: 'name'
+  },
+  {
+    title: '性别',
+    key: 'sex'
+  },
+  {
+    title: '备注',
+    key: 'record'
+  }
+])
+const data = ref([
+  {
+    name: '小美',
+    sex: '女',
+    record: '无'
+  },
+  {
+    name: '小爱',
+    sex: '女',
+    record: '无'
+  },
+])
 
 const formData = ref({
     babyId: null,
@@ -73,8 +105,9 @@ useDidShow(() => {
 const handleSubmit = () => {
     formRef.value?.validate().then(({ valid, errors }) => {
         if (valid) {
+            let babyId = Taro.getStorageSync('user')?.id
             const data = {
-                babyId: formData.value.babyId,
+                babyId: babyId,
                 height: parseFloat(formData.value.height),
                 weight: parseFloat(formData.value.weight),
                 head: parseFloat(formData.value.head),

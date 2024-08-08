@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" v-if="isShowWz">
         <div class="content">
             · 2~5岁仍处于快速生长发育阶段，营养需求较大，所摄入的食物种类和膳食模式已接近成人，但消化功能尚未完全成熟，其膳食制备与成人有一定的差异。
         </div>
@@ -15,11 +15,42 @@
             </div>
         </div>
     </div>
+    <div v-else>
+        <nut-table :columns="columns" :data="data">
+        </nut-table>
+    </div>
 </template>
 <script setup>
 import { ref } from 'vue'
 import neirong from '../Aimge/neirong.jpg'
+import { isShowWz } from "../../../util/ip"
 
+const columns = ref([
+    {
+        title: '营养元素',
+        key: 'name'
+    },
+    {
+        title: '次数',
+        key: 'sex'
+    },
+    {
+        title: '备注',
+        key: 'record'
+    }
+])
+const data = ref([
+    {
+        name: '52个',
+        sex: '每天一次',
+        record: '无'
+    },
+    {
+        name: '42个',
+        sex: '每天两次',
+        record: '无'
+    },
+])
 </script>
 <style>
 .box {

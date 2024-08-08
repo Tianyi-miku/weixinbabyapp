@@ -1,6 +1,6 @@
 <template>
     <nut-tabs class="tabs" v-model="value" title-scroll="true" title-gutter="10" ellipsis="false" size="small"
-        auto-height="true">
+        auto-height="true"  v-if="isShowWz">
         <nut-tab-pane title="营养知识" pane-key="1">
             <img class="yinyangzhishi" :src="yinyangzhishi" />
             <div class="title">
@@ -74,10 +74,12 @@
             </div>
         </nut-tab-pane>
     </nut-tabs>
+    <div v-else>当前内容后续开发中！敬请期待！</div>
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
 import yinyangzhishi from '../Aimgs/yinyangzhishi.jpg'
+import { isShowWz } from "../../../util/ip"
 
 const value = ref('1')
 </script>

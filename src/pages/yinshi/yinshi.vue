@@ -58,7 +58,7 @@
                 </div>
             </div>
         </nut-tab-pane>
-        <nut-tab-pane title="饮食环境" pane-key="2" class="tabs">
+        <nut-tab-pane title="饮食环境" pane-key="2" class="tabs" v-if="isShowWz">
             <nut-tabs v-model="value1" class="tabs" auto-height="true">
                 <nut-tab-pane title="进餐环境" pane-key="1">
                     <div class="title">1、膳食安排：</div>
@@ -208,6 +208,8 @@ import dayjs from 'dayjs';
 import { useDidShow } from '@tarojs/taro'
 import Axios from '../../util/axios';
 import btn_shiwuzhishi from '../../assets/img/btn_shiwuzhishi.png'
+import { isShowWz } from "../../util/ip"
+
 
 const value = ref('1')
 const value1 = ref('1')

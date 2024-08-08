@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="zhibiao">身体指标</div>
-    <div class="Tcard" @click=" Taro.navigateTo({
+    <div  v-if="isShowWz" class="Tcard" @click=" Taro.navigateTo({
             url: '/subPackages/pages/shenti/shenti',
         })">
         <div class="sg">
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="zhibiao">健康管理</div>
-    <nut-grid :border="false" column-num="2">
+    <nut-grid  v-if="isShowWz" :border="false" column-num="2">
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
             url: '/subPackages/pages/tizhong/tizhong'
@@ -75,8 +75,13 @@
             </div>
         </nut-grid-item>
     </nut-grid>
+    <div v-else>
+        <nut-table :columns="columns" :data="data">
+        </nut-table>
+    </div>
 </template>
 <script setup>
+import { isShowWz } from "../../util/ip"
 import Taro from '@tarojs/taro'
 import { RectRight } from '@nutui/icons-vue-taro'
 import { ref } from 'vue'
@@ -88,6 +93,32 @@ import shuimianguanli from '../../assets/img/shuimianguanli.png'
 import kouqiangguanli from '../../assets/img/kouqiangguanli.png'
 import paibianguanli from '../../assets/img/paibianguanli.png'
 
+const columns = ref([
+  {
+    title: '是否健康',
+    key: 'name'
+  },
+  {
+    title: '共同',
+    key: 'sex'
+  },
+  {
+    title: '备注',
+    key: 'record'
+  }
+])
+const data = ref([
+  {
+    name: '是',
+    sex: '小美',
+    record: '良好'
+  },
+  {
+    name: '是',
+    sex: '小爱',
+    record: '一般'
+  },
+])
 const baby = ref(null)
 const imgUrl = ref('https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png')
 

@@ -1,5 +1,5 @@
 <template>
-    <nut-tabs v-model="value" auto-height="true">
+    <nut-tabs v-model="value" auto-height="true" v-if="isShowWz">
         <nut-tab-pane title="膳食教育" pane-key="1">
             <div class="title" style="font-size: 1.3rem;">如何进行膳食教育？</div>
             <div class="title">1、系统营养教育结合儿童语言发展。</div>
@@ -45,13 +45,42 @@
             </div>
         </nut-tab-pane>
     </nut-tabs>
+    <div v-else> <nut-table :columns="columns" :data="data">
+    </nut-table></div>
 </template>
 <script setup>
 import { ref } from 'vue'
 import Taro from '@tarojs/taro'
 import wa from '../../assets/img/wa.jpg'
+import { isShowWz } from "../../util/ip"
 
 const value = ref('1')
+const columns = ref([
+  {
+    title: '个人',
+    key: 'name'
+  },
+  {
+    title: '共同',
+    key: 'sex'
+  },
+  {
+    title: '备注',
+    key: 'record'
+  }
+])
+const data = ref([
+  {
+    name: '食欲',
+    sex: '小美',
+    record: '早上'
+  },
+  {
+    name: '食物',
+    sex: '小爱',
+    record: '三次'
+  },
+])
 
 </script>
 <style>

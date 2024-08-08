@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" v-if="isShowWz">
         <div class="title" style="font-size: 1.1rem;">不要把孩子进餐变成一场拳击赛</div>
         <div class="title">1、为了让孩子平衡饮食而将进餐变成一场拳击赛是不可取的。</div>
         <div class="content">
@@ -23,9 +23,39 @@
             </div>
         </div>
     </div>
+    <div v-else><nut-table :columns="columns" :data="data">
+        </nut-table></div>
 </template>
 <script setup>
 import { ref } from 'vue'
+import { isShowWz } from "../../../util/ip"
+
+const columns = ref([
+    {
+        title: '是否正常',
+        key: 'name'
+    },
+    {
+        title: '次数',
+        key: 'sex'
+    },
+    {
+        title: '备注',
+        key: 'record'
+    }
+])
+const data = ref([
+    {
+        name: '是',
+        sex: '3',
+        record: '每次250克'
+    },
+    {
+        name: '否',
+        sex: '2',
+        record: '每次200克'
+    },
+])
 
 </script>
 <style>

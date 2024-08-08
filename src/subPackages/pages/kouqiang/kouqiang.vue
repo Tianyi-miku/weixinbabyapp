@@ -86,7 +86,7 @@ function showData(item, day) {
     if (item.brushTimes === 1) {
       return '🌙'
     }
-    if (item.brushTimes === 2) {
+    if (item.brushTimes > 1) {
       return '☀️'
     }
   }

@@ -25,10 +25,11 @@
     ]">
         <nut-input v-model="formData.number" placeholder="请输入联系电话" type="text" />
       </nut-form-item>
-      <nut-form-item v-if="val === '1'" label="验证码" prop="yanzhenma" required>
-        <nut-input v-model="formData.yanzhenma" placeholder="请输入验证码" type="text">
+      <nut-form-item v-if="val === '1'" label="验证码" prop="code" required>
+        <nut-input v-model="formData.code" placeholder="请输入验证码" type="text">
           <template #right>
-            <nut-button type="primary" size="small" @click="sendFormat">发送</nut-button>
+            <nut-button type="primary" size="small" :disabled=sendDisable @click="sendFormat">发送 {{ sendDisable ?
+      (sendTime) : '' }}</nut-button>
           </template>
         </nut-input>
       </nut-form-item>
@@ -56,18 +57,34 @@ import { getCurrentInstance } from '@tarojs/taro'
 
 const formData = ref({
   number: '',
-  yanzhenma: '',
+  code: '',
   id: 10001,
   password: '18121827048',
 })
 const formRef = ref(null)
 const type = getCurrentInstance().router.params.type
 const val = ref(type)
+const sendDisable = ref(false)
+const sendTime = ref(60)
 
 function sendFormat() {
   formRef.value?.validate().then(({ valid, errors }) => {
     if (valid) {
-
+      sendDisable.value = true
+      Axios.post(`/sendMsg/${formData.value.number}`).then(res => {
+      }).catch(() => { })
+      if (!sendTime.value) {
+        sendTime.value = 60
+      }
+      let sc = setInterval(() => {
+        if (sendTime.value > 0) {
+          sendTime.value--
+          if (sendTime.value <= 0) {
+            clearInterval(sc)
+            sendDisable.value = false
+          }
+        }
+      }, 1000);
     }
   })
 }
@@ -75,8 +92,8 @@ function sendFormat() {
 const submit = () => {
   formRef.value?.validate().then(({ valid, errors }) => {
     if (valid) {
-      if (val === '1') {
-        Axios.post('/user', formData.value).then(res => {
+      if (val.value === '1') {
+        Axios.post('/login/code', formData.value).then(res => {
           Taro.setStorageSync('user', res)
           Taro.setStorageSync('token', res.token)
           if (res.name) {

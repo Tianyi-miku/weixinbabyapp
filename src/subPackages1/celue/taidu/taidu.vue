@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" v-if="isShowWz">
         <div class="title">保持喂养观念一致性</div>
         <div class="content">
             家人喂养观念不一致多出现在父母辈和祖辈之间，祖辈会较多出现溺爱喂养行为，如喂饭、给过多零食等。
@@ -16,10 +16,42 @@
             </div>
         </div>
     </div>
+    <div v-else>
+        <nut-table :columns="columns" :data="data">
+        </nut-table>
+    </div>
+
 </template>
 <script setup>
 import { ref } from 'vue'
+import { isShowWz } from "../../../util/ip"
 
+const columns = ref([
+    {
+        title: '家庭态度',
+        key: 'name'
+    },
+    {
+        title: '家庭人数',
+        key: 'sex'
+    },
+    {
+        title: '宝宝态度',
+        key: 'record'
+    }
+])
+const data = ref([
+    {
+        name: '温馨',
+        sex: '4',
+        record: '活跃'
+    },
+    {
+        name: '紧张',
+        sex: '2',
+        record: '害怕'
+    },
+])
 </script>
 <style>
 .title {

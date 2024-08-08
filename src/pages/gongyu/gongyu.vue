@@ -1,5 +1,5 @@
 <template>
-    <nut-tabs v-model="value" auto-height="true">
+    <nut-tabs v-model="value" auto-height="true" v-if="isShowWz">
         <nut-tab-pane title="喂养关系" pane-key="1">
             <div class="title" style="font-size: 1.3rem;">加强亲子亲密性有利于幼儿健康饮食行为</div>
             <div class="titleHt">
@@ -45,12 +45,48 @@
             </div>
         </nut-tab-pane>
     </nut-tabs>
+    <div v-else>
+        <nut-table :columns="columns" :data="data">
+        </nut-table>
+    </div>
 </template>
 <script setup>
 import { ref } from 'vue'
 import Taro from '@tarojs/taro'
+import { isShowWz } from "../../util/ip"
 
 const value = ref('1')
+const columns = ref([
+  {
+    title: '个人',
+    key: 'name'
+  },
+  {
+    title: '共同',
+    key: 'sex'
+  },
+  {
+    title: '备注',
+    key: 'record'
+  }
+])
+const data = ref([
+  {
+    name: '个人养育',
+    sex: '小美',
+    record: '单人'
+  },
+  {
+    name: '家庭养育',
+    sex: '小爱',
+    record: '多人'
+  },
+  {
+    name: '他人养育',
+    sex: '小红',
+    record: '无'
+  }
+])
 </script>
 <style>
 .title {

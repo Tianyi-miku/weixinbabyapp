@@ -24,6 +24,7 @@ declare module 'vue' {
     NutRadio: typeof import('@nutui/nutui-taro')['Radio']
     NutRadioGroup: typeof import('@nutui/nutui-taro')['RadioGroup']
     NutRow: typeof import('@nutui/nutui-taro')['Row']
+    NutTable: typeof import('@nutui/nutui-taro')['Table']
     NutTabPane: typeof import('@nutui/nutui-taro')['TabPane']
     NutTabs: typeof import('@nutui/nutui-taro')['Tabs']
     NutTag: typeof import('@nutui/nutui-taro')['Tag']

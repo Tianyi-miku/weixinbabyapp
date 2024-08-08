@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" v-if="isShowWz">
         <div class="title">保持喂养观念一致性</div>
         <div class="content">
             家人喂养观念不一致多出现在父母辈和祖辈之间，祖辈会较多出现溺爱喂养行为，如喂饭、给过多零食等。
@@ -16,9 +16,11 @@
             </div>
         </div>
     </div>
+    <div v-else>当前内容后续开发中！敬请期待！</div>
 </template>
 <script setup>
 import { ref } from 'vue'
+import { isShowWz } from "../../../util/ip"
 
 </script>
 <style>

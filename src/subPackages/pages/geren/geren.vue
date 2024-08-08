@@ -13,10 +13,10 @@
         </nut-col>
         <nut-col :span="6" class="nutrow">
             <div class="grids">
-                <span class="iconfont icon-xinzeng myionc" @click="Taro.navigateTo({
+                <span class="iconfont icon-xinzeng1 myionc" @click="Taro.navigateTo({
         url: '/subPackages/children/xinzengbaobao/xinzengbaobao'
     })"></span>
-                <span class="iconfont icon-24gl-swapHorizontal3 myionc" @click="openlist"></span>
+                <span class="iconfont icon-qiehuanyonghu myionc" @click="openlist"></span>
             </div>
         </nut-col>
     </nut-row>
@@ -150,7 +150,7 @@ function dele(item) {
 }
 
 .grids {
-    width: 2rem;
+    width: 5rem;
     display: flex !important;
     flex-wrap: wrap;
 }
@@ -160,6 +160,8 @@ function dele(item) {
     display: flex;
     flex-wrap: wrap;
     width: 1rem;
+    padding-right: 1rem;
+    font-size: 1.1rem;
 }
 
 .smrc {

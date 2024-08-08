@@ -6,25 +6,25 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7874512",
+      "name": "切换用户",
+      "font_class": "qiehuanyonghu",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "20313968",
+      "name": "新增",
+      "font_class": "xinzeng1",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
       "icon_id": "3791504",
       "name": "便便",
       "font_class": "bianbian1",
       "unicode": "e6f6",
       "unicode_decimal": 59126
-    },
-    {
-      "icon_id": "2077551",
-      "name": "新增",
-      "font_class": "xinzeng",
-      "unicode": "e641",
-      "unicode_decimal": 58945
-    },
-    {
-      "icon_id": "7597977",
-      "name": "24gl-swapHorizontal3",
-      "font_class": "24gl-swapHorizontal3",
-      "unicode": "eb73",
-      "unicode_decimal": 60275
     },
     {
       "icon_id": "36874779",

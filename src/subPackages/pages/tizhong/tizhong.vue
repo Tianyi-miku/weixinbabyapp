@@ -2,11 +2,11 @@
   <div class="top">
     <div class="tiz">
       <div>当前体重(kg)</div>
-      <div>{{ babyValue.nowWeight }}</div>
+      <div>{{ babyValue?.nowWeight }}</div>
     </div>
     <div class="tiz">
       <div>BMI指数</div>
-      <div> {{ (babyValue.bmi)?.toFixed(2) }}</div>
+      <div> {{ (babyValue?.bmi)?.toFixed(2) }}</div>
     </div>
   </div>
   <view class="bar-chart">
@@ -14,16 +14,26 @@
   </view>
   <div class="jianyi">健康建议</div>
   <div class="jianyi content">
-    <div>{{ babyValue.suggestion }}</div>
+    <div>{{ babyValue?.suggestion }}</div>
   </div>
 
-  <nut-cell title="当前体重" @click="show = true" :desc="showValue" />
-  <nut-button size="large" type="primary" style="width: 95%;
-    margin-left: 2.5%;" @click="submitTo">更新体重</nut-button>
+  <nut-cell title="当前体重" @click="show = true" :desc="showValue" v-if="isShowWz" tyle="width: 50%; 
+  margin-left: 2.5%;" />
+  <nut-cell title="更新时间" @click="showTime = true" :desc="dayjs(Timeval).format('YYYY-MM-DD HH:mm:ss')" v-if="isShowWz" tyle="width: 50%; 
+  margin-left: 2.5%;" />
+
+
+  <nut-button size="large" type="primary" style="width: 95%; 
+    margin-left: 2.5%;" @click="submitTo" v-if="isShowWz">更新体重</nut-button>
   <nut-number-keyboard v-model:visible="show" type="default" overlay v-model="showValue" @blur="show = false"
     @close="show = false" confirm-text="提交"></nut-number-keyboard>
+
+  <nut-popup v-model:visible="showTime" position="bottom">
+    <nut-date-picker v-model="Timeval" :three-dimensional="false" type="datetime" @confirm="showTime = false" @cancel="showTime = false"></nut-date-picker>
+  </nut-popup>
 </template>
 <script setup>
+import { isShowWz } from "../../../util/ip"
 import { ref, onMounted } from "vue";
 import Taro from "@tarojs/taro";
 import * as echarts from "echarts4taro3/lib/assets/echarts";; // 这里用了内置的，也可以用自定义的 echarts.js
@@ -39,6 +49,8 @@ const canvas = ref(null);
 const babyValue = ref({})
 const showValue = ref('')
 const value = ref('')
+const Timeval = ref(new Date())
+const showTime = ref(false)
 
 
 useDidShow(() => {
@@ -49,7 +61,10 @@ function getEhcart() {
   let babyId = Taro.getStorageSync('user')?.id
   Axios.get(`/basic/weight/${babyId}`).then(res => {
     babyValue.value = res
-    showValue.value = res.nowWeight ? res.nowWeight.toString() : ''
+    showValue.value = res?.nowWeight ? res.nowWeight.toString() : '0'
+    if (!res) {
+      return
+    }
     let time = res.weightList.map(item => dayjs(item.time).format('YYYY-MM-DD'))
     let weight = res.weightList.map(item => item.weight)
     const options = {
@@ -96,7 +111,7 @@ function submitTo() {
     const data = {
       babyId: babyId,
       weight: parseFloat(showValue.value),
-      measureTime: dayjs().format('YYYY-MM-DD')
+      measureTime: dayjs(Timeval.value).format('YYYY-MM-DD HH:mm:ss')
     }
     Axios.post('/basic/add', data).then(res => {
       Taro.showToast({
