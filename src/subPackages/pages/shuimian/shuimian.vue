@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="topDay" @click="show = true"> {{ dayjs().format('YYYY年-MM月-DD日') }} </div>
+    <nut-cell class="topDay" @click="show = true"> {{ weeks?.[0] }} - {{ weeks?.[6] }} </nut-cell>
     <div class="topRiqi">
       <div class="topList">
         <div class="item">

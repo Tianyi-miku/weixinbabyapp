@@ -1,6 +1,6 @@
 <template>
   <div class="top">
-    <div class="tiz">
+    <div class="tiz" v-if="isShowWz">
       <div>当前体重(kg)</div>
       <div>{{ babyValue?.nowWeight }}</div>
     </div>
@@ -17,19 +17,27 @@
     <div>{{ babyValue?.suggestion }}</div>
   </div>
 
-  <nut-cell title="当前体重" @click="show = true" :desc="showValue" v-if="isShowWz" tyle="width: 50%; 
-  margin-left: 2.5%;" />
-  <nut-cell title="更新时间" @click="showTime = true" :desc="dayjs(Timeval).format('YYYY-MM-DD HH:mm:ss')" v-if="isShowWz" tyle="width: 50%; 
+  <!-- <nut-cell title="当前体重" @click="show = true" :desc="showValue" v-if="isShowWz" tyle="width: 50%; 
+  margin-left: 2.5%;" /> -->
+
+  <nut-input v-model="showValue" input-align="right" placeholder="请输入当前体重" type="digit">
+    <template #left>
+      当前体重
+    </template>
+  </nut-input>
+  <nut-cell title="更新时间" @click="showTime = true" :desc="dayjs(Timeval).format('YYYY-MM-DD HH:mm:ss')" v-if="isShowWz"
+    tyle="width: 50%; 
   margin-left: 2.5%;" />
 
 
   <nut-button size="large" type="primary" style="width: 95%; 
     margin-left: 2.5%;" @click="submitTo" v-if="isShowWz">更新体重</nut-button>
-  <nut-number-keyboard v-model:visible="show" type="default" overlay v-model="showValue" @blur="show = false"
-    @close="show = false" confirm-text="提交"></nut-number-keyboard>
+  <!-- <nut-number-keyboard v-model:visible="show" type="rightColumn" overlay v-model="showValue" @blur="show = false"  :custom-key="customKey"
+    @close="show = false" ></nut-number-keyboard> -->
 
   <nut-popup v-model:visible="showTime" position="bottom">
-    <nut-date-picker v-model="Timeval" :three-dimensional="false" type="datetime" @confirm="showTime = false" @cancel="showTime = false"></nut-date-picker>
+    <nut-date-picker v-model="Timeval" :three-dimensional="false" type="datetime"
+      @cancel="showTime = false"></nut-date-picker>
   </nut-popup>
 </template>
 <script setup>
@@ -51,6 +59,7 @@ const showValue = ref('')
 const value = ref('')
 const Timeval = ref(new Date())
 const showTime = ref(false)
+const customKey = ref(['.'])
 
 
 useDidShow(() => {
@@ -108,10 +117,11 @@ function getEhcart() {
 function submitTo() {
   if (showValue.value) {
     let babyId = Taro.getStorageSync('user')?.id
+    const time = dayjs(Timeval.value).format('YYYY-MM-DD HH:mm:ss')
     const data = {
       babyId: babyId,
       weight: parseFloat(showValue.value),
-      measureTime: dayjs(Timeval.value).format('YYYY-MM-DD HH:mm:ss')
+      measureTime: time
     }
     Axios.post('/basic/add', data).then(res => {
       Taro.showToast({
@@ -159,5 +169,9 @@ function submitTo() {
   background-color: beige;
   border-radius: 8px;
   margin: 0 1rem;
+}
+
+.nut-picker__right {
+  display: none;
 }
 </style>

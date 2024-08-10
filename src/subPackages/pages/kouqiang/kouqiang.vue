@@ -87,7 +87,7 @@ function showData(item, day) {
       return '🌙'
     }
     if (item.brushTimes > 1) {
-      return '☀️'
+      return '🌕'
     }
   }
 }
@@ -120,6 +120,7 @@ function isTimeWithinDay(targetTimeString, dayDateString) {
   height: 20vh;
   border-radius: 16px;
   background-color: #F2F2F2;
+  overflow-y: scroll;
 }
 
 .buttons {

@@ -111,7 +111,8 @@ const handleSubmit = () => {
                 height: parseFloat(formData.value.height),
                 weight: parseFloat(formData.value.weight),
                 head: parseFloat(formData.value.head),
-                measureTime: formData.value.measureTime
+                // measureTime: formData.value.measureTime
+                measureTime: dayjs(formData.value.measureTime).format('YYYY-MM-DD HH:mm:ss')
             }
             Axios.post('/basic/add', data).then(res => {
                 Taro.showToast({

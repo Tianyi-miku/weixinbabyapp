@@ -165,6 +165,7 @@ function swichshape(value) {
   height: 20vh;
   border-radius: 16px;
   background-color: #F2F2F2;
+  overflow-y: scroll;
 }
 
 .buttons {

@@ -1,10 +1,10 @@
 <template>
   <nut-form>
     <nut-form-item label="开始时间">
-      <nut-input v-model="formData.start" placeholder="请输入开始时间" type="text" @click="show = true" />
+      <nut-input v-model="formData.start" placeholder="请输入开始时间" type="text" disabled @click="show = true" />
     </nut-form-item>
     <nut-form-item label="结束时间">
-      <nut-input v-model="formData.end" placeholder="请输入结束时间" type="text" @click="show1 = true" />
+      <nut-input v-model="formData.end" placeholder="请输入结束时间" type="text" disabled @click="show1 = true" />
     </nut-form-item>
   </nut-form>
 
@@ -81,7 +81,7 @@ function submit() {
 
 function confirm(value) {
   let arr = value.selectedOptions.map(item => item.value)
-  let time = `${arr[0]}-${arr[1]}-${arr[2]} ${arr[3]}:${arr[3]}:00`
+  let time = `${arr[0]}-${arr[1]}-${arr[2]} ${arr[3]}:${arr[4]}:00`
   formData.value.start = time
   show.value = false
 }
@@ -89,7 +89,7 @@ function confirm(value) {
 
 function confirm1(value) {
   let arr = value.selectedOptions.map(item => item.value)
-  let time = `${arr[0]}-${arr[1]}-${arr[2]} ${arr[3]}:${arr[3]}:00`
+  let time = `${arr[0]}-${arr[1]}-${arr[2]} ${arr[3]}:${arr[4]}:00`
   formData.value.end = time
   show1.value = false
 }

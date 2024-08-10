@@ -4,12 +4,12 @@
             <template #default="{ index, item }">
                 <div class="cotnent">
                     <div class="item">
-                        <Date style="color: #8CC269;"></Date> {{ item.day }}
+                        <Date style="color: #8CC269;"></Date> {{ dayjs(item.day).format('YYYY-MM-DD') }}
                     </div>
                     <div class="item" v-if="isShowWz">
                         {{ item.brushTimes ? `刷牙 ${item.brushTimes} 次` : '' }}
                         {{ item.shape ? `排便 ${swichshape(item.shape)}` : '' }}
-                        {{ item.duration ? `睡眠 ${item.duration} 小时` : '' }}
+                        {{ item.duration ? `睡眠 ${item.duration.toFixed(2)} 小时` : '' }}
                         {{ item.weight ? `体重 ${item.weight} kg ${item.suggestion}` : '' }}
                     </div>
                     <div class="item">
@@ -27,6 +27,7 @@ import Axios from '../../../util/axios';
 import Taro from '@tarojs/taro'
 import { useDidShow } from '@tarojs/taro'
 import { isShowWz } from "../../../util/ip"
+import dayjs from 'dayjs'
 
 const data = ref([])
 

@@ -1,6 +1,6 @@
 <template>
     <nut-tabs class="tabs" v-model="value" title-scroll="true" title-gutter="10" ellipsis="false" size="small"
-        auto-height="true"  v-if="isShowWz">
+        auto-height="true" v-if="isShowWz">
         <nut-tab-pane title="营养知识" pane-key="1">
             <img class="yinyangzhishi" :src="yinyangzhishi" />
             <div class="title">
@@ -74,7 +74,10 @@
             </div>
         </nut-tab-pane>
     </nut-tabs>
-    <div v-else>当前内容后续开发中！敬请期待！</div>
+    <div v-else>
+        <nut-table :columns="columns" :data="data">
+        </nut-table>
+    </div>
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -82,6 +85,37 @@ import yinyangzhishi from '../Aimgs/yinyangzhishi.jpg'
 import { isShowWz } from "../../../util/ip"
 
 const value = ref('1')
+const columns = ref([
+  {
+    title: '时间',
+    key: 'name'
+  },
+  {
+    title: '状态',
+    key: 'sex'
+  },
+  {
+    title: '备注',
+    key: 'record'
+  }
+])
+const data = ref([
+  {
+    name: '早餐',
+    sex: '吃好',
+    record: '无'
+  },
+  {
+    name: '午餐',
+    sex: '吃饱',
+    record: '无'
+  },
+  {
+    name: '晚餐',
+    sex: '八分',
+    record: '无'
+  }
+])
 </script>
 <style>
 .title {

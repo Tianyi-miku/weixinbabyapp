@@ -32,7 +32,7 @@
   <div class="buttons">
     <nut-tag v-for="(item, index) in list" :key="index" round type="primary" class="nuttag"> {{ item }}</nut-tag>
   </div>
-  <div class="buttons1">
+  <div class="buttons1" style="padding-top: 8rem;">
     <div>
       <nut-button type="primary">菜品清单</nut-button>
     </div>
@@ -121,7 +121,7 @@ function addTolist() {
 </script>
 <style>
 .buttons {
-  padding-top: 2rem;
+
   padding-bottom: 1rem;
   width: 100%;
   display: flex;
@@ -169,5 +169,6 @@ function addTolist() {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: auto;
+
 }
 </style>

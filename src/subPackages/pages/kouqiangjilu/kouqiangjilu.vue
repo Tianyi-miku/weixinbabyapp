@@ -14,7 +14,8 @@
       <nut-input disabled="true" placeholder="请输入记录时间" v-model="formData.measureTime" type="text"
         @click="show = true" />
       <nut-popup v-model:visible="show" position="bottom">
-        <nut-calendar-card v-model="riqi"></nut-calendar-card>
+        <nut-date-picker v-model="riqi" type="datetime" :three-dimensional="false"
+        @cancel="show = false"></nut-date-picker>
         <nut-button block type="primary" @click="riqichange">确认</nut-button>
       </nut-popup>
     </nut-form-item>
@@ -38,7 +39,8 @@ const formData = ref({
   measureTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
   comment: '',
 })
-const riqi = ref(null)
+let data = dayjs(new Date())
+const riqi = ref(new Date(data.year(), data.month(), data.date(), data.hour(), data.minute()))
 
 const submit = () => {
   formRef.value?.validate().then(({ valid, errors }) => {
@@ -68,9 +70,17 @@ const submit = () => {
 
 const show = ref(false)
 const riqichange = (param) => {
+  
   formData.value.measureTime = dayjs(riqi.value).format('YYYY-MM-DD HH:mm:ss')
   show.value = false
 }
 
 
 </script>
+
+<style>
+
+.nut-picker__right {
+  display: none;
+}
+</style>

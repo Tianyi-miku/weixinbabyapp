@@ -13,7 +13,7 @@
         <nut-tag v-for="(item, index) in list" :key="index" round class="nuttag"> {{ item.name }}
         </nut-tag>
     </div>
-    <div class="buttons">
+    <div class="buttons" style="padding-top: 10rem;">
         <div>
             <nut-button type="primary" @click="Taro.redirectTo({
             url: '/subPackages/children/caidan/caidan'
@@ -84,7 +84,6 @@ function addtoList() {
 }
 
 .buttons {
-    padding-top: 2rem;
     width: 80%;
     display: flex;
     flex-wrap: wrap;

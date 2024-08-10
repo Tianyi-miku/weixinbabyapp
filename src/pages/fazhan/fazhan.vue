@@ -12,7 +12,7 @@
             <div> {{ baby?.age }}</div>
         </div>
     </div>
-    <div class="zhibiao">身体指标</div>
+    <div  v-if="isShowWz" class="zhibiao">身体指标</div>
     <div  v-if="isShowWz" class="Tcard" @click=" Taro.navigateTo({
             url: '/subPackages/pages/shenti/shenti',
         })">
@@ -32,7 +32,7 @@
             <div>{{ jichu?.weight }}</div>
         </div>
     </div>
-    <div class="zhibiao">健康管理</div>
+    <div  v-if="isShowWz" class="zhibiao">健康管理</div>
     <nut-grid  v-if="isShowWz" :border="false" column-num="2">
         <nut-grid-item>
             <div class="guanli" @click=" Taro.navigateTo({
@@ -95,7 +95,7 @@ import paibianguanli from '../../assets/img/paibianguanli.png'
 
 const columns = ref([
   {
-    title: '是否健康',
+    title: '基础',
     key: 'name'
   },
   {

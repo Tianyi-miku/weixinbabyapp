@@ -8,7 +8,8 @@
       <nut-input disabled="true" placeholder="请输入记录时间" v-model="formData.measureTime" type="text"
         @click="show = true" />
       <nut-popup v-model:visible="show" position="bottom">
-        <nut-calendar-card v-model="riqi"></nut-calendar-card>
+        <nut-date-picker v-model="riqi" type="datetime" :three-dimensional="false"
+          @cancel="show = false"></nut-date-picker>
         <nut-button block type="primary" @click="riqichange">确认</nut-button>
       </nut-popup>
     </nut-form-item>
@@ -20,7 +21,8 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: #f4ea2a;" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: #f4ea2a; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: #f4ea2a; border: 1px solid #002f49;"
+              </span>
           </template>
         </nut-radio>
         <nut-radio label="2">
@@ -29,7 +31,8 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: green" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: green; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: green; border: 1px solid #002f49;"
+              </span>
           </template>
         </nut-radio>
         <nut-radio label="3">
@@ -38,7 +41,8 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: chocolate" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: chocolate; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: chocolate; border: 1px solid #002f49;"
+              </span>
           </template>
         </nut-radio>
         <nut-radio label="4">
@@ -47,7 +51,8 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: gray" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: gray; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: gray; border: 1px solid #002f49;"
+              </span>
           </template>
         </nut-radio>
         <nut-radio label="5">
@@ -56,7 +61,8 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: black" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: black; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: black; border: 1px solid #002f49;"
+              </span>
           </template>
         </nut-radio>
         <nut-radio label="6">
@@ -65,7 +71,8 @@
             <span class="iconfont icon-bianbian1 myionc" style="color: red" </span>
           </template>
           <template #checkedIcon>
-            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: red; border: 1px solid #002f49;" </span>
+            <span class="iconfont icon-bianbian1 myionc selectiocn" style="color: red; border: 1px solid #002f49;"
+              </span>
           </template>
         </nut-radio>
       </nut-radio-group>
@@ -98,7 +105,8 @@ const formData = ref({
   measureTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
   shape: '1',
 })
-const riqi = ref(null)
+let data = dayjs(new Date())
+const riqi = ref(new Date(data.year(), data.month(), data.date(), data.hour(), data.minute()))
 const show = ref(false)
 const riqichange = (param) => {
   formData.value.measureTime = dayjs(riqi.value).format('YYYY-MM-DD HH:mm:ss')
@@ -149,5 +157,9 @@ const handleSubmit = () => {
   border-radius: 50%;
   border: solid;
   border: 1px solid #4a7330 !important;
+}
+
+.nut-picker__right {
+  display: none;
 }
 </style>

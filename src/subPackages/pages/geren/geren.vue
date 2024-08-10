@@ -22,7 +22,7 @@
     </nut-row>
 
     <div class="cotnet" style="margin-top: 2.5rem;">
-        <nut-button size="large" type="primary">
+        <nut-button size="large" type="primary" v-if="isShowWz">
             <div class="smrc">
                 家庭共享
             </div>
@@ -98,6 +98,7 @@ import Axios from '../../../util/axios';
 import { documentUrl } from './../../../util/ip'
 import { Checklist } from '@nutui/icons-vue-taro'
 import { useDidShow } from '@tarojs/taro'
+import { isShowWz } from "../../../util/ip"
 
 const show = ref(false)
 const val = ref(null)

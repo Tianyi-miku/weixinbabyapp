@@ -4,7 +4,7 @@ export const ipAddress = "https://baobaocz.cn/"
 export const uploadUrl = "https://baobaocz.cn/file/upload"
 export const documentUrl = "https://baobaocz.cn/file/home/baby/uploadimg/"
 
-const time1 = "2024-08-09 10:00:00";
+const time1 = "2024-08-10 18:00:00";
 const date1 = dayjs(time1);
 
 const time2 = new Date();

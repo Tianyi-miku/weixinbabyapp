@@ -1,16 +1,23 @@
 <!-- Page A -->
 <template>
-  <div class="radio">
-    <nut-radio-group v-model="val1" direction="horizontal" @change="getList">
-      <nut-radio label="1" shape="button">身高</nut-radio>
-      <nut-radio label="2" shape="button">体重</nut-radio>
-      <nut-radio label="3" shape="button">头围</nut-radio>
-    </nut-radio-group>
+  <template v-if="isShowWz">
+    <div class="radio">
+      <nut-radio-group v-model="val1" direction="horizontal" @change="getList">
+        <nut-radio label="1" shape="button">身高</nut-radio>
+        <nut-radio label="2" shape="button">体重</nut-radio>
+        <nut-radio label="3" shape="button">头围</nut-radio>
+      </nut-radio-group>
+    </div>
+    <view class="bar-chart">
+      <EChart ref="canvas" />
+    </view>
+    <div class="cent">世界卫生组织(WHO)2-5岁儿童成长数据绘制</div>
+  </template>
+  <div v-else>
+    <nut-table :columns="columns" :data="data">
+    </nut-table>
   </div>
-  <view class="bar-chart">
-    <EChart ref="canvas" />
-  </view>
-  <div class="cent">世界卫生组织(WHO)2-5岁儿童成长数据绘制</div>
+
 </template>
 
 <script setup>
@@ -22,9 +29,30 @@ loadEcharts(echarts); // 加载 echarts 库
 import { EChart } from "echarts4taro3";
 import { useDidShow } from '@tarojs/taro'
 import Axios from '../../../util/axios';
+import { isShowWz } from "../../../util/ip"
 
 const val1 = ref('1')
 const canvas = ref(null);
+const columns = ref([
+  {
+    title: '评估',
+    key: 'name'
+  },
+  {
+    title: '备注',
+    key: 'record'
+  }
+])
+const data = ref([
+  {
+    name: '小美',
+    record: '无'
+  },
+  {
+    name: '小红',
+    record: '无'
+  },
+])
 const options = {
   tooltip: {
     trigger: 'axis'
