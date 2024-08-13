@@ -84,7 +84,7 @@ const options = {
   },
   series: [
     {
-      name: '标准',
+      name: '测量',
       type: 'line',
       data: [],
       itemStyle: {
@@ -160,7 +160,7 @@ function flush(res) {
   options.xAxis.data = Xdata
 
   options.series = [
-    { name: '标准', type: 'line', data: ydata },
+    { name: '测量', type: 'line', data: ydata },
     { name: '最大', type: 'line', data: ydata1 },
     { name: '最小', type: 'line', data: ydata2 }
   ]

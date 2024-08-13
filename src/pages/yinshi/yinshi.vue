@@ -353,4 +353,8 @@ function getCurrentWeekDates(value) {
     border-radius: 8px;
     color: #ffffff;
 }
+
+.itemCaidan {
+    background-color: #f1f1f1;
+}
 </style>
