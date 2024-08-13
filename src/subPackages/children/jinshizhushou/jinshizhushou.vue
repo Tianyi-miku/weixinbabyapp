@@ -1,21 +1,24 @@
 <template>
-    <div class="top">
-        <div v-for="(item, index) in  list " :key="index" class="topItem">
-            <div :class="item.class">
-                <div class="toux">
-                    <nut-avatar style="background-color: none;" v-show="(index % 2) === 0">
-                        <img :src="ico_lizi" />
-                    </nut-avatar>
-                    <nut-avatar style="background-color: none;" v-show="(index % 2) !== 0">
-                        <img :src="ico_huluobo" />
-                    </nut-avatar>
+    <view class="top">
+        <scroll-view v-for="(item, index) in  list " :key="index" scroll-y="true" class="topItem"
+            :scroll-into-view="toView" id="scrollView">
+            <view :id="'element' + index">
+                <div :class="item.class">
+                    <div class="toux">
+                        <nut-avatar style="background-color: none;" v-show="(index % 2) === 0">
+                            <img :src="ico_lizi" />
+                        </nut-avatar>
+                        <nut-avatar style="background-color: none;" v-show="(index % 2) !== 0">
+                            <img :src="ico_huluobo" />
+                        </nut-avatar>
+                    </div>
+                    <div class="content" v-html="item.content">
+                    </div>
                 </div>
-                <div class="content" v-html="item.content">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bot" id="myElement">
+            </view>
+        </scroll-view>
+    </view>
+    <div class="bot">
         <div @click="addList('挑食偏食')" class="botItem">
             <nut-avatar size="large" style="background-color: none;">
                 <img :src="ico_tiaoshipianshi_nor" />
@@ -47,6 +50,7 @@
             <div class="title">进餐拖延</div>
         </div>
     </div>
+
 </template>
 <script setup>
 import { reactive, ref } from 'vue';
@@ -60,9 +64,12 @@ import ico_jincantuoyan_nor from '../Aimgs/ico_jincantuoyan_nor.png'
 import Taro from '@tarojs/taro'
 import { useDidShow } from '@tarojs/taro'
 import { documentUrl } from './../../../util/ip'
+import { View, scrollView } from '@tarojs/components';
 
 let list = reactive([])
 let baby = ref(null)
+let toView = ref(`demo2`)
+let scrollTop = ref(null)
 
 useDidShow(() => {
     baby.value = Taro.getStorageSync('user')
@@ -116,19 +123,23 @@ function addList(name) {
                <div> ③　每次吃饭前都要和宝宝说“我们要准备开始吃饭了噢”，这个交流关键是给他一个餐前准备过程，而不是一到饭点就直接把他抱上餐椅，他可能会因为在玩得高兴被你一打断就不高兴了。</div>
                 `
             })
-        }
 
+        }
     }, 1000);
-    setTimeout(() => {
-        const query = Taro.createSelectorQuery().in(this);
-        query.select('#myElement').boundingClientRect(data => {
-            if (data) {
-                // 使用scrollTop滚动到元素的底部
-                const scrollTop = data.top + data.height;
-                this.scrollTo(scrollTop);
-            }
-        }).exec();
-    }, 2000);
+    toView.value = 'demo2'
+    scrollTop.value = 1000
+
+}
+function upper(e) {
+    console.log('upper:', e)
+}
+
+function lower(e) {
+    console.log('lower:', e)
+}
+
+function scroll(e) {
+    console.log('scroll:', e)
 }
 
 </script>

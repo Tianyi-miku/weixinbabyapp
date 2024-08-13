@@ -12,15 +12,15 @@
   <view class="bar-chart">
     <EChart ref="canvas" />
   </view>
-  <div class="jianyi">健康建议</div>
-  <div class="jianyi content">
+  <div class="jianyi" v-if="isShowWz">健康建议</div>
+  <div class="jianyi content" v-if="isShowWz">
     <div>{{ babyValue?.suggestion }}</div>
   </div>
 
   <!-- <nut-cell title="当前体重" @click="show = true" :desc="showValue" v-if="isShowWz" tyle="width: 50%; 
   margin-left: 2.5%;" /> -->
 
-  <nut-input v-model="showValue" input-align="right" placeholder="请输入当前体重" type="digit">
+  <nut-input v-model="showValue" input-align="right" placeholder="请输入当前体重" type="digit" v-if="isShowWz">
     <template #left>
       当前体重
     </template>
@@ -82,14 +82,20 @@ function getEhcart() {
       },
       grid: {
         left: '3%',
-        right: '4%',
+        right: '6%',
         bottom: '3%',
         containLabel: true
       },
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: time
+        data: time,
+        axisLabel: {
+          fontSize: '0.6rem',
+          formatter: (value) => {
+            return dayjs(value).format('MM/DD')
+          }
+        }
       },
       yAxis: {
         type: 'value'
@@ -98,7 +104,7 @@ function getEhcart() {
         {
           name: '体重',
           type: 'line',
-          stack: 'Total',
+          barWidth: '60%',
           data: weight,
           itemStyle: {
             color: '#3E721D'

@@ -8,7 +8,8 @@
   </nut-radio-group>
   <div class="content">
     <div class="tags">
-      <nut-tag class="nut" type="success" v-for="(item, index) in list1" :key="index"> {{ item.name }} </nut-tag>
+      <nut-tag class="nut" type="success" v-for="(item, index) in list1" :key="index" closeable @close="close(item)"> {{
+    item.name }} </nut-tag>
     </div>
   </div>
   <nut-radio-group v-model="val2" direction="horizontal">
@@ -30,7 +31,7 @@
     食材清单
   </div>
   <div class="buttons">
-    <nut-tag v-for="(item, index) in list" :key="index" round type="primary" class="nuttag"> {{ item }}</nut-tag>
+    <nut-tag v-for="(item, index) in list" :key="index" round type="primary" class="nuttag"> {{ item }} </nut-tag>
   </div>
   <div class="buttons1" style="padding-top: 8rem;">
     <div>
@@ -85,6 +86,13 @@ function getList() {
   let babyId = Taro.getStorageSync('user')?.id
   Axios.get(`/meal/names/${babyId}`).then(res => {
     list.value = res
+  })
+}
+
+function close(params) {
+  Axios.delete(`/meal/${params.id}`).then(res => {
+    getListByType(date)
+    getList()
   })
 }
 

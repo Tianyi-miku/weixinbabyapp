@@ -51,8 +51,8 @@
                 <div class="bottomlist">
                     <div class="item" v-for="( item, index ) in  weeksList " :key="index">
                         <div v-for="( e, index ) in  item " :key="index" style="font-size: 0.7rem;">
-                            <div class="itemType"> {{ swithItype(e.type) }}</div>
-                            <div class="itemCaidan"> {{ e.name }}</div>
+                            <div class="itemType" v-if="index === 0"> {{ swithItype(e.type) }}</div>
+                            <div class="itemCaidan" v-for="(element, i) in e" :key="i"> {{ element.name }}</div>
                         </div>
                     </div>
                 </div>
@@ -250,9 +250,19 @@ useDidShow(() => {
 function getList(day) {
     let babyId = Taro.getStorageSync('user')?.id
     Axios.get(`/meal/week?babyId=${babyId}&startDate=${day}`).then(res => {
-        weeksList.value = res
+
+        const groupedByType = res.reduce((acc, item) => {
+            if (!acc[item.type]) {
+                acc[item.type] = [];
+            }
+            acc[item.type].push(item);
+            return acc;
+        }, {});
+        const groupedArrays = Object.values(groupedByType);
+        weeksList.value = groupedArrays
     })
 }
+
 
 function getCurrentWeekDates(value) {
     // 获取当前日期 

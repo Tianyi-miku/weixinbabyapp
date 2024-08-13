@@ -12,6 +12,9 @@
       <EChart ref="canvas" />
     </view>
     <div class="cent">世界卫生组织(WHO)2-5岁儿童成长数据绘制</div>
+    <div class="bottomcontent">
+      如果宝宝的成长曲线在区间内，并且整体平缓向上，一般来说可以认为是正常的。
+    </div>
   </template>
   <div v-else>
     <nut-table :columns="columns" :data="data">
@@ -33,6 +36,7 @@ import { isShowWz } from "../../../util/ip"
 
 const val1 = ref('1')
 const canvas = ref(null);
+let unit = ref('cm')
 const columns = ref([
   {
     title: '评估',
@@ -55,7 +59,14 @@ const data = ref([
 ])
 const options = {
   tooltip: {
-    trigger: 'axis'
+    trigger: 'axis',
+    formatter: function (params) {
+      let relVal = '';
+      for (let i = 0, l = params.length; i < l; i++) {
+        relVal += (i === 0 ? '' : '\n') + `${params?.[i]?.seriesName} ${params[i]?.value} ${unit.value}`
+      }
+      return relVal
+    },
   },
   grid: {
     left: '3%',
@@ -100,14 +111,17 @@ useDidShow(() => {
 function getList() {
   let babyId = Taro.getStorageSync('user')?.id
   if (val1.value === '1') {
+    unit.value = 'cm'
     Axios.get(`/statistic/height/${babyId}`).then(res => {
       flush(res)
     })
   } else if (val1.value === '2') {
+    unit.value = 'kg'
     Axios.get(`/statistic/weight/${babyId}`).then(res => {
       flush(res)
     })
   } else {
+    unit.value = 'cm'
     Axios.get(`/statistic/head/${babyId}`).then(res => {
       flush(res)
     })
@@ -175,5 +189,15 @@ function flush(res) {
   width: 100%;
   text-align: center;
   font-size: small;
+  margin-bottom: 0.5rem;
+}
+
+.bottomcontent {
+  color: #7B7B7B;
+  width: 90%;
+  background: #F5F5F5;
+  font-size: small;
+  padding: 0.5rem;
+  margin: auto;
 }
 </style>

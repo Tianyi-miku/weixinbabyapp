@@ -1,48 +1,43 @@
 <template>
-  <div>
-    <nut-cell class="topDay" @click="show = true"> {{ weeks?.[0] }} - {{ weeks?.[6] }} </nut-cell>
-    <div class="topRiqi">
-      <div class="topList">
-        <div class="item">
-          周一
-        </div>
-        <div class="item">
-          周二
-        </div>
-        <div class="item">
-          周三
-        </div>
-        <div class="item">
-          周四
-        </div>
-        <div class="item">
-          周五
-        </div>
-        <div class="item">
-          周六
-        </div>
-        <div class="item">
-          周日
-        </div>
+  <nut-cell class="topDay" @click="show = true"> {{ weeks?.[0] }} - {{ weeks?.[6] }} </nut-cell>
+  <div class="topRiqi">
+    <div class="topList">
+      <div class="item">
+        周一
       </div>
-      <div v-for="item in weeks" :key="item" class="item">
-        {{ dayjs(item).date() }}
+      <div class="item">
+        周二
+      </div>
+      <div class="item">
+        周三
+      </div>
+      <div class="item">
+        周四
+      </div>
+      <div class="item">
+        周五
+      </div>
+      <div class="item">
+        周六
+      </div>
+      <div class="item">
+        周日
       </div>
     </div>
-    <cover-view class="bar-chart">
-      <EChart ref="canvas" v-show="!show" />
-    </cover-view>
+    <div v-for="item in weeks" :key="item" class="item">
+      {{ dayjs(item).date() }}
+    </div>
   </div>
-  <cover-view>
-    <nut-popup v-model:visible="show" position="bottom">
-      <nut-calendar-card v-model="riqix" type="week" firstDayOfWeek="1" @change="onChange"></nut-calendar-card>
-      <nut-button block type="primary" @click="() => { show = false, showEachts(weeks[0]) }">确认</nut-button>
-    </nut-popup>
-  </cover-view>
-
+  <div class="bar-chart">
+    <EChart ref="canvas" v-show="!show" />
+  </div>
+  <nut-popup v-model:visible="show" position="bottom">
+    <nut-calendar-card v-model="riqix" type="week" firstDayOfWeek="1" @change="onChange"></nut-calendar-card>
+    <nut-button block type="primary" @click="() => { show = false, showEachts(weeks[0]) }">确认</nut-button>
+  </nut-popup>
   <nut-button style="width: 95%; margin: auto;" block type="primary" @click="Taro.navigateTo({
-      url: '/subPackages/pages/shuimianguanli/shuimianguanli'
-    })">手动记录</nut-button>
+    url: '/subPackages/pages/shuimianguanli/shuimianguanli'
+  })">手动记录</nut-button>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
@@ -86,14 +81,19 @@ function showEachts(day) {
       },
       grid: {
         left: '3%',
-        right: '4%',
+        right: '6%',
         bottom: '3%',
         containLabel: true
       },
       xAxis: {
         type: 'category',
-        boundaryGap: false,
-        data: time
+        data: time,
+        axisLabel: {
+          fontSize: '0.6rem',
+          formatter: (value) => {
+            return dayjs(value).format('MM/DD')
+          }
+        }
       },
       yAxis: {
         type: 'value'
@@ -102,7 +102,7 @@ function showEachts(day) {
         {
           name: '时长',
           type: 'bar',
-          stack: 'Total',
+          barWidth: '60%',
           data: duration,
           itemStyle: {
             color: '#3E721D'
