@@ -56,8 +56,10 @@ function getRecorder() {
 }
 
 const onChange = (val) => {
-  dakaDate.value = dayjs(val).format('YYYY-MM-DD HH:mm:ss')
-  getRecorder()
+  if (val) {
+    dakaDate.value = dayjs(val).format('YYYY-MM-DD HH:mm:ss')
+    getRecorder()
+  }
 }
 
 function showData(item, day) {

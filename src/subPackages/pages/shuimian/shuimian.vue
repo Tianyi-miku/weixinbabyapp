@@ -66,8 +66,10 @@ useDidShow(() => {
 
 
 const onChange = (val) => {
-  riqix.value = val
-  weeks.value = getCurrentWeekDates(val[0])
+  if (val) {
+    riqix.value = val
+    weeks.value = getCurrentWeekDates(val[0])
+  }
 }
 
 function showEachts(day) {

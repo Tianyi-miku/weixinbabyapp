@@ -62,8 +62,10 @@ function getRecorder() {
 }
 
 const onChange = (val) => {
-  dakaDate.value = val
-  getRecorder()
+  if (val) {
+    dakaDate.value = val
+    getRecorder()
+  }
 }
 
 function daka(params) {

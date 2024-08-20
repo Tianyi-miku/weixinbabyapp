@@ -10,7 +10,8 @@
         食材清单
     </div>
     <div>
-        <nut-tag v-for="(item, index) in list" :key="index" round class="nuttag"> {{ item.name }}
+        <nut-tag v-for="(item, index) in list" :key="index" round class="nuttag" closeable @close="close(item)"> {{
+            item.name }}
         </nut-tag>
     </div>
     <div class="buttons" style="position: absolute;
@@ -43,6 +44,12 @@ function getList() {
     let babyId = Taro.getStorageSync('user')?.id
     Axios.get(`/allergic/${babyId}`).then(res => {
         list.value = res
+    })
+}
+
+function close(params) {
+    Axios.delete(`/allergic/${params.id}`).then(res => {
+        getList()
     })
 }
 

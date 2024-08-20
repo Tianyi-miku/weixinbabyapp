@@ -51,7 +51,7 @@
                 <div class="bottomlist">
                     <div class="item" v-for="( item, index ) in  weeksList " :key="index">
                         <div v-for="( e, index ) in  item " :key="index" style="font-size: 0.7rem;">
-                            <div class="itemType" v-if="index === 0"> {{ swithItype(e.type) }}</div>
+                            <div class="itemType"> {{ swithItype(e[0].type) }}</div>
                             <div class="itemCaidan" v-for="(element, i) in e" :key="i"> {{ element.name }}</div>
                         </div>
                     </div>
@@ -237,8 +237,10 @@ function swithItype(value) {
 }
 
 const onChange = (val) => {
-    riqix.value = val
-    weeks.value = getCurrentWeekDates(val[0])
+    if (val) {
+        riqix.value = val
+        weeks.value = getCurrentWeekDates(val[0])
+    }
 }
 
 useDidShow(() => {
@@ -251,15 +253,18 @@ function getList(day) {
     let babyId = Taro.getStorageSync('user')?.id
     Axios.get(`/meal/week?babyId=${babyId}&startDate=${day}`).then(res => {
 
-        const groupedByType = res.reduce((acc, item) => {
-            if (!acc[item.type]) {
-                acc[item.type] = [];
-            }
-            acc[item.type].push(item);
-            return acc;
-        }, {});
-        const groupedArrays = Object.values(groupedByType);
-        weeksList.value = groupedArrays
+        const li = res.map(list => {
+            const groupedByType = list.reduce((acc, item) => {
+                if (!acc[item.type]) {
+                    acc[item.type] = [];
+                }
+                acc[item.type].push(item);
+                return acc;
+            }, {});
+            const groupedArrays = Object.values(groupedByType);
+            return groupedArrays
+        })
+        weeksList.value = li
     })
 }
 
