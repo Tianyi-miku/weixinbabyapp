@@ -1,56 +1,60 @@
 <template>
-    <view class="top">
-        <scroll-view v-for="(item, index) in  list " :key="index" scroll-y="true" class="topItem"
-            :scroll-into-view="toView" id="scrollView">
-            <view :id="'element' + index">
-                <div :class="item.class">
-                    <div class="toux">
-                        <nut-avatar style="background-color: none;" v-show="(index % 2) === 0">
-                            <img :src="ico_lizi" />
-                        </nut-avatar>
-                        <nut-avatar style="background-color: none;" v-show="(index % 2) !== 0">
-                            <img :src="ico_huluobo" />
-                        </nut-avatar>
-                    </div>
-                    <div class="content" v-html="item.content">
+    <template v-if="isShowWz">
+        <view class="top">
+            <div v-for="(item, index) in list " :key="index" scroll-y="true" class="topItem" :scroll-into-view="toView"
+                id="scrollView">
+                <div :id="'element' + index">
+                    <div :class="item.class">
+                        <div class="toux">
+                            <nut-avatar style="background-color: none;" v-show="(index % 2) === 0">
+                                <img :src="ico_lizi" />
+                            </nut-avatar>
+                            <nut-avatar style="background-color: none;" v-show="(index % 2) !== 0">
+                                <img :src="ico_huluobo" />
+                            </nut-avatar>
+                        </div>
+                        <div class="content" v-html="item.content">
+                        </div>
                     </div>
                 </div>
-            </view>
-        </scroll-view>
-    </view>
-    <div class="bot">
-        <div @click="addList('挑食偏食')" class="botItem">
-            <nut-avatar size="large" style="background-color: none;">
-                <img :src="ico_tiaoshipianshi_nor" />
-            </nut-avatar>
-            <div class="title">挑食偏食</div>
+            </div>
+        </view>
+        <div class="bot">
+            <div @click="addList('挑食偏食')" class="botItem">
+                <nut-avatar size="large" style="background-color: none;">
+                    <img :src="ico_tiaoshipianshi_nor" />
+                </nut-avatar>
+                <div class="title">挑食偏食</div>
+            </div>
+            <div @click="addList('被动进餐')" class="botItem">
+                <nut-avatar size="large" style="background-color: none;">
+                    <img :src="ico_beidongjincan_nor" />
+                </nut-avatar>
+                <div class="title">被动进餐</div>
+            </div>
+            <div @click="addList('含饭')" class="botItem">
+                <nut-avatar size="large" style="background-color: none;">
+                    <img :src="ico_hanfan_nor" />
+                </nut-avatar>
+                <div class="title">含饭</div>
+            </div>
+            <div @click="addList('食欲缺乏')" class="botItem">
+                <nut-avatar size="large" style="background-color: none;">
+                    <img :src="ico_shiyuquefa_nor" />
+                </nut-avatar>
+                <div class="title">食欲缺乏</div>
+            </div>
+            <div @click="addList('进餐拖延')" class="botItem">
+                <nut-avatar size="large" style="background-color: none;">
+                    <img :src="ico_jincantuoyan_nor" />
+                </nut-avatar>
+                <div class="title">进餐拖延</div>
+            </div>
         </div>
-        <div @click="addList('被动进餐')" class="botItem">
-            <nut-avatar size="large" style="background-color: none;">
-                <img :src="ico_beidongjincan_nor" />
-            </nut-avatar>
-            <div class="title">被动进餐</div>
-        </div>
-        <div @click="addList('含饭')" class="botItem">
-            <nut-avatar size="large" style="background-color: none;">
-                <img :src="ico_hanfan_nor" />
-            </nut-avatar>
-            <div class="title">含饭</div>
-        </div>
-        <div @click="addList('食欲缺乏')" class="botItem">
-            <nut-avatar size="large" style="background-color: none;">
-                <img :src="ico_shiyuquefa_nor" />
-            </nut-avatar>
-            <div class="title">食欲缺乏</div>
-        </div>
-        <div @click="addList('进餐拖延')" class="botItem">
-            <nut-avatar size="large" style="background-color: none;">
-                <img :src="ico_jincantuoyan_nor" />
-            </nut-avatar>
-            <div class="title">进餐拖延</div>
-        </div>
-    </div>
-
+    </template>
+    <template v-else>
+        助手列表
+    </template>
 </template>
 <script setup>
 import { reactive, ref } from 'vue';
@@ -63,8 +67,8 @@ import ico_shiyuquefa_nor from '../Aimgs/ico_shiyuquefa_nor.png'
 import ico_jincantuoyan_nor from '../Aimgs/ico_jincantuoyan_nor.png'
 import Taro from '@tarojs/taro'
 import { useDidShow } from '@tarojs/taro'
-import { documentUrl } from './../../../util/ip'
-import { View, scrollView } from '@tarojs/components';
+import { documentUrl, isShowWz } from './../../../util/ip'
+// import { View, scrollView } from '@tarojs/components';
 
 let list = reactive([])
 let baby = ref(null)
@@ -203,10 +207,10 @@ function scroll(e) {
 
 .right {
     display: flex;
-    flex-direction: row-reverse;
-    float: right;
-    width: 100%;
     margin-top: 1rem;
-    /* padding: 0.5rem; */
+    width: 100vw;
+    position: initial;
+    float: right;
+    flex-direction: row-reverse;
 }
 </style>

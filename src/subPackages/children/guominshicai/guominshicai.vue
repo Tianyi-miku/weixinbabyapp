@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <!-- <div>
         <nut-input v-model="val" placeholder="请输入食材" clearable>
             <template #right>
                 <nut-button type="primary" size="small" @click="addtoList">添加</nut-button>
@@ -25,7 +25,8 @@
         <div>
             <nut-button plain>过敏食材</nut-button>
         </div>
-    </div>
+    </div> -->
+    清单
 </template>
 <script setup>
 import { ref } from 'vue'
@@ -37,7 +38,7 @@ const val = ref('')
 const list = ref('')
 
 useDidShow(() => {
-    getList()
+    // getList()
 })
 
 function getList() {

@@ -18,7 +18,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "3.4.6",
+  "libVersion": "2.25.3",
   "srcMiniprogramRoot": "dist/",
   "packOptions": {
     "ignore": [],

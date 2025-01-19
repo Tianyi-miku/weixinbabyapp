@@ -7,7 +7,8 @@ import {
   CalendarCard,
   Uploader,
   Toast,
-  Tag
+  Tag,
+  Textarea,
 } from "@nutui/nutui-taro";
 import "./app.less";
 import "./assets/icon-font/iconfont.css";
@@ -26,4 +27,5 @@ App.use(CalendarCard);
 App.use(Tag)
 App.use(Toast)
 App.use(Uploader)
+App.use(Textarea)
 export default App;

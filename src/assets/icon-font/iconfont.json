@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7084896",
+      "name": "性别男",
+      "font_class": "xingbienan",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "7084898",
+      "name": "性别女",
+      "font_class": "xingbienv",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
       "icon_id": "7874512",
       "name": "切换用户",
       "font_class": "qiehuanyonghu",

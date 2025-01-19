@@ -1,59 +1,178 @@
 <template>
+  <div class="gongyu">
     <nut-tabs v-model="value" auto-height="true" v-if="isShowWz">
-        <nut-tab-pane title="喂养关系" pane-key="1">
-            <div class="title" style="font-size: 1.3rem;">加强亲子亲密性有利于幼儿健康饮食行为</div>
-            <div class="titleHt">
-                父母与幼儿建立一种快乐的、满足的亲密关系。该关系有利于双方沟通交流，并使双方真正地相互理解和达成共识，因此这类教育行为下的幼儿能真正地形成可持续的健康进餐行为。
-            </div>
-            <div class="content">
-                亲子冲突是父母与子女之间的对立和不一致，是亲子关系的对抗部分。长期不当的教养方式，会带来消极的亲子互动，激化矛盾的发生。幼儿被置于充满敌意的环境中，对家庭共餐产生恐惧和逃避心理，
-                难以养成健康的饮食行为习惯。父母更应该关注亲子冲突善用策略，理性育儿，减少矛盾的发生。
-            </div>
-            <div class="content">
-                · 共同制定家庭饮食公约有助于减少矛盾的发生。父母可以多鼓励幼儿提出进餐时“应该做” 和
-                “不应该做”的内容，并思考其合理性，让幼儿在认知和情感上认同规则。同时，亲子双方有平等的权利互相监督，直至规则内化为习惯。
-            </div>
-            <div class="content">
-                · 父母可以和孩子一起选购食物，并让孩子参与力所能及的食物加工活动（如择菜等），增加其对食物的接受度，增进亲子关系。
-            </div>
-            <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
-                <div>[1]陈旭微.幼儿家庭进餐行为主体性影响因素分析[J].陕西学前师范学院学报,2017,33(07):75-82.
+      <nut-tab-pane title="家园共育" pane-key="1">
+
+        <div style="display: flex; justify-content:flex-end; height: 3.5rem">
+          <div style="display: flex; flex-direction:column; justify-content:center;margin: .5rem;"
+            @click="Taro.navigateTo({ url: '/subPackages1/pages/gongyu/shequfatie/shequaftie' })">
+            <img style="width: 1.4rem;height: 1.4rem;align-self: center; " :src="Slice9" />
+            <div style="font-size: .7rem;">发帖</div>
+          </div>
+          <div style="display: flex; flex-direction:column; justify-content:center;margin: .5rem;">
+            <img style="width: 1.4rem;height: 1.4rem;align-self: center; " :src="xinfeng" />
+            <div style="font-size: .7rem;">消息</div>
+          </div>
+        </div>
+        <img :src="ryzb" style="height: 7rem;width: 96%;margin-left: 2%;"
+          @click=" Taro.navigateTo({ url: '/subPackages/ryzb/clff' })" />
+        <div class="neirong1">
+          <div class="demo-list">
+            <div v-for="(item, index) in data1" :key="index">
+              <div class="list-item">
+                <div class="list-item-msg"
+                  @click="Taro.navigateTo({ url: `/subPackages1/pages/dongtai/dongtai?id=${item.id}` })"> {{ item.msg }}
                 </div>
-                <div>[2]黄思雨,甘剑梅.幼儿饮食行为与亲子关系、父母教养方式的关系[J].教育导刊(下半月),2019,(11):79-85.
+                <img class="list-item-img" v-if="item.images" :src="documentUrl + item.images"
+                  @click="Taro.navigateTo({ url: `/subPackages1/pages/dongtai/dongtai?id=${item.id}` })" />
+                <div class="bottomList">
+                  <div class="leftIcon">
+                    <div class="touxiang"> <nut-avatar size="small">
+                        <img :src="item.babyUrl" />
+                        <!-- <img :src="documentUrl + item.babyUrl" /> -->
+                      </nut-avatar></div>
+                    <div class="name">{{ item.babyName }}</div>
+                    <div class="riqi">{{ dayjs(item.updateTime)?.format('YYYY-MM-DD') }}</div>
+                  </div>
+                  <div class="rightIcon">
+                    <div class="Comment"
+                      @click="Taro.navigateTo({ url: `/subPackages1/pages/dongtai/dongtai?id=${item.id}` })">
+                      <Comment></Comment>
+                      {{ item.commentCount }}
+                    </div>
+                    <div class="SFollow" @click="likeIt(item.id, item.like)">
+                      <template v-if="item.like">
+                        <HeartFill color="red"></HeartFill>
+                      </template>
+                      <template v-else>
+                        <SFollow></SFollow>
+                      </template>
+                      {{ item.likeCount }}
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div v-if="index === data1.length">
+                <img :src="Slice7" style="height: 4rem;width: 4rem;margin-left: 80%;"
+                  @click=" Taro.navigateTo({ url: '/subPackages1/pages/gongyu/shequfatie/shequaftie' })" />
+              </div>
             </div>
-        </nut-tab-pane>
-        <nut-tab-pane title="家园共育" pane-key="2">
-            <div class="title" style="font-size: 1.3rem;">幼儿的社会性培养需要家、园教育保持一致</div>
-            <div class="titleHt">
-                给孩子们“怎样吃?吃什么?吃多少?”等问题已成了幼儿家长、幼教工作者和营养师们关注的热点。怎样才能保证幼儿每天摄入到营养平衡的膳食，这受两方面的影响:一是幼儿自己，二是幼儿家长及儿童教养工作者。要使这两方面的关系和谐统一，需要有一套完善的、科学的膳食营养照料管理体系。
-            </div>
-            <div class="title">1. 幼儿园方面。</div>
-            <div class="content">
-                · 通过幼儿园的网站、广播、信息栏、班级家庭之窗等向家长宣传幼儿的饮食营养，并定期向家长推荐一些营养合理搭配的食谱。
-            </div>
-            <div class="content"> ·
-                通过家长会、家长学校，给家长一个直接交流彼此在幼儿饮食方面的经验的平台，帮助家长针对幼儿饮食习惯中存在的问题，树立正确的教育观念和教育方法，纠正家长在幼儿早餐认识上的误区；
-            </div>
-            <div class="content"> · 通过开放日，让家长自己来幼儿园参观一下，幼儿在园是怎么吃饭、吃点心的，与教师交流经验，进行直观的学习。</div>
-            <div class="title">2.家庭方面。</div>
-            <div class="content"> · 家长要将幼儿在家表现出的不良饮食行为及时地反映给老师，听取教师的意见。</div>
-            <div class="content"> · 通过家长委员会，将自身在幼儿饮食习惯方面的经验或是疑惑反应给幼儿园。家长还应主动地获取相关的幼儿教育知识，树立正确的幼儿教育观。</div>
-            <div style="width: 92vw;font-size: 0.8rem; padding-top: 1rem; color: #7B7B7B;">
-                <div>[1]陆燕芳.隔代教育对幼儿饮食习惯的影响和对策[J].考试周刊,2016,(16):194.
-                </div>
-            </div>
-        </nut-tab-pane>
+          </div>
+        </div>
+      </nut-tab-pane>
+
+      <nut-tab-pane title="喂养关系" pane-key="2" style="padding:0;">
+        <div class="content" @click=" Taro.navigateTo({ url: '/subPackages1/pages/gongyu/qinziguanxi/qinziguanxi', })">
+          <div>
+            <span class="biaoti">为什么亲子关系对宝宝的</span>
+            <span class="biaoti">饮食很重要</span>
+            <span class="jiaobiao1">相关喂养</span>
+          </div>
+          <div><img :src="qzgx" style="height: 6rem;width: 10rem;" /></div>
+        </div>
+
+        <div class="content"
+          @click=" Taro.navigateTo({ url: '/subPackages1/pages/gongyu/jiayuangongyu/jiayuangongyu', })">
+          <div>
+            <span class="biaoti">如何培养良好的亲子关系</span>
+            <span class="jiaobiao">相关喂养</span>
+          </div>
+          <div><img :src="qzgx1" style="height: 6rem;width: 10rem;" /></div>
+        </div>
+
+        <div class="content" @click=" Taro.navigateTo({ url: '/subPackages1/pages/gongyu/qzyd/qzyd', })">
+          <div>
+            <span class="biaoti">2-3岁宝宝亲子阅读技巧</span>
+            <span class="jiaobiao">相关喂养</span>
+          </div>
+          <div><img :src="qzgx2" style="height: 6rem;width: 10rem;" /></div>
+        </div>
+
+        <div class="content" @click=" Taro.navigateTo({ url: '/subPackages1/pages/gongyu/zzyd/zzyd', })">
+          <div>
+            <span class="biaoti">亲子共读到自主阅读</span>
+            <span class="jiaobiao">相关喂养</span>
+          </div>
+          <div><img :src="qzgx3" style="height: 6rem;width: 10rem;" /></div>
+        </div>
+
+      </nut-tab-pane>
+
     </nut-tabs>
     <div v-else>
-        <nut-table :columns="columns" :data="data">
-        </nut-table>
+      <nut-table :columns="columns" :data="data">
+      </nut-table>
     </div>
+  </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import Taro from '@tarojs/taro'
 import { isShowWz } from "../../util/ip"
+import { useDidShow } from '@tarojs/taro'
+import { documentUrl } from '../../util/ip'
+import Axios from '../../util/axios'
+import Slice9 from '../../assets/img/Slice9.png'
+import xinfeng from '../../assets/img/xinfeng.png'
+import Slice7 from '../../assets/img/Slice7.png'
+import { List } from '@nutui/nutui-taro'
+import dayjs from 'dayjs'
+import { Comment, SFollow, HeartFill } from '@nutui/icons-vue-taro'
+
+const data1 = ref([])
+const pageNum = ref(0)
+const total = ref(0)
+const pageSize = 10
+
+
+
+
+useDidShow(() => {
+  getList()
+})
+
+function getList() {
+  let babyId = Taro.getStorageSync('user')?.id
+  Axios.get(`/blog/list/${babyId}`).then(res => {
+    data1.value = res
+  })
+}
+
+function likeIt(id, islike) {
+  let babyId = Taro.getStorageSync('user')?.id
+  if (islike) {
+    Axios.post('/blog/like/remove', { blogId: id, babyId: babyId }).then(res => {
+      Taro.showToast({
+        title: '取消成功',
+        icon: 'success',
+        duration: 1000
+      })
+      const ele = data1.value.find(item => item.id === id)
+      ele.likeCount = ele.likeCount - 1
+      ele.like = false
+    })
+  } else {
+    Axios.post('/blog/like/add', { blogId: id, babyId: babyId }).then(res => {
+      if (res) {
+        Taro.showToast({
+          title: '点赞成功',
+          icon: 'success',
+          duration: 1000
+        })
+        const ele = data1.value.find(item => item.id === id)
+        ele.likeCount = ele.likeCount + 1
+        ele.like = true
+      }
+    })
+  }
+}
+
+
+const qzgx = ref(documentUrl + '/qzgx.png')
+const qzgx1 = ref(documentUrl + '/qzgx1.png')
+const qzgx2 = ref(documentUrl + '/qzgx2.png')
+const qzgx3 = ref(documentUrl + '/qzgx3.png')
+const ryzb = ref(documentUrl + '/ryzb.png')
 
 const value = ref('1')
 const columns = ref([
@@ -89,26 +208,169 @@ const data = ref([
 ])
 </script>
 <style>
-.title {
-    margin: 0.5rem 0;
-    color: #3E721D;
-    font-size: 1rem;
-    height: max-content;
+.nut-tabs {
+  height: 100%;
 }
 
-.titleHt {
-    font-size: 1rem;
-    color: #181818;
-    margin: 0.5rem 0;
+.gongyu {
+  height: 100%;
+  overflow: hidden;
 }
+
+.demo-list {
+  height: 100%;
+  /* height: 28rem; */
+  overflow: scroll;
+}
+
+.list-item {
+  /* display: flex; */
+  width: 96%;
+  margin-left: 2%;
+  /* margin-bottom: 20px; */
+  /* text-align: center; */
+  min-height: 350px;
+  /* background-color: #f4a8b6; */
+  border-radius: 5%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.11);
+  margin-top: 40px;
+  position: relative;
+}
+
+.bottomList {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  width: 100%;
+}
+
+.leftIcon {
+  width: 70%;
+  display: flex;
+  font-size: 0.6rem;
+  align-items: center;
+}
+
+.name {
+  padding-left: 20px;
+  font-size: .9rem;
+  text-align: center;
+}
+
+.touxiang {
+  width: 2rem;
+  height: 2rem;
+  padding-left: 1rem;
+}
+
+.riqi {
+  padding-left: 1rem;
+  font-size: .8rem;
+}
+
+.rightIcon {
+  width: 30%;
+  display: flex;
+  justify-items: center;
+}
+
+.Comment {
+  width: 50%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+
+.SFollow {
+  width: 50%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+
+.neirong1 {
+  width: 100%;
+}
+
+.tubiao {
+  display: flex;
+}
+
 
 .content {
-    padding-top: 0.5rem;
-    color: #7B7B7B;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 8rem;
+  border-bottom: 1px solid rgb(206, 200, 200);
+  margin-top: 1rem;
 }
 
-.nut-tabs {
-    overflow-y: scroll;
-    height: 100%;
+.biaoti {
+  font-weight: bold;
+  font-size: o.9rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.nut-tab-pane {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  padding: 0;
+  flex-shrink: 0;
+  display: block;
+  background-color: #F9F9F9;
+  /* padding: 48rpx 40rpx; */
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: auto;
+  height: 100%;
+  word-break: break-all;
+  /* width: 96%; */
+  /* margin-left: 2%; */
+}
+
+.shequneirong {
+  width: 100%;
+  /* height: 10rem; */
+  align-self: flex-start;
+  background-color: rgb(255, 255, 255);
+}
+
+/* .nut-tabs {} */
+
+.jiaobiao {
+  font-size: 0.76rem;
+  margin-top: 3.2rem;
+}
+
+.jiaobiao1 {
+  font-size: 0.76rem;
+  margin-top: 2rem;
+}
+
+.beijin {
+  height: 100%;
+}
+
+.list-item-img {
+  height: 5rem;
+  width: 5rem;
+}
+
+.list-item-msg {
+  padding: 10px;
+}
+
+.nut-tabs__content {
+  height: 100%;
+}
+
+.nut-icon {
+  padding: 10px;
 }
 </style>
