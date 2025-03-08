@@ -14,6 +14,7 @@ import { ref, h } from 'vue';
 import { useDidShow } from '@tarojs/taro';
 import Axios from '../../../util/axios';
 import dayjs from 'dayjs';
+import { isShowWz } from "../../../util/ip"
 
 const data1 = ref([
     {
