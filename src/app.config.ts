@@ -34,7 +34,7 @@ export default defineAppConfig({
         "children/zhanghaoshezhi/zhanghaoshezhi",
         "children/xinzengbaobao/xinzengbaobao",
         "children/xiugaibaobao/xiugaibaobao",
-
+        "children/yonghutongjishuju/yonghutongjishuju",
 
 
         "weiyangfangshi/fansi/fansi",

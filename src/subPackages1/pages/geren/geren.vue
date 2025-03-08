@@ -60,6 +60,13 @@
                     <Tips />
                 </template>
             </nut-cell>
+            <nut-cell title="用户统计数据" v-if="isAdmin" is-link @click="Taro.navigateTo({
+                url: '/subPackages/children/yonghutongjishuju/yonghutongjishuju'
+            })">
+                <template #icon>
+                    <Tips />
+                </template>
+            </nut-cell>
         </div>
         <nut-popup position="bottom" v-model:visible="show" @closed="colseShow">
             <div class="guanli">宝宝管理</div>
@@ -109,12 +116,14 @@ import { isShowWz } from "../../../util/ip"
 const show = ref(false)
 const val = ref(null)
 const list = ref([])
+const isAdmin = ref(false)
 
 const baby = ref(null)
 
 useDidShow(() => {
     baby.value = Taro.getStorageSync('user')
     val.value = Number(baby.value.id)
+    isAdmin.value = baby.value.admin
 })
 function openlist() {
     Axios.get('/baby/list').then(res => {
