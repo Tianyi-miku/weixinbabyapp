@@ -84,7 +84,7 @@ const columns = ref([
                 'span',
                 {
                 },
-                formatDuration(record.lastLogin)
+                formatDuration(record.lastTime)
             );
         }
         ,
@@ -100,6 +100,7 @@ const columns = ref([
 const data = ref([]);
 
 function formatDuration(ms) {
+    
     const seconds = Math.floor(ms / 1000);
     const days = Math.floor(seconds / (3600 * 24));
     const hours = Math.floor((seconds % (3600 * 24)) / 3600);
