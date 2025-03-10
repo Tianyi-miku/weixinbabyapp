@@ -191,17 +191,17 @@ const columns = ref([
 ])
 const data = ref([
   {
-    name: '个人养育',
+    name: '1',
     sex: '小美',
     record: '单人'
   },
   {
-    name: '家庭养育',
+    name: '2',
     sex: '小爱',
     record: '多人'
   },
   {
-    name: '他人养育',
+    name: '3',
     sex: '小红',
     record: '无'
   }
